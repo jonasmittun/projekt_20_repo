@@ -7,9 +7,8 @@ public class Project {
     private int projectLeaderID;
     private ArrayList<Activity> activityList;
 
-    public Project(String projectName, int projectLeader){
+    public Project(String projectName){
         this.projectName = projectName;
-        this.projectLeaderID = projectLeader;
     }
 
     public String getProject(){
