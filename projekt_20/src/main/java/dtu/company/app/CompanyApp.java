@@ -1,10 +1,10 @@
 package dtu.company.app;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class CompanyApp {
-    private List<Employee> employeeList;
-    private List<Project> projectList;
+    private ArrayList<Employee> employeeList;
+    private ArrayList<Project> projectList;
 
     public CompanyApp() {
         Employee employee;
