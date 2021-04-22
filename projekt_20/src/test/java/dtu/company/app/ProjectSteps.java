@@ -4,11 +4,14 @@ import dtu.company.app.Activity;
 import dtu.company.app.CompanyApp;
 import dtu.company.app.Employee;
 import dtu.company.app.Project;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
 
 @SuppressWarnings("deprecation")
 public class ProjectSteps {
@@ -23,8 +26,8 @@ public class ProjectSteps {
     
     @Given("a project {string} does not exist in the system")
     public void a_project_does_not_exist_in_the_system(String string) {
-    	System.out.println("test");
-    	assertThat(companyApp.containsProjectWithName(string));
+    	assertFalse(companyApp.containsProjectWithName(string));
+    	throw new io.cucumber.java.PendingException();
     }
 
     @Given("an employee wants to create a project named {string}.")

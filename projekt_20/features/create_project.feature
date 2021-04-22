@@ -1,6 +1,6 @@
 Feature: Create project
-  Description: A project is created in the system
-  Actor: Employee
+	Description: A project is created in the system
+	Actor: Employee
 
   Scenario: an empty project is created
   	  Given a project "project 1" does not exist in the system
