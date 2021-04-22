@@ -1,4 +1,4 @@
-package dtu.company.acceptance_tests;
+package dtu.company.app;
 
 import dtu.company.app.Activity;
 import dtu.company.app.CompanyApp;
@@ -7,9 +7,10 @@ import dtu.company.app.Project;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
+@SuppressWarnings("deprecation")
 public class ProjectSteps {
     private CompanyApp companyApp;
     private Employee employee;
@@ -23,7 +24,7 @@ public class ProjectSteps {
     @Given("a project {string} does not exist in the system")
     public void a_project_does_not_exist_in_the_system(String string) {
     	System.out.println("test");
-    	org.junit.jupiter.api.Assertions.assertFalse(companyApp.containsProjectWithName(string));
+    	assertThat(companyApp.containsProjectWithName(string));
     }
 
     @Given("an employee wants to create a project named {string}.")

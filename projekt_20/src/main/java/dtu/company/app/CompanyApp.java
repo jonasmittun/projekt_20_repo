@@ -13,6 +13,8 @@ public class CompanyApp {
             employeeList.add(employee);
         }
         this.employeeList = employeeList;
+        
+        this.projectList = new ArrayList<Project>();
     }
 
 	public boolean containsProjectWithName(String string) {

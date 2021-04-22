@@ -1,4 +1,4 @@
-package dtu.company.acceptance_tests;
+package dtu.company.app;
 
 
 import org.junit.runner.RunWith;
