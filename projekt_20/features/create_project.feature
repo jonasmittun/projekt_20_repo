@@ -3,8 +3,9 @@ Feature: Create project
   Actor: Employee
 
   Scenario: Employee creates an empty project
-      Given an employee wants to create a project named "project 1".
-      When employee registers the project
+  	  Given a project "project 1" does not exist in the system
+      When a project named "project 1" is created.
+      And The project is added to the system
       Then the project is registered in the system
 
 #  Scenario: Create project with existing project name
