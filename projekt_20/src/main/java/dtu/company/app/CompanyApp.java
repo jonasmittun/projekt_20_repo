@@ -13,7 +13,6 @@ public class CompanyApp {
             employee = new Employee(i);
             employeeList.add(employee);
         }
-        this.employeeList = employeeList;
         
         this.projectList = new ArrayList<Project>();
     }
@@ -25,5 +24,9 @@ public class CompanyApp {
 			}
 		}
 		return false;
+	}
+
+	public void addProject(Project project) throws OperationNotAllowedException{
+		projectList.add(project);
 	}
 }

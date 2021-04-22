@@ -4,9 +4,9 @@ Feature: Create project
 
 Scenario: an empty project is created
 	Given a project "project 1" does not exist in the system
-      #When a project named "project 1" is created
-      #And The project is added to the system
-      #Then the project is registered in the system
+	When a project named "project 1" is created
+	And the project is added to the system
+	Then the system contains a project named "project 1"
 
 #  Scenario: Create project with existing project name
 #      Given an employee wants to create a project named "project 1"
