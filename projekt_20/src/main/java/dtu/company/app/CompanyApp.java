@@ -7,6 +7,7 @@ public class CompanyApp {
     private ArrayList<Project> projectList;
 
     public CompanyApp() {
+    	employeeList = new ArrayList<Employee>();
         Employee employee;
         for (int i = 1; i < 51; i++){
             employee = new Employee(i);

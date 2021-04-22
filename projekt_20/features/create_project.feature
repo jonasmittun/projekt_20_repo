@@ -2,8 +2,8 @@ Feature: Create project
 	Description: A project is created in the system
 	Actor: Employee
 
-  Scenario: an empty project is created
-  	  Given a project "project 1" does not exist in the system
+Scenario: an empty project is created
+	Given a project "project 1" does not exist in the system
       #When a project named "project 1" is created
       #And The project is added to the system
       #Then the project is registered in the system
