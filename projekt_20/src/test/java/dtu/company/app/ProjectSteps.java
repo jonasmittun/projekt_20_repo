@@ -6,6 +6,7 @@ import dtu.company.app.Employee;
 import dtu.company.app.Project;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -17,11 +18,13 @@ public class ProjectSteps {
 	private CompanyApp companyApp;
 	private Project project;
 	private ErrorMessageHolder errorMessage;
+	private ProjectHelper helper;
 	
 	//Contructor for dependency injection
-	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage){
+	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, ProjectHelper helper){
 		this.companyApp = companyApp;
 		this.errorMessage = errorMessage;
+		this.helper = helper;
 	}
     
     @Given("a project {string} does not exist in the system")
@@ -38,7 +41,7 @@ public class ProjectSteps {
     public void the_project_is_added_to_the_system() throws Exception{
     	try {
     		companyApp.addProject(project);
-    	} catch (OperationNotAllowedException e){
+    	} catch (Exception e){
     		errorMessage.setErrorMessage(e.getMessage());
     	}
         
@@ -48,4 +51,17 @@ public class ProjectSteps {
     public void the_system_contains_a_project_named(String string) {
         assertTrue(companyApp.containsProjectWithName(string));
     }
+    
+    @Given("a project exists in the system")
+    public void a_project_exists_in_the_system() throws Exception {
+        project = helper.getExampleProject();
+        the_project_is_added_to_the_system();
+        assertTrue(companyApp.containsProjectWithName(project.getProjectName()));
+    }
+    
+    @Then("the error message {string} is given")
+    public void the_error_message_is_given(String errorMessage) {
+    	assertEquals(errorMessage, this.errorMessage.getErrorMessage());
+    }
+    
 }

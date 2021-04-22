@@ -6,13 +6,9 @@ public class Project {
     private String projectName;
     private int projectLeaderID;
     private ArrayList<Activity> activityList;
-
+    
     public Project(String projectName){
         this.projectName = projectName;
-    }
-
-    public String getProject(){
-        return projectName;
     }
 
     public int getProjectLeader(){

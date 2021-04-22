@@ -26,7 +26,20 @@ public class CompanyApp {
 		return false;
 	}
 
-	public void addProject(Project project) throws OperationNotAllowedException{
-		projectList.add(project);
+	public void addProject(Project project) throws Exception{
+		if (containsProjectWithName(project.getProjectName())) {
+			throw new Exception("Project already exists");
+		} else {
+			projectList.add(project);
+		}
+	}
+	
+	public boolean containsEmployeeWithId(int id) {
+		for (Employee employee : employeeList) {
+			if (employee.getId() == id) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
