@@ -18,4 +18,8 @@ public class Project {
     public int getProjectLeader(){
         return projectLeaderID;
     }
+
+	public String getProjectName() {
+		return projectName;
+	}
 }

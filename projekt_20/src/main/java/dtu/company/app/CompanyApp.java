@@ -14,4 +14,13 @@ public class CompanyApp {
         }
         this.employeeList = employeeList;
     }
+
+	public boolean containsProjectWithName(String string) {
+		for (int i = 0; i < projectList.size(); i++) {
+			if (projectList.get(i).getProjectName().equals(string)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
