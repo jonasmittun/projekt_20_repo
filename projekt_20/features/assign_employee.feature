@@ -3,11 +3,11 @@ Feature: Assigning Employee
    Actor: Project leader
 
    #Assigning an employee
-   #Scenario: Project leader assigns an employee to an activity
-       #Given there is an activity "Activity" assigned to a project "Project"
-       #When the project leader selects an employee "Employee"
-       #And the employee "Employee" is currently working on less than <20> projects
-       #Then the employee "Employee" is assigned to the "Activity"
+   Scenario: Project leader assigns an employee to an activity
+       Given there is an activity "Activity" assigned to a project "Project"
+       When the project leader selects an employee "Employee"
+       And the employee "Employee" is currently working on less than <20> projects
+       Then the employee "Employee" is assigned to the "Activity"
 
    #Alternative scenario
    #Scenario: The employee is currently working on <20> activities
