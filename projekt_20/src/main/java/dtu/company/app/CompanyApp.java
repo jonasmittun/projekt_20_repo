@@ -42,4 +42,24 @@ public class CompanyApp {
 		}
 		return false;
 	}
+
+	public Project getProject(String string){
+		for (int i = 0; i < projectList.size(); i++) {
+			if (projectList.get(i).getProjectName().equals(string)) {
+				return projectList.get(i);
+			}
+		}
+		return null;
+	}
+
+	public Employee getEmployee(int id){
+    	return employeeList.get(id);
+	}
+
+	public void assignEmployee(Integer employeeID, Integer activityID, String projectName){
+    	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID);
+	}
+
+
+
 }

@@ -2,13 +2,19 @@ package dtu.company.app;
 
 public class Employee {
     private int id;
+    private int activities;
 
     public Employee(int id){
         this.id = id;
+        this.activities = 0;
     }
 
 	public int getId() {
 		return id;
 	}
+
+	public int getActivities(){
+        return activities;
+    }
     
 }
