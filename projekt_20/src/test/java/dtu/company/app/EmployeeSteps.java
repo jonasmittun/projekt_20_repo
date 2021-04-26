@@ -63,8 +63,8 @@ public class EmployeeSteps {
 
 	@Given("a new employee is not registered to the system")
 	public void a_new_employee_is_not_registered_to_the_system() {
-		Employee newEmployee = companyApp.newEmployee();
-		assertFalse(companyApp.containsEmployeeWithId(newEmployee.getId()));
+		employee = companyApp.newEmployee();
+		assertFalse(companyApp.containsEmployeeWithId(employee.getId()));
 	}
 
 	@When("the employee is added to the system")
