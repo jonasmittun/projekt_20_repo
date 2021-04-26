@@ -19,15 +19,12 @@ public class ProjectSteps {
 	private Project project;
 	private ErrorMessageHolder errorMessage;
 	private ProjectHelper helper;
-	private Employee employee;
 	
 	//Constructor for dependency injection
-	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, Project project, Employee employee){
+	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, ProjectHelper helper){
 		this.companyApp = companyApp;
 		this.errorMessage = errorMessage;
-		this.project = project;
-		this.employee = employee;
-		this.helper = new ProjectHelper(companyApp);
+		this.helper = helper;
 	}
     
     @Given("a project {string} does not exist in the system")
