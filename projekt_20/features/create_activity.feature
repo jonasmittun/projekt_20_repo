@@ -4,13 +4,17 @@ Feature: Create Activity
 
    #Creating an activity
    #Scenario: Project leader creates an activity
-         #Given there is new a project "Project"
-         #When the project leader wants to create a new activity "Activity" with "int" working hours with startDate "date_start" and an end date "date_end"
-         #Then the activity "Activity" is created with <int> working hours and <date_start> to <date_end>
-         #And the "Activity" is assigned to "Project"
+         #Given a project exists in the system
+         #And an employee exists in the system 
+         #And the employee is project leader of the project
+         #And the employee is the user
+         #And there is an activity
+  		 #When the activity is added to the project
+         #Then the activity is registered in the project
 
    #Alteration in activities
    #Scenario: Making an alteration in an existing activity
-         #Given there is an an existing activity
-         #When the project leader wishes to change the <int> working hours for the "Activity" to <new_int> working hours
-         #Then the "Activity" has been updated with <new_int> working hours and <new_date_start> and <new_date_end>
+         #Given a project with an activity and a project leader exists in the system
+         #And the project leader is the user
+         #When the activity is edited with new name "Activity 1" and deadline <1>
+         #Then the activity's name is "Activity 1" and deadline is <1> 
