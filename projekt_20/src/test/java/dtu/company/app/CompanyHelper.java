@@ -15,6 +15,7 @@ public class CompanyHelper {
             }
             companyHelper.addProject(project);
         }
+        companyHelper.getEmployee(3).setActivities(20);
     }
 
     public CompanyApp getCompanyHelper(){

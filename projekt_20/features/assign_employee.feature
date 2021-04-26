@@ -12,11 +12,13 @@ Feature: Assigning Employee
        Then the employee <2> is assigned to the activity <1> in project "Project 1"
 
    #Alternative scenario
-   #Scenario: The employee is currently working on <20> activities
-       #Given there is an activity called "Activity" with id <1>
-       #When the project leader <1> selects an employee <2>
-       #And the employee <2> is currently working on more than <20> projects
-       #Then the system provides the error message "Too many activities for one employee"
+   Scenario: The employee is currently working on <20> activities
+     Given there exists an activity "Activity 1" with id <1> in project "Project 1"
+     And there exists an employee with id <1> which is project leader for project "Project 1"
+     And there exists an employee <3>
+     And the employee <3> is currently working on <20> activities or more
+     When the project leader <1> assigns the employee <3> to the activity <1> in project "Project 1"
+     Then the error message "Employee is working too much" is given
 
    #Unassigning an employee
    #Scenario: Project leader unassigns an employee

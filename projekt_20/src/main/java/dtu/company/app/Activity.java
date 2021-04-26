@@ -29,11 +29,11 @@ public class Activity {
         }
     }
 
-    public void assignEmployee(int id){
-        if (!assignedEmployees.contains(id)){
+    public void assignEmployee(int id, int activities) throws Exception{
+        if (activities < 20){
             this.assignedEmployees.add(id);
         } else {
-            return;
+            throw new Exception("Employee is working too much");
         }
     }
 

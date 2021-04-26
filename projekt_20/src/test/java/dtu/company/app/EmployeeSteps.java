@@ -105,12 +105,21 @@ public class EmployeeSteps {
 
 	@When("the project leader <{int}> assigns the employee <{int}> to the activity <{int}> in project {string}")
 	public void the_project_leader_assigns_the_employee_to_the_activity_in_project(Integer int1, Integer int2, Integer int3, String string) {
-		companyHelper.assignEmployee(int2,int3,string);
+		try {
+			companyHelper.assignEmployee(int2, int3, string);
+		} catch (Exception e){
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Then("the employee <{int}> is assigned to the activity <{int}> in project {string}")
 	public void the_employee_is_contained_in_the_activity_in_the_project(Integer int1, Integer int2, String string) {
 		assertTrue(companyHelper.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
+	@Given("the employee <{int}> is currently working on <{int}> activities or more")
+	public void the_employee_is_currently_working_on_activities_or_more(Integer int1, Integer int2) {
+		assertFalse(companyHelper.getEmployee(int1).getActivities() < int2);
 	}
 
 

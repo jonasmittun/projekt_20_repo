@@ -16,5 +16,13 @@ public class Employee {
 	public int getActivities(){
         return activities;
     }
+
+    public void addActivity(){
+        this.activities++;
+    }
+
+    public void setActivities(int activities){
+        this.activities = activities;
+    }
     
 }
