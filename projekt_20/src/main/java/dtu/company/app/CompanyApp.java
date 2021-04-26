@@ -73,7 +73,8 @@ public class CompanyApp {
 
 	public void assignEmployee(Integer employeeID, Integer activityID, String projectName) throws Exception {
     	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,employeeList.get(employeeID).getActivities());
-	}
+		employeeList.get(employeeID).addActivity();
+    }
 
 	public ArrayList<Activity> getActivities() {
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
