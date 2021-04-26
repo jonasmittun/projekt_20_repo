@@ -40,7 +40,7 @@ public class EmployeeSteps {
 
 		assertTrue(companyApp.getProject(string).containsActivityWithID(id));
 	}
-	@When("the project leader employee <{int}> selects an employee <{int}>")
+	@When("the project leader <{int}> selects an employee <{int}>")
 	public void the_project_leader_employee_selects_an_employee_employee(Integer int1, Integer int2) {
 		assertTrue(project.getProjectLeaderID()==int1 && companyApp.containsEmployeeWithId(int1));
 		assertTrue(project.getProjectLeaderID()!=int2 && companyApp.containsEmployeeWithId(int2));
