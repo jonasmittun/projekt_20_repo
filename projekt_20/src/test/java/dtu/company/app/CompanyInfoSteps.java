@@ -97,16 +97,17 @@ public class CompanyInfoSteps {
 
 	@Given("employee with id {string} exists within activity {string}")
 	public void employee_with_id_exists_within_activity(String string, String string2) {
+		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
 	    int tempId = this.activity.getEmployeeWithId(Integer.parseInt(string));
 	    this.employee = this.companyApp.getEmployee(tempId);
 	}
 
 	@Then("assert that the employee with id {string} exists within activity {string}")
 	public void assert_that_the_employee_with_id_exists_within_activity(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
+	    assertTrue(this.activity.containsEmployeeWithID(Integer.parseInt(string)));
 	}
-
+/*
 	@Given("employee with the id {string} exists within {string}")
 	public void employee_with_the_id_exists_within(String string, String string2) {
 	    // Write code here that turns the phrase above into concrete actions
@@ -208,4 +209,5 @@ public class CompanyInfoSteps {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
+	*/
 }
