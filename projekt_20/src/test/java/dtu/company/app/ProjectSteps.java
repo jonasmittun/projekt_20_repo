@@ -44,7 +44,6 @@ public class ProjectSteps {
     	} catch (Exception e){
     		errorMessage.setErrorMessage(e.getMessage());
     	}
-        
     }
     
     @Then("the system contains a project named {string}")
