@@ -6,7 +6,12 @@ public class Activity {
     private String activityName;
     private ArrayList<Integer> assignedEmployees;
     private int id;
-
+    
+    public Activity(int id) {
+        this.id = id;
+        this.assignedEmployees = new ArrayList<Integer>();
+    }
+    
     public Activity(String activityName, int id){
         this.activityName = activityName;
         this.id = id;
@@ -14,6 +19,7 @@ public class Activity {
     }
 
     public String getActivityName(){
+    	//Det her kommer til at være brokken hvis der ikke er et navn
         return activityName;
     }
 

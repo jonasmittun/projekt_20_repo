@@ -31,6 +31,8 @@ public class CompanyInfoSteps {
 		this.errorMessage = errorMessage;
 	}
 	
+	//Check if project named "" exists
+	
 	@Given("companyApp exists")
 	public void company_app_exists() {
 	    this.companyApp = new CompanyApp();
@@ -42,7 +44,34 @@ public class CompanyInfoSteps {
 	    this.companyApp.addProject(this.project);
 	}
 	
-	/*	
+	@When("system asks if project {string} exists within companyApp")
+	public void system_asks_if_project_exists_within_company_app(String string) {
+	    this.companyApp.containsProjectWithName(string);
+	}
+	
+	@Then("assert that project {string} exists within companyApp")
+	public void assert_that_project_exists_within_company_app(String string) {
+		assertTrue(this.companyApp.containsProjectWithName(string));
+	}
+	
+	//Check which projects exist within companyApp
+	
+	//@Given("companyApp exists")
+	
+	@When("system asks which projects exist within companyApp")
+	public void system_asks_which_projects_exist_within_company_app() {
+		this.projects = this.companyApp.getProjects();
+	}
+	
+	@Then("return arrayList with projects that exist within companyApp")
+	public void return_array_list_with_projects_that_exist_within_company_app() {
+	    assertTrue(this.companyApp.getProjects().equals(this.projects));
+	}
+	
+	//Check if activity "" exists within project ""
+	
+	//@Given("project {string} exists within companyApp")
+	
 	@Given("activity {string} exists within project {string}")
 	public void activity_exists_within_project(String string, String string2) throws Exception {
 	    this.activity = new Activity(string, 1);
@@ -51,6 +80,15 @@ public class CompanyInfoSteps {
 	    this.companyApp.getProject(string2).addActivity(activity);
 	}
 	
+	@Then("assert that activity {string} exists within project {string}")
+	public void assert_that_activity_exists_within_project(String string, String string2) {
+	    Project tempProject = this.companyApp.getProject(string2);
+	    assertTrue(tempProject.containsActivityWithID(this.activity.getActivityID()));
+	}
+	
+	/*	
+	
+	
 	@Given("employee with id {string} exists within activity {string}")
 	public void employee_with_id_exists_within_activity(String string, String string2) {
 		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
@@ -58,31 +96,6 @@ public class CompanyInfoSteps {
 	    this.employee = this.companyApp.getEmployee(tempId);
 	}
 
-	@When("system asks if project {string} exists within companyApp")
-	public void system_asks_if_project_exists_within_company_app(String string) {
-	    this.companyApp.containsProjectWithName(string);
-	}
-
-	@Then("assert that project {string} exists within companyApp")
-	public void assert_that_project_exists_within_company_app(String string) {
-		assertTrue(this.companyApp.containsProjectWithName(string));
-	}
-
-	@When("system asks which projects exist within companyApp")
-	public void system_asks_which_projects_exist_within_company_app() {
-		this.projects = this.companyApp.getProjects();
-	}
-
-	@Then("return arrayList with projects that exist within companyApp")
-	public void return_array_list_with_projects_that_exist_within_company_app() {
-	    assertTrue(this.companyApp.getProjects().equals(this.projects));
-	}
-
-	@Then("assert that activity {string} exists within project {string}")
-	public void assert_that_activity_exists_within_project(String string, String string2) {
-	    Project tempProject = this.companyApp.getProject(string2);
-	    assertTrue(tempProject.containsActivityWithID(this.activity.getActivityID()));
-	}
 
 	@When("system asks which activities exist within project {string}")
 	public void system_asks_which_activities_exist_within_project(String string) {
