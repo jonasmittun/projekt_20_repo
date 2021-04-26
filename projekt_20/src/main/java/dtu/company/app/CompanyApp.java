@@ -56,6 +56,16 @@ public class CompanyApp {
     	return employeeList.get(id);
 	}
 
+	public Employee newEmployee(){
+    	int id = employeeList.size() + 1;
+    	Employee newEmployee = new Employee(id);
+    	return newEmployee;
+	}
+
+	public void addNewEmployee(Employee newEmployee){
+    	employeeList.add(newEmployee);
+	}
+
 	public void assignEmployee(Integer employeeID, Integer activityID, String projectName){
     	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID);
 	}

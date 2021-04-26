@@ -61,6 +61,23 @@ public class EmployeeSteps {
 		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 
+	@Given("a new employee is not registered to the system")
+	public void a_new_employee_is_not_registered_to_the_system() {
+		Employee newEmployee = companyApp.newEmployee();
+		assertFalse(companyApp.containsEmployeeWithId(newEmployee.getId()));
+	}
+
+	@When("the employee is added to the system")
+	public void the_employee_is_added_to_the_system() {
+		employee = companyApp.newEmployee();
+		companyApp.addNewEmployee(employee);
+	}
+
+	@Then("the employee is registered to the system")
+	public void the_employee_is_registered_to_the_system() {
+		assertTrue(companyApp.containsEmployeeWithId(employee.getId()));
+	}
+
 
 
 }

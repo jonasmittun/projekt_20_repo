@@ -13,7 +13,7 @@ public class EmployeeHelper {
         return id;
     }
 
-    public int getActivites(){
+    public int getActivities(){
         return activities;
     }
 }
