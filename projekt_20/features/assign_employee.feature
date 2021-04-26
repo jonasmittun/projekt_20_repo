@@ -8,6 +8,7 @@ Feature: Assigning Employee
        Given there exists an activity "activity 1" with id <1> in project "project 1"
        And there exists an employee with id <1> which is project leader for project "project 1"
        And there exists an employee <2>
+       And employee <1> is the user
        And the employee <2> is currently working on less than <20> activities
        When the project leader <1> assigns the employee <2> to the activity <1> in project "project 1"
        Then the employee <2> is assigned to the activity <1> in project "project 1"

@@ -92,8 +92,9 @@ public class EmployeeSteps {
 		//assertTrue(companyApp.containsEmployeeWithId(int1));
 	}
 
-	@When("the employee <{int}> is assigned as project leader of the project")
-	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1) {
+	@When("the employee <{int}> is assigned as project leader of the project {string}")
+	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1, String string) {
+		this.project = new Project(string);
 		project.setProjectLeaderID(int1);
 	}
 
