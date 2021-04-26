@@ -122,5 +122,20 @@ public class EmployeeSteps {
 		assertFalse(companyHelper.getEmployee(int1).getActivities() < int2);
 	}
 
+	@Given("an employee <{int}> exists in the system")
+	public void an_employee_exists_in_the_system(Integer int1) {
+		assertTrue(companyHelper.containsEmployeeWithId(int1));
+		//employee = new Employee(int1);
+		//assertTrue(companyApp.containsEmployeeWithId(int1));
+	}
+
+	@When("the employee <{int}> is assigned as project leader of the project")
+	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1) {
+		project.setProjectLeaderID(int1);
+	}
+
+
+
+
 
 }

@@ -20,7 +20,7 @@ public class ProjectSteps {
 	private ErrorMessageHolder errorMessage;
 	private ProjectHelper helper;
 	
-	//Contructor for dependency injection
+	//Constructor for dependency injection
 	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, ProjectHelper helper){
 		this.companyApp = companyApp;
 		this.errorMessage = errorMessage;
