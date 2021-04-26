@@ -33,7 +33,7 @@ public class CompanyApp {
 			projectList.add(project);
 		}
 	}
-	
+
 	public boolean containsEmployeeWithId(int id) {
 		for (Employee employee : employeeList) {
 			if (employee.getId() == id) {
@@ -50,6 +50,10 @@ public class CompanyApp {
 			}
 		}
 		return null;
+	}
+	
+	public ArrayList<Project> getProjects(){
+		return projectList;
 	}
 
 	public Employee getEmployee(int id){
@@ -68,6 +72,12 @@ public class CompanyApp {
 
 	public void assignEmployee(Integer employeeID, Integer activityID, String projectName){
     	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID);
+	}
+
+	public ArrayList<Activity> getActivities() {
+		ArrayList<Activity> activityList = new ArrayList<Activity>();
+		projectList.forEach((n) -> activityList.addAll(n.getActivities()));
+		return activityList;
 	}
 
 

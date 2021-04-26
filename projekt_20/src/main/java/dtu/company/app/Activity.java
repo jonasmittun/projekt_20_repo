@@ -36,4 +36,8 @@ public class Activity {
             return;
         }
     }
+
+	public int getEmployeeWithId(int i) {
+		return assignedEmployees.get(i);
+	}
 }

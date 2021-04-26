@@ -45,4 +45,8 @@ public class Project {
         }
         return null;
     }
+
+	public ArrayList<Activity> getActivities() {
+		return activityList;
+	}
 }
