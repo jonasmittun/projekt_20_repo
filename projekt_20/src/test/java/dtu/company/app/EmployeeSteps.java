@@ -1,10 +1,5 @@
 package dtu.company.app;
 
-import dtu.company.app.CompanyApp;
-import dtu.company.app.Employee;
-import dtu.company.app.Project;
-
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -61,6 +56,20 @@ public class EmployeeSteps {
 		assertTrue(companyApp.containsEmployeeWithId(int1));
 	}
 
+	@Given("there exists an employee <{int}> who is not assigned to the activity <{int}> in project {string}")
+	public void there_exists_an_employee_who_is_not_assigned_to_the_project(Integer int1, Integer int2, String string) {
+		assertTrue(companyApp.containsEmployeeWithId(int1));
+		assertFalse(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
+	@Given("there exists an employee <{int}> who is assigned to the activity <{int}> in project {string}")
+	public void there_exists_an_employee_who_is_assigned_to_the_activity_in_project(Integer int1, Integer int2, String string) throws Exception {
+		companyApp.assignEmployee(int1,int2,string);
+		assertTrue(companyApp.containsEmployeeWithId(int1));
+		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
+
 	@Given("the employee <{int}> is currently working on less than <{int}> activities")
 	public void the_employee_is_currently_working_on_less_than_activities(Integer int1, Integer int2) {
 		assertTrue(companyApp.getEmployee(int1).getActivities() < int2);
@@ -106,6 +115,23 @@ public class EmployeeSteps {
 		the_employee_is_assigned_as_project_leader_of_the_project(int1, string);
 		the_project_leader_is_the_employee(int1);
 	}
+
+	@Given("the employee with id <{int}> is assigned to the activity with id <{int}> in {string}")
+	public void the_employee_with_id_is_assigned_to_the_activity_with_id_in(Integer int1, Integer int2, String string) throws Exception {
+		companyApp.assignEmployee(int1,int2,string);
+		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
+	@When("the project leader <{int}> unassigns the employee <{int}> from the activity with id <{int}> in {string}")
+	public void the_project_leader_unassigns_the_employee_from_the_activity_with_id_in(Integer int1, Integer int2, Integer int3, String string) {
+		companyApp.unassignEmployee(int2,int3,string);
+	}
+
+	@Then("the employee with id <{int}> is no longer assigned to activity with id <{int}> in {string}")
+	public void the_employee_with_id_is_no_longer_assigned_to_activity_with_id_in(Integer int1, Integer int2, String string) {
+		assertFalse(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
 
 //
 

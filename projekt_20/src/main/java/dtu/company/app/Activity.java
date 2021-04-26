@@ -36,9 +36,11 @@ public class Activity {
     }
 
     public void assignEmployee(int id, int activities) throws Exception{
-        if (activities < 20){
+        if (activities < 20 && !assignedEmployees.contains(id)){
             this.assignedEmployees.add(id);
-        } else {
+        } else if (assignedEmployees.contains(id)){
+            throw new Exception("Employee is already assigned");
+        } else if (activities >= 20){
             throw new Exception("Employee is working too much");
         }
     }
@@ -50,4 +52,8 @@ public class Activity {
 	public ArrayList<Integer> getEmployees(){
 		return assignedEmployees;
 	}
+
+    public void unassignEmployee(Integer int2) {
+        assignedEmployees.remove(assignedEmployees.indexOf(int2));
+    }
 }

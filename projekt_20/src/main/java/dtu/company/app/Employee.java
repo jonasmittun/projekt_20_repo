@@ -25,5 +25,8 @@ public class Employee {
     public void setActivities(int activities){
         this.activities = activities;
     }
-    
+
+    public void removeActivity() {
+        activities--;
+    }
 }

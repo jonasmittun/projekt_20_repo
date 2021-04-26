@@ -95,5 +95,8 @@ public class CompanyApp {
 	}
 
 
-
+	public void unassignEmployee(Integer int2, Integer int3, String string) {
+    	getProject(string).getActivityWithID(int3).unassignEmployee(int2);
+    	employeeList.get(int2).removeActivity();
+	}
 }
