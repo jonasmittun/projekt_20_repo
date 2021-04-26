@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class CompanyApp {
     private ArrayList<Employee> employeeList;
     private ArrayList<Project> projectList;
+    private int user;
 
     public CompanyApp() {
     	employeeList = new ArrayList<Employee>();
@@ -78,6 +79,14 @@ public class CompanyApp {
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
 		projectList.forEach((n) -> activityList.addAll(n.getActivities()));
 		return activityList;
+	}
+
+	public Integer getUser() {
+		return this.user;
+	}
+
+	public void setUser(Integer int1) {
+		this.user = int1;
 	}
 
 

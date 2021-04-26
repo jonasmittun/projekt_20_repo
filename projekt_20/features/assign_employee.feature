@@ -6,6 +6,7 @@ Feature: Assigning Employee
    Scenario: Project leader assigns an employee to an activity
        Given there exists an activity "Activity 1" with id <1> in project "Project 1"
        And there exists an employee with id <1> which is project leader for project "Project 1"
+       And employee <1> is the user
        And there exists an employee <2>
        And the employee <2> is currently working on less than <20> activities
        When the project leader <1> assigns the employee <2> to the activity <1> in project "Project 1"

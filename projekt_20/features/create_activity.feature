@@ -2,9 +2,9 @@ Feature: Create Activity
    Description: The project leader creates activities for the projects
    Actor: Project leader
 
-   #Creating an activity
-   #Scenario: Project leader creates an activity
-         #Given a project exists in the system
+   Creating an activity
+   Scenario: Project leader creates an activity
+         Given a project exists in the system
          #And an employee exists in the system 
          #And the employee is project leader of the project
          #And the employee is the user

@@ -129,19 +129,16 @@ public class EmployeeSteps {
 		//assertTrue(companyApp.containsEmployeeWithId(int1));
 	}
 
-	@When("the employee <{int}> is assigned as project leader of the project {string}")
-	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1, String string) {
-		this.project = new Project(string);
+	@When("the employee <{int}> is assigned as project leader of the project")
+	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1) {
 		project.setProjectLeaderID(int1);
 	}
 
-	@Then("the project leader is the employee <{int}>")
-	public void the_project_leader_is_the_employee(Integer int1) {
-		assertTrue(project.getProjectLeaderID()==int1);
+	@Given("employee <{int}> is the user")
+	public void employee_is_the_user(Integer int1) {
+		companyApp.setUser(int1);
+	    assertTrue(companyApp.getUser() == int1);
 	}
-
-
-
 
 
 
