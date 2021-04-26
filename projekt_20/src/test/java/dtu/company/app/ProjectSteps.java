@@ -19,12 +19,15 @@ public class ProjectSteps {
 	private Project project;
 	private ErrorMessageHolder errorMessage;
 	private ProjectHelper helper;
+	private Employee employee;
 	
-	//Contructor for dependency injection
-	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, ProjectHelper helper){
+	//Constructor for dependency injection
+	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, Project project, Employee employee){
 		this.companyApp = companyApp;
 		this.errorMessage = errorMessage;
-		this.helper = helper;
+		this.project = project;
+		this.employee = employee;
+		this.helper = new ProjectHelper(companyApp);
 	}
     
     @Given("a project {string} does not exist in the system")
@@ -51,17 +54,17 @@ public class ProjectSteps {
     public void the_system_contains_a_project_named(String string) {
         assertTrue(companyApp.containsProjectWithName(string));
     }
-    
-    @Given("a project exists in the system")
-    public void a_project_exists_in_the_system() throws Exception {
-        project = helper.getExampleProject();
-        the_project_is_added_to_the_system();
-        assertTrue(companyApp.containsProjectWithName(project.getProjectName()));
-    }
-    
+
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String errorMessage) {
     	assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
+
+	@Given("a project exists in the system")
+	public void a_project_exists_in_the_system() throws Exception {
+		project = helper.getExampleProject();
+		the_project_is_added_to_the_system();
+		assertTrue(companyApp.containsProjectWithName(project.getProjectName()));
+	}
     
 }

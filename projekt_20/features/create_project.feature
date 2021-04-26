@@ -15,8 +15,8 @@ Scenario: Create project with existing project name
 
   Scenario: Employee is assigned project leader
 	Given a project exists in the system
-#Implementer employee cucumber før der fortsættes
-	#And an employee exists in the system
+	#Implementer employee cucumber før der fortsættes
+	#And an employee <{int}> exists in the system
 	#When the employee is assigned as project leader of the project
 	#Then the project leader is the employee
 
