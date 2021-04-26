@@ -17,5 +17,5 @@ Scenario: Create project with existing project name
 	Given a project exists in the system
 	And an employee <1> exists in the system
 	When the employee <1> is assigned as project leader of the project "project"
-	#Then the project leader is the employee <1>
+	Then the project leader is the employee <1>
 
