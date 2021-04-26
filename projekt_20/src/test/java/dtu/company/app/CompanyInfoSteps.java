@@ -36,19 +36,35 @@ public class CompanyInfoSteps {
 	    this.companyApp = new CompanyApp();
 	}
 
-	@Given("project with name {string} exists within companyApp")
-	public void project_with_name_exists_within_company_app(String string) throws Exception {
+	@Given("project {string} exists within companyApp")
+	public void project_exists_within_company_app(String string) throws Exception {
 	    this.project = new Project(string);
 	    this.companyApp.addProject(this.project);
 	}
+	
+	/*	
+	@Given("activity {string} exists within project {string}")
+	public void activity_exists_within_project(String string, String string2) throws Exception {
+	    this.activity = new Activity(string, 1);
+	    this.project = new Project(string2);
+	    this.companyApp.addProject(this.project);
+	    this.companyApp.getProject(string2).addActivity(activity);
+	}
+	
+	@Given("employee with id {string} exists within activity {string}")
+	public void employee_with_id_exists_within_activity(String string, String string2) {
+		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
+	    int tempId = this.activity.getEmployeeWithId(Integer.parseInt(string));
+	    this.employee = this.companyApp.getEmployee(tempId);
+	}
 
-	@When("system asks if the project {string} exists within companyApp")
-	public void system_asks_if_the_project_exists_within_company_app(String string) {
+	@When("system asks if project {string} exists within companyApp")
+	public void system_asks_if_project_exists_within_company_app(String string) {
 	    this.companyApp.containsProjectWithName(string);
 	}
 
-	@Then("assert that the project with name {string} exists within companyApp")
-	public void assert_that_the_project_with_name_exists_within_company_app(String string) {
+	@Then("assert that project {string} exists within companyApp")
+	public void assert_that_project_exists_within_company_app(String string) {
 		assertTrue(this.companyApp.containsProjectWithName(string));
 	}
 
@@ -62,14 +78,8 @@ public class CompanyInfoSteps {
 	    assertTrue(this.companyApp.getProjects().equals(this.projects));
 	}
 
-	@Given("activity with the name {string} exists within project {string}")
-	public void activity_with_the_name_exists_within_project(String string, String string2) {
-	    this.activity = new Activity(string, 1);
-	    this.companyApp.getProject(string2).addActivity(activity);
-	}
-
-	@Then("assert that the activity with name {string} exists within project {string}")
-	public void assert_that_the_activity_with_name_exists_within_project(String string, String string2) {
+	@Then("assert that activity {string} exists within project {string}")
+	public void assert_that_activity_exists_within_project(String string, String string2) {
 	    Project tempProject = this.companyApp.getProject(string2);
 	    assertTrue(tempProject.containsActivityWithID(this.activity.getActivityID()));
 	}
@@ -95,119 +105,27 @@ public class CompanyInfoSteps {
 		assertTrue(this.activities.equals(companyApp.getActivities()));
 	}
 
-	@Given("employee with id {string} exists within activity {string}")
-	public void employee_with_id_exists_within_activity(String string, String string2) {
-		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
-	    int tempId = this.activity.getEmployeeWithId(Integer.parseInt(string));
-	    this.employee = this.companyApp.getEmployee(tempId);
-	}
-
-	@Then("assert that the employee with id {string} exists within activity {string}")
-	public void assert_that_the_employee_with_id_exists_within_activity(String string, String string2) {
+	@Then("assert that employee with id {string} exists within activity {string}")
+	public void assert_that_employee_with_id_exists_within_activity(String string, String string2) {
 		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
 	    assertTrue(this.activity.containsEmployeeWithID(Integer.parseInt(string)));
 	}
-/*
-	@Given("employee with the id {string} exists within {string}")
-	public void employee_with_the_id_exists_within(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
 
-	@Then("assert that the employee with id {string} exists within {string}")
-	public void assert_that_the_employee_with_id_exists_within(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("employee with the id {string} exists within companyApp")
-	public void employee_with_the_id_exists_within_company_app(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("assert that the employee with id {string} exists within companyApp")
-	public void assert_that_the_employee_with_id_exists_within_company_app(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("project {string} exists within companyApp")
-	public void project_exists_within_company_app(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("an activity named {string} exists within project {string}")
-	public void an_activity_named_exists_within_project(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("system asks which employees exist within activity {string}")
-	public void system_asks_which_employees_exist_within_activity(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("return arrayList with employees that exist within activity {string}")
-	public void return_array_list_with_employees_that_exist_within_activity(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("a project named {string} exists within companyApp")
-	public void a_project_named_exists_within_company_app(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("system asks which employees exist within project {string}")
-	public void system_asks_which_employees_exist_within_project(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("return arrayList with employees that exist within project {string}")
-	public void return_array_list_with_employees_that_exist_within_project(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@When("system asks which employees exist within companyApp")
-	public void system_asks_which_employees_exist_within_company_app() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("return arrayList with employees that exists within companyApp")
-	public void return_array_list_with_employees_that_exists_within_company_app() {
+	@Given("employee with id {string} exists within project {string}")
+	public void employee_with_id_exists_within_project(String string, String string2) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
 	
-	@Given("activity named {string} exists within project {string}")
-	public void activity_named_exists_within_project(String string, String string2) {
+	@Then("assert that employee with id {string} exists within project {string}")
+	public void assert_that_employee_with_id_exists_within_project(String string, String string2) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
-
-	@Given("project named {string} exists within companyApp")
-	public void project_named_exists_within_company_app(String string) {
+	
+	@Given("employee with id {string} exists within companyApp")
+	public void employee_with_id_exists_within_company_app(String string) {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Given("employee with the id {string} exists within project {string}")
-	public void employee_with_the_id_exists_within_project(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-
-	@Then("assert that the employee with id {string} exists within project {string}")
-	public void assert_that_the_employee_with_id_exists_within_project(String string, String string2) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
-	}
-	*/
+	}*/
 }
