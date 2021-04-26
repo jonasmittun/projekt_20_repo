@@ -68,62 +68,70 @@ public class CompanyInfoSteps {
 	    assertTrue(this.companyApp.getProjects().equals(this.projects));
 	}
 	
-	//Check if activity "" exists within project ""
+	//Check if activity with id "" exists within project ""
 	
 	//@Given("project {string} exists within companyApp")
 	
-	@Given("activity {string} exists within project {string}")
-	public void activity_exists_within_project(String string, String string2) throws Exception {
-	    this.activity = new Activity(string, 1);
-	    this.project = new Project(string2);
-	    this.companyApp.addProject(this.project);
-	    this.companyApp.getProject(string2).addActivity(activity);
+	@Given("activity with id <{int}> exists within project {string}")
+	public void activity_with_id_exists_within_project(Integer int1, String string) throws Exception {
+	    this.activity = new Activity(int1);
+	    this.companyApp.getProject(string).addActivity(this.activity);
 	}
 	
-	@Then("assert that activity {string} exists within project {string}")
-	public void assert_that_activity_exists_within_project(String string, String string2) {
-	    Project tempProject = this.companyApp.getProject(string2);
-	    assertTrue(tempProject.containsActivityWithID(this.activity.getActivityID()));
+	@Then("assert that activity with id <{int}> exists within project {string}")
+	public void assert_that_activity_with_id_exists_within_project(Integer int1, String string) {
+	    assertTrue(companyApp.getProject(string).getActivityWithID(int1).getActivityID() == int1);
 	}
 	
-	/*	
+	//Check which activities exist within project ""
 	
+	//@Given("project {string} exists within companyApp")
 	
-	@Given("employee with id {string} exists within activity {string}")
-	public void employee_with_id_exists_within_activity(String string, String string2) {
-		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
-	    int tempId = this.activity.getEmployeeWithId(Integer.parseInt(string));
-	    this.employee = this.companyApp.getEmployee(tempId);
-	}
-
-
 	@When("system asks which activities exist within project {string}")
 	public void system_asks_which_activities_exist_within_project(String string) {
-	    Project tempProject = this.companyApp.getProject(string);
-		this.activities = tempProject.getActivities();
+		this.activities = this.companyApp.getProject(string).getActivities();
 	}
-
+	
 	@Then("return arrayList with activities that exist within project {string}")
 	public void return_array_list_with_activities_that_exist_within_project(String string) {
 	    assertTrue(this.companyApp.getProject(string).getActivities().equals(activities));
 	}
-
+	
+	//Check which activities exist within companyApp
+	
+	//@Given("companyApp exists")
+	
 	@When("system asks which activities exist within companyApp")
 	public void system_asks_which_activities_exist_within_company_app() {
 	    this.activities = this.companyApp.getActivities();
 	}
-
+	
 	@Then("return arrayList with activities that exists within companyApp")
 	public void return_array_list_with_activities_that_exists_within_company_app() {
-		assertTrue(this.activities.equals(companyApp.getActivities()));
+		assertTrue(this.activities.equals(this.companyApp.getActivities()));
 	}
-
-	@Then("assert that employee with id {string} exists within activity {string}")
-	public void assert_that_employee_with_id_exists_within_activity(String string, String string2) {
-		this.activity = this.project.getActivityWithID(Integer.parseInt(string2));
-	    assertTrue(this.activity.containsEmployeeWithID(Integer.parseInt(string)));
+	
+	//Check if employee with id <> exists within activity with id <>
+	
+	//@Given("project {string} exists within companyApp")
+	
+	//@Given("activity with id <{int}> exists within project {string}")
+	
+	@Given("employee with id <{int}> exists within activity with id <{int}>")
+	public void employee_with_id_exists_within_activity_with_id(Integer int1, Integer int2) throws Exception {
+		this.activity = new Activity(int2);
+		this.employee = new Employee(int1);
+	    this.activity.assignEmployee(int1, 0);
 	}
-
+	
+	@Then("assert that employee with id <{int}> exists within activity with id <{int}>")
+	public void assert_that_employee_with_id_exists_within_activity_with_id(Integer int1, Integer int2) {
+	    assertTrue(this.activity.getActivityID() == int2 && this.activity.containsEmployeeWithID(int1));
+	}
+	
+	//
+	
+	/*	
 	@Given("employee with id {string} exists within project {string}")
 	public void employee_with_id_exists_within_project(String string, String string2) {
 	    // Write code here that turns the phrase above into concrete actions

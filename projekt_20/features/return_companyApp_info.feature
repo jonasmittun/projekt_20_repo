@@ -13,10 +13,10 @@ Scenario: Check which projects exist within companyApp
 	When system asks which projects exist within companyApp
 	Then return arrayList with projects that exist within companyApp
 
-Scenario: Check if activity "activity 1" exists within project "project 1"
+Scenario: Check if activity with id <1> exists within project "project 1"
 	Given project "project 1" exists within companyApp
-	And activity "activity 1" exists within project "project 1"
-	Then assert that activity "activity 1" exists within project "project 1"
+	And activity with id <1> exists within project "project 1"
+	Then assert that activity with id <1> exists within project "project 1"
 
 Scenario: Check which activities exist within project "project 1"
 	Given project "project 1" exists within companyApp
@@ -28,11 +28,11 @@ Scenario: Check which activities exist within companyApp
 	When system asks which activities exist within companyApp
 	Then return arrayList with activities that exists within companyApp
 	
-Scenario: Check if employee with id <1> exists within activity "activity 1"
+Scenario: Check if employee with id <1> exists within activity with id <1>
 	Given project "project 1" exists within companyApp
-	And activity "activity 1" exists within project "project 1"
-	And employee with id <1> exists within activity "activity 1"
-	Then assert that employee with id <1> exists within activity "activity 1"
+	And activity with id <1> exists within project "project 1"
+	And employee with id <1> exists within activity with id <1>
+	Then assert that employee with id <1> exists within activity with id <1>
 	
 Scenario: Check if employee with id <1> exists within project "project 1"
 	Given project "project 1" exists within companyApp
@@ -44,11 +44,11 @@ Scenario: Check if employee with id <1> exists within companyApp
 	And employee with id <1> exists within companyApp
 	Then assert that employee with id <1> exists within companyApp
 	
-Scenario: Check which employees exist within activity "activity 1"
+Scenario: Check which employees exist within activity with id <1>
 	Given project "project 1" exists within companyApp
-	And activity "activity 1" exists within project "project 1"
-	When system asks which employees exist within activity "activity 1"
-	Then return arrayList with employees that exist within activity "activity 1"
+	And activity with id <1> exists within project "project 1"
+	When system asks which employees exist within activity with id <1>
+	Then return arrayList with employees that exist within activity with id <1>
 	
 Scenario: Check which employees exist within project "project 1"
 	Given project "project 1" exists within companyApp
