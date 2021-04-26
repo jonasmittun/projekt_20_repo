@@ -8,9 +8,9 @@ public class CompanyHelper {
     public CompanyHelper() throws Exception {
         this.companyHelper = new CompanyApp();
         for (int i = 1; i < 31; i++){
-            Project project = new Project("Project "+i);
+            Project project = new Project("project "+i);
             for (int j = 1; j < 31; j++){
-                Activity activity = new Activity("Activity "+j,j);
+                Activity activity = new Activity("activity "+j,j);
                 project.addActivity(activity);
             }
             companyHelper.addProject(project);
