@@ -4,11 +4,9 @@ Feature: Create Activity
 
    Creating an activity
    Scenario: Project leader creates an activity
-         Given a project exists in the system
-         #And an employee exists in the system 
-         #And the employee is project leader of the project
-         #And the employee is the user
-         #And there is an activity
+         Given a project "project 1" exists with employee <1> as project leader
+         And employee <1> is the user
+         #And there exists an activity <1>
   		 #When the activity is added to the project
          #Then the activity is registered in the project
 

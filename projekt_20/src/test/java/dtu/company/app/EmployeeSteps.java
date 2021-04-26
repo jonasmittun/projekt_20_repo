@@ -85,13 +85,6 @@ public class EmployeeSteps {
 		assertFalse(companyApp.getEmployee(int1).getActivities() < int2);
 	}
 
-	@Given("an employee <{int}> exists in the system")
-	public void an_employee_exists_in_the_system(Integer int1) {
-		assertTrue(companyApp.containsEmployeeWithId(int1));
-		//employee = new Employee(int1);
-		//assertTrue(companyApp.containsEmployeeWithId(int1));
-	}
-
 	@When("the employee <{int}> is assigned as project leader of the project {string}")
 	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1, String string) {
 		this.project = new Project(string);
@@ -106,6 +99,12 @@ public class EmployeeSteps {
 	public void employee_is_the_user(Integer int1) {
 		companyApp.setUser(int1);
 	    assertTrue(companyApp.getUser() == int1);
+	}
+	
+	@Given("a project {string} exists with employee <{int}> as project leader")
+	public void a_project_exists_with_employee_as_project_leader(String string, Integer int1) {
+		the_employee_is_assigned_as_project_leader_of_the_project(int1, string);
+		the_project_leader_is_the_employee(int1);
 	}
 
 //
