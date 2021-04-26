@@ -97,6 +97,10 @@ public class EmployeeSteps {
 		this.project = new Project(string);
 		project.setProjectLeaderID(int1);
 	}
+	@Then("the project leader is the employee <{int}>")
+	public void the_project_leader_is_the_employee(Integer int1) {
+		assertTrue(project.getProjectLeaderID() == int1);
+	}
 
 	@Given("employee <{int}> is the user")
 	public void employee_is_the_user(Integer int1) {
