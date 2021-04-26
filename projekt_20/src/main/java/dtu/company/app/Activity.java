@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Activity {
     private String activityName;
-    private ArrayList<Integer> assignedEmployees;
+    private ArrayList<Integer> assignedEmployees; //Remember to keep separate from employeeList in project class
     private int id;
     
     public Activity(int id) {
@@ -45,5 +45,9 @@ public class Activity {
 
 	public int getEmployeeWithId(int i) {
 		return assignedEmployees.get(i);
+	}
+	
+	public ArrayList<Integer> getEmployees(){
+		return assignedEmployees;
 	}
 }

@@ -81,6 +81,10 @@ public class CompanyApp {
 		projectList.forEach((n) -> activityList.addAll(n.getActivities()));
 		return activityList;
 	}
+	
+	public ArrayList<Employee> getEmployees(){
+		return this.employeeList;
+	}
 
 	public Integer getUser() {
 		return this.user;
