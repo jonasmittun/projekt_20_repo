@@ -118,7 +118,6 @@ public class EmployeeSteps {
 
 	@Given("the employee with id <{int}> is assigned to the activity with id <{int}> in {string}")
 	public void the_employee_with_id_is_assigned_to_the_activity_with_id_in(Integer int1, Integer int2, String string) throws Exception {
-		companyApp.assignEmployee(int1,int2,string);
 		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 

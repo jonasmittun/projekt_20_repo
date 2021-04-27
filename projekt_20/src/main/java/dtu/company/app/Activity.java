@@ -36,12 +36,17 @@ public class Activity {
     }
 
     public void assignEmployee(int id, int activities) throws Exception{
-        if (activities < 20 && !assignedEmployees.contains(id)){
-            this.assignedEmployees.add(id);
-        } else if (assignedEmployees.contains(id)){
+        if (!assignedEmployees.contains(id)) {
+            if (activities < 10) {
+                this.assignedEmployees.add(id);
+            } else if (activities < 20 && activities >= 10) {
+                this.assignedEmployees.add(id);
+                throw new Exception("Warning: Employee is working a lot");
+            } else if (activities >= 20) {
+                throw new Exception("Employee is working too much");
+            }
+        } else {
             throw new Exception("Employee is already assigned");
-        } else if (activities >= 20){
-            throw new Exception("Employee is working too much");
         }
     }
 
