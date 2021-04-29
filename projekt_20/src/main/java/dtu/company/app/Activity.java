@@ -61,4 +61,16 @@ public class Activity {
     public void unassignEmployee(Integer int2) {
         assignedEmployees.remove(assignedEmployees.indexOf(int2));
     }
+    
+    public void inviteEmployee(Employee inviter, Employee invitee) throws Exception {
+    	if(containsEmployeeWithID(inviter.getId())) {
+    		if(!containsEmployeeWithID(invitee.getId())) {
+    			assignEmployee(invitee.getId(),invitee.getActivities());
+    		} else {
+    			throw new Exception("Employee being invited is already assigned to activity!");
+    		}
+    	} else {
+    		throw new Exception("Employee trying to invite is not assigned to activity!");
+    	}
+    }
 }
