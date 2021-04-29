@@ -131,6 +131,11 @@ public class EmployeeSteps {
 		assertFalse(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 
+	@Given("an employee “employee {int}” is the project leader for the project {string}")
+	public void an_employee_employee_is_the_project_leader_for_the_project(Integer int1, String string) {
+		assertTrue(companyApp.getProject(string).getProjectLeaderID()==int1);
+	}
+
 
 //
 

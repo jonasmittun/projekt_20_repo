@@ -43,6 +43,10 @@ public class Project {
     	employeeList.add(employee);
     }
 
+    public void setProjectName(String projectName){
+        this.projectName = projectName;
+    }
+
     public Activity getActivityWithID(int id){
         for (int i = 0; i < activityList.size(); i++){
             if (activityList.get(i).getActivityID()==id){

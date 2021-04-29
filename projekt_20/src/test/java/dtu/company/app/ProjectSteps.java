@@ -50,6 +50,13 @@ public class ProjectSteps {
     public void the_system_contains_a_project_named(String string) {
         assertTrue(companyApp.containsProjectWithName(string));
     }
+
+    @Given("the system contains a project {string}")
+    public void the_system_contains_a_project(String string) throws Exception {
+	    project = new Project(string);
+        the_project_is_added_to_the_system();
+        assertTrue(companyApp.containsProjectWithName(string));
+    }
     
     @Given("a project exists in the system")
     public void a_project_exists_in_the_system() throws Exception {
@@ -57,11 +64,22 @@ public class ProjectSteps {
         the_project_is_added_to_the_system();
         assertTrue(companyApp.containsProjectWithName(project.getProjectName()));
     }
-    
+
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String errorMessage) {
     	assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
+
+    @When("the project leader sets the project name to be {string}")
+    public void the_project_leader_sets_the_project_name_to_be(String string) {
+        project.setProjectName(string);
+    }
+
+    @Then("the project name is {string}")
+    public void the_project_name_is(String string) {
+        assertTrue(companyApp.containsProjectWithName(string));
+    }
+
 
     
 }

@@ -21,6 +21,9 @@ public class CompanyHelper {
         //Employee <1> becomes project leader of project "project 1"
         companyHelper.getProject("project 1").setProjectLeaderID(1);
 
+        //Employee <20> becomes project leader of project "project 20"
+        companyHelper.getProject("project 20").setProjectLeaderID(20);
+
         //Employee <2> has below 20 activities
         companyHelper.getEmployee(2).setActivities(0);
 
