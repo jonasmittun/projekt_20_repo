@@ -1,7 +1,5 @@
 package dtu.company.app;
 
-import java.util.ArrayList;
-
 public class CompanyHelper {
     private CompanyApp companyHelper;
 
@@ -25,13 +23,13 @@ public class CompanyHelper {
         companyHelper.getProject("project 20").setProjectLeaderID(20);
 
         //Employee <2> has below 20 activities
-        companyHelper.getEmployee(2).setActivities(0);
+        companyHelper.getEmployee(2).setNumberOfActivities(0);
 
         //Employee <3> has between 10 and 20 activites
-        companyHelper.getEmployee(3).setActivities(10);
+        companyHelper.getEmployee(3).setNumberOfActivities(10);
 
         //Employee <4> has 20 or above activities
-        companyHelper.getEmployee(4).setActivities(20);
+        companyHelper.getEmployee(4).setNumberOfActivities(20);
     }
 
     public CompanyApp getCompanyHelper(){

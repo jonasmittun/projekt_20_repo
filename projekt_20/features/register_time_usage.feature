@@ -3,7 +3,8 @@ Feature: Register time-usage
    Actor: Employee
 
    Scenario: The employee registers time usage for the days activities
-       #Given the employee has due activities for the day
-       #And the employee has worked on activities for the day
-       #When the employee registers <int> hours worked on the activities for the day
-       #Then the hours worked on the activities for the day get added to activities rapport
+       Given there exists an employee <2> who is assigned to the activity <1> in project "project 1"
+       And employee <2> is the user
+       When the employee <2> registers <10> half hours worked on activity <1> in project "project 1" for the day
+       Then employee <2>'s worked hours is updated to <10> half hours
+       Then activity <1> in project "project 1" worked hours is updated to <10> half hours

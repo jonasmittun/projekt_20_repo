@@ -49,7 +49,7 @@ public class HelperSteps {
 
 	@Given("the employee <{int}> is currently working on <{int}> activities or more")
 	public void the_employee_is_currently_working_on_activities_or_more(Integer int1, Integer int2) {
-		assertFalse(companyApp.getEmployee(int1).getActivities() < int2);
+		assertFalse(companyApp.getEmployee(int1).getNumberOfActivities() < int2);
 	}
 	
 	@Given("the employee with id <{int}> is assigned to the activity with id <{int}> in {string}")

@@ -41,7 +41,7 @@ public class EmployeeSteps {
 
 	@Given("the employee <{int}> is currently working on less than <{int}> activities")
 	public void the_employee_is_currently_working_on_less_than_activities(Integer int1, Integer int2) {
-		assertTrue(companyApp.getEmployee(int1).getActivities() < int2);
+		assertTrue(companyApp.getEmployee(int1).getNumberOfActivities() < int2);
 	}
 
 	@When("the project leader <{int}> assigns the employee <{int}> to the activity <{int}> in project {string}")
@@ -57,6 +57,11 @@ public class EmployeeSteps {
 	public void the_employee_is_contained_in_the_activity_in_the_project(Integer int1, Integer int2, String string) {
 		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
+
+//	@Given("the employee <{int}> is currently working on <{int}> activities or more")
+//	public void the_employee_is_currently_working_on_activities_or_more(Integer int1, Integer int2) {
+//		assertFalse(companyApp.getEmployee(int1).getNumberOfActivities() < int2);
+//	}
 
 	@When("the employee <{int}> is assigned as project leader of the project {string}")
 	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1, String string) {
@@ -90,7 +95,20 @@ public class EmployeeSteps {
 		assertFalse(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 
+	@When("the employee <{int}> registers <{int}> half hours worked on activity <{int}> in project {string} for the day")
+	public void the_employee_registers_half_hours_worked_for_the_day(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
+		companyApp.registerDaysWork(employee, halfHours, activity, project);
+	}
 
-//
+	@Then("employee <{int}>'s worked hours is updated to <{int}> half hours")
+	public void employee_s_worked_hours_is_updated_to_half_hours(Integer int1, Integer int2) {
+		assertTrue(companyApp.getEmployee(int1).getDaysWorkInHalfHours()==int2);
+	}
+
+	@Then("activity <{int}> in project {string} worked hours is updated to <{int}> half hours")
+	public void activity_in_project_worked_hours_is_updated_to_half_hours(Integer int1, String string, Integer int2) {
+		assertTrue(companyApp.getProject(string).getActivityWithID(int1).getWorkedHalfHours() == int2);
+	}
 
 }
+

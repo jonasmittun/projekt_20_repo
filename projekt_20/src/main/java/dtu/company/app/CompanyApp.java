@@ -72,7 +72,7 @@ public class CompanyApp {
 	}
 
 	public void assignEmployee(Integer employeeID, Integer activityID, String projectName) throws Exception {
-    	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,employeeList.get(employeeID).getActivities());
+    	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,employeeList.get(employeeID).getNumberOfActivities());
 		employeeList.get(employeeID).addActivity();
     }
 
@@ -99,4 +99,9 @@ public class CompanyApp {
     	getProject(string).getActivityWithID(int3).unassignEmployee(int2);
     	employeeList.get(int2).removeActivity();
 	}
+
+	public void registerDaysWork(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
+		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
+		getProject(project).getActivityWithID(activity).addHalfHoursWorked(halfHours);
+    }
 }
