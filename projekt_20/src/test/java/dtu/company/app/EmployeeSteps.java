@@ -109,7 +109,7 @@ public class EmployeeSteps {
 		companyApp.setUser(int1);
 	    assertTrue(companyApp.getUser() == int1);
 	}
-	
+
 	@Given("a project {string} exists with employee <{int}> as project leader")
 	public void a_project_exists_with_employee_as_project_leader(String string, Integer int1) {
 		the_employee_is_assigned_as_project_leader_of_the_project(int1, string);
