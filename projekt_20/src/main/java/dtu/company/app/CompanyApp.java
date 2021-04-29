@@ -99,6 +99,13 @@ public class CompanyApp {
     	getProject(string).getActivityWithID(int3).unassignEmployee(int2);
     	employeeList.get(int2).removeActivity();
 	}
+	public void setProjectName(String projectName, String newProjectName, int ID) throws Exception{
+    	if(getProject(projectName).getProjectLeaderID()==ID){
+			getProject(projectName).setProjectName(newProjectName);
+		}else {
+			throw new Exception("You must be project leader");
+		}
+	}
 
 	public void registerDaysWork(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);

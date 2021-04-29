@@ -70,15 +70,12 @@ public class ProjectSteps {
     	assertEquals(errorMessage, this.errorMessage.getErrorMessage());
     }
 
-    @When("the project leader sets the project name to be {string}")
-    public void the_project_leader_sets_the_project_name_to_be(String string) {
-        project.setProjectName(string);
-    }
-
     @Then("the project name is {string}")
     public void the_project_name_is(String string) {
+	    project.setProjectName(string);
         assertTrue(companyApp.containsProjectWithName(string));
     }
+
 
 
     

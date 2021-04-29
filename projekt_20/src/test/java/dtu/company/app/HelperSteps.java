@@ -61,4 +61,9 @@ public class HelperSteps {
 	public void an_employee_employee_is_the_project_leader_for_the_project(Integer int1, String string) {
 		assertTrue(companyApp.getProject(string).getProjectLeaderID()==int1);
 	}
+
+	@Given("an employee “employee {int}” is not the project leader for the project {string}")
+	public void an_employee_employee_is_not_the_project_leader_for_the_project(Integer int1, String string) {
+		assertTrue(companyApp.getProject(string).getProjectLeaderID()!=int1);
+	}
 }
