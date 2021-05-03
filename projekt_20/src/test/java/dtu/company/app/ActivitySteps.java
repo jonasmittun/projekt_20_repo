@@ -3,14 +3,27 @@ package dtu.company.app;
 import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class ActivitySteps {
     private CompanyApp companyApp;
     private ErrorMessageHolder errorMessage;
+    private Activity activity;
 
     public ActivitySteps(ErrorMessageHolder errorMessage, CompanyHelper companyHelper){
         this.companyApp = companyHelper.getCompanyHelper();
         this.errorMessage = errorMessage;
+    }
+
+    @When("an activity is created in project {string}")
+    public void an_activity_is_created_with_an_id_number_in_project(String projectName) {
+        this.activity = new Activity(companyApp.getIdForNewActivity(projectName));
+    }
+
+    @Then("the activity <{int}> is registered in the project {string}")
+    public void the_activity_is_registered_in_the_project(Integer int1,String projectName) {
+        assertTrue(companyApp.getProject(projectName).containsActivityWithID(int1));
     }
 
     @Given("there exists an activity {string} with id <{int}> in project {string}")
@@ -18,4 +31,5 @@ public class ActivitySteps {
 		assertTrue(companyApp.getProject(string2).containsActivityWithID(int1));
 		assertTrue(companyApp.getProject(string2).getActivityWithID(int1).getActivityName().equals(string));
 	}
+
 }

@@ -7,6 +7,8 @@ public class Activity {
     private ArrayList<Integer> assignedEmployees; //Remember to keep separate from employeeList in project class
     private int id;
     private int workedHalfHours;
+    private Project project;
+    private CompanyApp companyApp;
     
     public Activity(int id) {
         this.id = id;
@@ -29,6 +31,7 @@ public class Activity {
     public int getActivityID(){
         return id;
     }
+
 
     public Boolean containsEmployeeWithID(int id){
         if (assignedEmployees.contains(id)){

@@ -6,9 +6,8 @@ Feature: Create Activity
    Scenario: Project leader creates an activity
          Given a project "project 1" exists with employee <1> as project leader
          And employee <1> is the user
-         #And there exists an activity <1>
-  		 #When the activity is added to the project
-         #Then the activity is registered in the project
+  		 When an activity is created in project "project 1"
+         Then the activity <1> is registered in the project "project 1"
 
    #Alteration in activities
    #Scenario: Making an alteration in an existing activity

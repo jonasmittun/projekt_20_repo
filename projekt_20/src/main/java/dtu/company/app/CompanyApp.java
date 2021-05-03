@@ -30,6 +30,7 @@ public class CompanyApp {
 		return false;
 	}
 
+
 	public void addProject(Project project) throws Exception{
 		if (containsProjectWithName(project.getProjectName())) {
 			throw new Exception("Project already exists");
@@ -84,6 +85,11 @@ public class CompanyApp {
 		projectList.forEach((n) -> activityList.addAll(n.getActivities()));
 		return activityList;
 	}
+
+	public int getIdForNewActivity(String projectName){
+		return getProject(projectName).getActivities().size()+1;
+	}
+
 	
 	public ArrayList<Employee> getEmployees(){
 		return this.employeeList;
