@@ -15,14 +15,7 @@ public class Controller {
 		
 		view.StartUpText();
 		
-		boolean idConfirmed = false;
-		while(!idConfirmed) {
-			view.UserIDText();
-			CurrentUserID = Integer.parseInt(view.UserInput());
-			idConfirmed = view.ConfirmUserID(CurrentUserID);
-		}
-		companyApp.setUser(CurrentUserID);
-		System.out.println("User set in companyApp is now: " + companyApp.getUser());
+		SelectUser();
 
 		//Gather users activities from CompanyApp
 
@@ -33,6 +26,17 @@ public class Controller {
 
 		view.ShutDownText();
 		
+	}
+	
+	public static void SelectUser() {
+		boolean idConfirmed = false;
+		while(!idConfirmed) {
+			view.UserIDText();
+			CurrentUserID = Integer.parseInt(view.UserInput());
+			idConfirmed = view.ConfirmUserID(CurrentUserID);
+		}
+		companyApp.setUser(CurrentUserID);
+		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
 
 }
