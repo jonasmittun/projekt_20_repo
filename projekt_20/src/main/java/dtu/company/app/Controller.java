@@ -6,11 +6,8 @@ public class Controller {
 	static View view;
 	static int CurrentUserID = -1;
 	
-	public static void main(String[] args) {
-		//Scanner scanner = new Scanner(System.in);
-		
+	public static void main(String[] args) {	
 		companyApp = new CompanyApp();
-		
 		view = new View();
 		
 		view.StartUpText();
@@ -26,6 +23,8 @@ public class Controller {
 		companyApp.setUser(CurrentUserID);
 		
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
+		
+		view.ShutDownText();
 		
 	}
 
