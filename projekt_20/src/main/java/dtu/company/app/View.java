@@ -88,13 +88,15 @@ public class View {
 		System.out.println("The time is currently: " + DateFormat.HOUR_OF_DAY0_FIELD);
 		System.out.println("Please choose an action from the list below, or type [0] to return to User Selection...");
 		
-		System.out.println("[1]. " + "");
-		System.out.println("[1]. " + "");
-		System.out.println("[1]. " + "");
-		System.out.println("[1]. " + "");
-		System.out.println("[1]. " + "");
-		System.out.println("[1]. " + "");
-		System.out.println("[9]. " + "Exit Program");
+		System.out.println("[1]- " + "");
+		System.out.println("[2]- " + "");
+		System.out.println("[3]- " + "");
+		System.out.println("[4]- " + "");
+		System.out.println("[5]- " + "");
+		System.out.println("[6]- " + "");
+		System.out.println("[7]- " + "");
+		System.out.println("[8]- " + "");
+		System.out.println("[9]- " + "Exit Program");
 	}
 	
 }
