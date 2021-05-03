@@ -76,6 +76,15 @@ public class Project {
         return null;
     }
 
+    public Activity getActivityWithName(String activityName){
+        for (int i = 0; i < activityList.size(); i++){
+            if(activityList.get(i).getActivityName() == activityName){
+                return activityList.get(i);
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Activity> getActivities() {
         return activityList;
     }
@@ -96,6 +105,15 @@ public class Project {
 	public Boolean containsActivityWithID(int id){
         for (int i = 0; i < activityList.size(); i++) {
             if (activityList.get(i).getActivityID()==id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean containsActivityWithName(String activityName){
+        for (int i = 0; i < activityList.size(); i++){
+            if (activityList.get(i).getActivityName() == activityName){
                 return true;
             }
         }

@@ -32,6 +32,10 @@ public class Activity {
         return id;
     }
 
+    public void setActivityName(String newName){
+        this.activityName = newName;
+    }
+
 
     public Boolean containsEmployeeWithID(int id){
         if (assignedEmployees.contains(id)){
