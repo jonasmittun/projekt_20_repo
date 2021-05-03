@@ -1,14 +1,23 @@
 Feature: Invite to assist
    Description: An employee can invite any other employee to assist them with an activity
-   Actor: Helpless employee
+   Actor: Employee that does the inviting
 
-   # Invite Employee to Activity
-   Scenario: employee <1> invites employee <2> to assist with activity <3>
-       Given employee <1> exists within activity <3>
-       And employee <2> exists within companyApp
-       When employee <1> invites employee <2> to assist with activity <3>
-       Then assign employee <2> to activity <3>
-       But do not assign employee <2> to activity <3> parent project
+	# Invite Employee to Activity
+	Scenario: employee <1> invites employee <2> to assist with activity <3>
+		Given employee <1> exists within activity <3>
+		And employee <2> exists within companyApp
+		When employee <1> invites employee <2> to assist with activity <3>
+		Then assign employee <2> to activity <3>
+		But do not assign employee <2> to activity <3> parent project
+
+	# Invite Employee to Activity where said Employee already exists
+	Scenario: employee <1> invites already existing employee <2> to assist with activity <3>
+		Given employee <1> exists within activity <3>
+		And employee <2> exists within activity <3>
+		When employee <2> is invited to activity <3> where it already exists
+		Then give the exception "Employee being invited is already assigned to activity!"
+
+### Old features are a bit shit, redoing the invite features
 
    # Invite NULL Employee to Activity
    #Scenario: Helpless Employee invites NULL Employee to assist with an Activity

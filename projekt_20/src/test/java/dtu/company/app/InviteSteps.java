@@ -63,4 +63,18 @@ public class InviteSteps {
 	    assertTrue(!this.project.containsEmployeeWithID(this.invitee.getId()));
 	}
 	
+	@When("employee <{int}> is invited to activity <{int}> where it already exists")
+	public void employee_is_invited_to_activity_where_it_already_exists(Integer int1, Integer int2) {
+		try {
+			this.activity.inviteEmployee(this.inviter, this.invitee);
+		} catch (Exception e) {
+			this.errorMessage.setErrorMessage(e.getMessage());
+		}
+	}
+
+	@Then("give the exception {string}")
+	public void give_the_exception(String string) {
+		System.out.println(this.errorMessage.getErrorMessage());
+	    assertTrue(this.errorMessage.getErrorMessage().toString() == "Employee being invited is already assigned to activity!");
+	}
 }
