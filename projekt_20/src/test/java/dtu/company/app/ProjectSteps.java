@@ -14,6 +14,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.time.LocalDate;
+
 public class ProjectSteps {
 	private CompanyApp companyApp;
 	private Project project;
@@ -92,6 +94,26 @@ public class ProjectSteps {
         assertTrue(companyApp.getProject(string).getEndWeek()==int2);
     }
 
+    @When("the deadline for {string} is set to {int}-{int}-{int}")
+    public void the_deadline_for_is_set_to(String string, Integer int1, Integer int2, Integer int3) throws Exception {
+        try {
+            project = companyApp.getProject(string);
+            project.setDeadline(int1, int2, int3);
+            //Dette virker ikke:
+            //companyApp.getProjects(string).set(project);
+            //Derfor:
+            companyApp.updateProject(project);
 
+        } catch (Exception e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the deadline of project {string} is {int}-{int}-{int}")
+    public void the_deadline_of_project_is(String string, Integer int1, Integer int2, Integer int3) throws Exception {
+        LocalDate date = LocalDate.of(int1, int2, int3);
+        System.out.println(companyApp.getProject(string).getDeadline().toString());
+        assertTrue(companyApp.getProject(string).getDeadline().equals(date));
+    }
     
 }

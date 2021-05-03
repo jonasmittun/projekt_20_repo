@@ -129,4 +129,21 @@ public class Project {
         return false;
 	}
 
+    public void setDeadline(Integer int1, Integer int2, Integer int3) throws Exception {
+        LocalDate newDeadline = LocalDate.of(int1, int2, int3);
+        if (LocalDate.now().compareTo(newDeadline) < 0) {
+            this.endDate = LocalDate.of(int1, int2, int3);
+            System.out.println("test");
+        } else {
+            throw new Exception("Deadline must be in the future");
+        }
+    }
+
+    public LocalDate getDeadline() throws Exception {
+        if (endDate != null) {
+            return endDate;
+        } else {
+            throw new Exception("Deadline is not defined");
+        }
+    }
 }

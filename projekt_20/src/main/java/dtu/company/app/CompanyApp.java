@@ -128,4 +128,18 @@ public class CompanyApp {
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
 		getProject(project).getActivityWithID(activity).addHalfHoursWorked(halfHours);
     }
+
+    //Updates an existing project with an edited one
+    public void updateProject(Project update) throws Exception {
+    	if (containsProjectWithName(update.getProjectName())) {
+			for (int i = 0; i < projectList.size(); i++) {
+				if (projectList.get(i).getProjectName().equals(update.getProjectName())) {
+					projectList.set(i, update);
+					return;
+				}
+			}
+		} else {
+    		throw new Exception("Project does not already exist");
+		}
+    }
 }
