@@ -1,11 +1,14 @@
 package dtu.company.app;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class CompanyApp {
     private ArrayList<Employee> employeeList;
     private ArrayList<Project> projectList;
     private int user;
+    private LocalDate date;
 
     public CompanyApp() {
     	employeeList = new ArrayList<Employee>();
@@ -14,7 +17,7 @@ public class CompanyApp {
             employee = new Employee(i);
             employeeList.add(employee);
         }
-        
+        this.date = LocalDate.now();
         this.projectList = new ArrayList<Project>();
     }
 
