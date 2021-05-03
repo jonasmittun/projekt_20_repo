@@ -10,8 +10,9 @@ Feature: Create Activity
          Then the activity <1> is registered in the project "project 1"
 
    #Alteration in activities
-   #Scenario: Making an alteration in an existing activity
-         #Given a project with an activity and a project leader exists in the system
-         #And the project leader is the user
+   Scenario: Making an alteration in an existing activity
+         Given a project "project 1" exists with employee <1> as project leader 
+         And the activity <1> is registered in the project "project 1"
+         And employee <1> is the user
          #When the activity is edited with new name "Activity 1" and deadline <1>
          #Then the activity's name is "Activity 1" and deadline is <1> 
