@@ -17,6 +17,8 @@ public class Controller {
 		
 		//Something while id is not accepted by user keep doing this
 		
+		view.UserIDText();
+		
 		CurrentUserID = Integer.parseInt(view.UserInput());
 		
 		System.out.println(view.ConfirmUserID(CurrentUserID));
