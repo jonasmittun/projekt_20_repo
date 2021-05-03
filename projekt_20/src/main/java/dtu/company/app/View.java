@@ -1,5 +1,6 @@
 package dtu.company.app;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class View {
@@ -44,6 +45,22 @@ public class View {
 		
 		input = this.scanner.nextLine();
 		
+		return input;
+	}
+
+	public int[] RegisterMenu(ArrayList<String> list){
+		for (int i = 0; i < list.size(); i++){
+			String projectName = list.get(i).substring(0,list.get(i).indexOf(':'));
+			String activityName = list.get(i).substring(list.get(i).indexOf(':'),list.get(i).lastIndexOf(':'));
+			int activityID = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':'),list.get(i).length()-1));
+			System.out.println("[" + i + "]\t" + projectName + "\t" + activityName);
+		}
+		System.out.println("");
+		System.out.println("Please select one of " + (list.size()-1) + " activities");
+		int[] input = new int[2];
+		input[0] = this.scanner.nextInt();
+		System.out.println("--------------------------------------------------------");
+
 		return input;
 	}
 	
