@@ -15,16 +15,13 @@ public class Controller {
 		
 		view.StartUpText();
 		
-		//Something while id is not accepted by user keep doing this
-		
-		view.UserIDText();
-		
-		CurrentUserID = Integer.parseInt(view.UserInput());
-		
-		System.out.println(view.ConfirmUserID(CurrentUserID));
-		
+		boolean idConfirmed = false;
+		while(!idConfirmed) {
+			view.UserIDText();
+			CurrentUserID = Integer.parseInt(view.UserInput());
+			idConfirmed = view.ConfirmUserID(CurrentUserID);
+		}
 		companyApp.setUser(CurrentUserID);
-		
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 
 		//Gather users activities from CompanyApp
