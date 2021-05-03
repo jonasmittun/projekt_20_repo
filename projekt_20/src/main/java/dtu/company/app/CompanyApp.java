@@ -116,6 +116,14 @@ public class CompanyApp {
 		}
 	}
 
+	public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
+    	if(getProject(projectName).getProjectLeaderID()==userID){
+    		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName);
+		}else {
+    		throw new Exception("You must be project leader");
+		}
+	}
+
 	public void registerDaysWork(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
 		getProject(project).getActivityWithID(activity).addHalfHoursWorked(halfHours);
