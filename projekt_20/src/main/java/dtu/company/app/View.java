@@ -1,5 +1,6 @@
 package dtu.company.app;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -62,6 +63,24 @@ public class View {
 		System.out.println("--------------------------------------------------------");
 
 		return input;
+	}
+	
+	public void PageBreak() {
+		System.out.println("\n # # # # # \n");
+	}
+
+	public void MainMenu(int currentUserID) {
+		System.out.println("Welcome to [CompanyName]'s [SoftwareName], employee " + currentUserID + "!");
+		System.out.println("The time is currently: " + DateFormat.HOUR_OF_DAY0_FIELD);
+		System.out.println("Please choose an action from the list below, or type [0] to return to User Selection...");
+		
+		System.out.println("[1]. " + "");
+		System.out.println("[1]. " + "");
+		System.out.println("[1]. " + "");
+		System.out.println("[1]. " + "");
+		System.out.println("[1]. " + "");
+		System.out.println("[1]. " + "");
+		System.out.println("[9]. " + "Exit Program");
 	}
 	
 }

@@ -15,7 +15,13 @@ public class Controller {
 		
 		view.StartUpText();
 		
+		view.PageBreak();
+		
 		SelectUser();
+		
+		view.PageBreak();
+		
+		MainMenu();
 
 		//Gather users activities from CompanyApp
 
@@ -37,6 +43,10 @@ public class Controller {
 		}
 		companyApp.setUser(CurrentUserID);
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
+	}
+	
+	public static void MainMenu() {
+		view.MainMenu(CurrentUserID);
 	}
 
 }
