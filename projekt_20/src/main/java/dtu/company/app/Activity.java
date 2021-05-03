@@ -74,7 +74,7 @@ public class Activity {
     
     public void inviteEmployee(Employee inviter, Employee invitee) throws Exception {
     	if(containsEmployeeWithID(inviter.getId())) {
-    		if(!containsEmployeeWithID(invitee.getId())) {
+    		if(!(containsEmployeeWithID(invitee.getId()))) {
     			assignEmployee(invitee.getId(),invitee.getNumberOfActivities());
     		} else {
     			throw new Exception("Employee being invited is already assigned to activity!");

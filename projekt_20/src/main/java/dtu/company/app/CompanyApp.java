@@ -3,6 +3,7 @@ package dtu.company.app;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyApp {
     private ArrayList<Employee> employeeList;
@@ -128,6 +129,21 @@ public class CompanyApp {
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
 		getProject(project).getActivityWithID(activity).addHalfHoursWorked(halfHours);
     }
+
+    public ArrayList<String> getUserActivities(int ID){
+    	ArrayList<String> list = new ArrayList<String>();
+    	for(int i = 0; i < projectList.size(); i++) {
+			Project proj = projectList.get(i);
+			for(int j = 0; j < proj.getActivities().size(); j++){
+				Activity act = proj.getActivityWithID(j);
+				if (act.containsEmployeeWithID(ID)){
+					String s = proj.getProjectName() + ":" + act.getActivityName() + ":" + act.getActivityID();
+					list.add(s);
+				}
+			}
+		}
+    	return list;
+	}
 
     //Updates an existing project with an edited one
     public void updateProject(Project update) throws Exception {
