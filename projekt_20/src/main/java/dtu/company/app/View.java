@@ -49,20 +49,34 @@ public class View {
 		return input;
 	}
 
-	public int[] RegisterMenu(ArrayList<String> list){
+	public String RegisterMenu(ArrayList<String> list){
+		System.out.println("\t ProjectName \t ActivityName \t ActivityID" );
+
+		//Prints all activities for the user
 		for (int i = 0; i < list.size(); i++){
 			String projectName = list.get(i).substring(0,list.get(i).indexOf(':'));
 			String activityName = list.get(i).substring(list.get(i).indexOf(':'),list.get(i).lastIndexOf(':'));
 			int activityID = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':'),list.get(i).length()-1));
-			System.out.println("[" + i + "]\t" + projectName + "\t" + activityName);
+			System.out.println("[" + i + "]\t" + projectName + "\t" + activityName + "\t" + activityID);
 		}
+
+		//Asks user for selection
 		System.out.println("");
-		System.out.println("Please select one of " + (list.size()-1) + " activities");
-		int[] input = new int[2];
-		input[0] = this.scanner.nextInt();
+		System.out.println("Please select one <int> of " + (list.size()-1) + " activities");
+		int input = this.scanner.nextInt();
+
+		//Updates selection with asked hours
+		String projectName = list.get(input).substring(0,list.get(input).indexOf(':'));
+		String activityID = list.get(input).substring(list.get(input).lastIndexOf(':'),list.get(input).length()-1);
+
+		String s = projectName + ":" + activityID;
 		System.out.println("--------------------------------------------------------");
 
-		return input;
+		System.out.println("Please input <int> number of half hours worked on activity " + activityID);
+		input = this.scanner.nextInt();
+
+		s = s + ":" + input;
+		return s;
 	}
 	
 	public void PageBreak() {
