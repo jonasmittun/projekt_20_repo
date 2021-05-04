@@ -34,7 +34,7 @@ public class View {
 		String input = ""; 
 		System.out.println("You have input the id: " + ID);
 		System.out.println("Please input 'y' if the selected ID is correct, else input 'n' to go back.");
-		input = this.scanner.nextLine();
+		input = this.scanner.next();
 		if(input.equalsIgnoreCase("y")) {
 			return true;
 		} else {
@@ -43,10 +43,10 @@ public class View {
 		}
 	}
 
-	public String UserInput() {
-		String input = "";
+	public int UserInput() {
+		int input = -1;
 		
-		input = this.scanner.nextLine();
+		input = this.scanner.nextInt();
 		
 		return input;
 	}
@@ -85,23 +85,46 @@ public class View {
 		System.out.println("\n # # # # # \n");
 	}
 
-	public void MainMenu(int currentUserID) {
+	public int MainMenu(int currentUserID) {
 		System.out.println("Welcome to [CompanyName]'s [SoftwareName], employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
-		System.out.println("Please choose an action from the list below, or type [0] to return to User Selection...");
+		System.out.println("Please choose an action from the list...");
 		
-		System.out.println("[1]- " + "");
-		System.out.println("[2]- " + "");
-		System.out.println("[3]- " + "");
-		System.out.println("[4]- " + "");
-		System.out.println("[5]- " + "");
-		System.out.println("[6]- " + "");
-		System.out.println("[7]- " + "");
-		System.out.println("[8]- " + "");
+		System.out.println("[1]- " + "Time Registration");
+		System.out.println("[2]- " + "Projects");
+		System.out.println("[3]- " + "Activities");
+		System.out.println("[4]- " + "Management");
+		System.out.println("[5]- " + "Reports");
+		System.out.println("[6]- " + "xxx");
+		System.out.println("[7]- " + "yyy");
+		System.out.println("[8]- " + "zzz");
 		System.out.println("[9]- " + "Exit Program");
+		System.out.println("[0]- " + "User Selection");
 		
+		int input = -1;
+		input = this.scanner.nextInt();
 		
-		
+		if (input > -1 && input < 10) {
+			System.out.print("Going to... ");
+			switch (input) {
+			case 0: System.out.println("User Selection"); 		break;
+			case 1: System.out.println("Time Registration"); 	break;
+			case 2: System.out.println("Projects"); 			break;
+			case 3: System.out.println("Activities"); 			break;
+			case 4: System.out.println("Management"); 			break;
+			case 5: System.out.println("Reports"); 				break;
+			case 6: System.out.println("xxx"); 					break;
+			case 7: System.out.println("yyy"); 					break;
+			case 8: System.out.println("zzz"); 					break;
+			case 9: System.out.println("Exit program");			break;
+			}
+			return input;
+		} else {
+			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
+			System.out.println("Press any key to return to Main Menu...");
+			this.scanner.nextLine();
+			return -1;
+		}
 	}
 	
 }
