@@ -52,24 +52,28 @@ public class View {
 	}
 
 	public String RegisterMenu(ArrayList<String> list){
-		System.out.println("\t ProjectName \t ActivityName \t ActivityID" );
+		System.out.println("\t \t ProjectName: \t ActivityName: \t ActivityID:" );
 
 		//Prints all activities for the user
 		for (int i = 0; i < list.size(); i++){
 			String projectName = list.get(i).substring(0,list.get(i).indexOf(':'));
-			String activityName = list.get(i).substring(list.get(i).indexOf(':'),list.get(i).lastIndexOf(':'));
-			int activityID = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':'),list.get(i).length()-1));
-			System.out.println("[" + i + "]\t" + projectName + "\t" + activityName + "\t" + activityID);
+			String activityName = list.get(i).substring(list.get(i).indexOf(':')+1,list.get(i).lastIndexOf(':'));
+			int activityID = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':')+1,list.get(i).length()));
+			if (i < 9) {
+				System.out.println("[" + (i + 1) + "]\t \t \"" + projectName + "\" \t \"" + activityName + "\" \t \t" + activityID);
+			} else {
+				System.out.println("[" + (i + 1) + "]\t \"" + projectName + "\" \t \"" + activityName + "\" \t \t" + activityID);
+			}
 		}
 
 		//Asks user for selection
 		System.out.println("");
-		System.out.println("Please select one <int> of " + (list.size()-1) + " activities");
+		System.out.println("Please select one of " + (list.size()) + " activities");
 		int input = this.scanner.nextInt();
 
 		//Updates selection with asked hours
 		String projectName = list.get(input).substring(0,list.get(input).indexOf(':'));
-		String activityID = list.get(input).substring(list.get(input).lastIndexOf(':'),list.get(input).length()-1);
+		String activityID = list.get(input).substring(list.get(input).lastIndexOf(':')+1,list.get(input).length());
 
 		String s = projectName + ":" + activityID;
 		PageBreak();
