@@ -34,6 +34,7 @@ public class Project {
 
     //Adders
     public void addActivity(Activity activity){
+        activity.setProjectLeaderID(projectLeaderID);
         activityList.add(activity);
     }
 

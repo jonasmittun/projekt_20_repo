@@ -21,8 +21,9 @@ public class ActivitySteps {
         this.activity = new Activity(companyApp.getIdForNewActivity(projectName));
     }
 
-    @Then("the activity <{int}> is registered in the project {string}")
+    @Given("the activity <{int}> is registered in the project {string}")
     public void the_activity_is_registered_in_the_project(Integer int1,String projectName) {
+        System.out.println("acitivity leader id " + companyApp.getProject(projectName).getActivityWithID(int1).getProjectLeaderID());
         assertTrue(companyApp.getProject(projectName).containsActivityWithID(int1));
     }
 
@@ -38,7 +39,8 @@ public class ActivitySteps {
             //activity = companyApp.getActivity(projectName, int1);
             //activity.setActivityName(newActivityName);
             //companyApp.updateActivity(projectName, activity);
-            companyApp.getActivity(projectName, int1).setActivityName(newActivityName);
+            int id = companyApp.getProject(projectName).getProjectLeaderID();
+            companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
             //companyApp.setActivityName(projectName,int1,int2,newActivityName);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());

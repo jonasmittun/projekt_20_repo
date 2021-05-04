@@ -125,7 +125,7 @@ public class CompanyApp {
 
 	public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
     	if(getProject(projectName).getProjectLeaderID()==userID){
-    		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName);
+    		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName, getProject(projectName).getProjectLeaderID());
 		}else {
     		throw new Exception("You must be project leader");
 		}

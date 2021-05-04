@@ -9,6 +9,7 @@ public class Activity {
     private int workedHalfHours;
     private Project project;
     private CompanyApp companyApp;
+    private int projectLeaderID;
     
     public Activity(int id) {
         this.id = id;
@@ -32,8 +33,13 @@ public class Activity {
         return id;
     }
 
-    public void setActivityName(String newName){
-        this.activityName = newName;
+    public void setActivityName(String newName, int user) throws Exception{
+        if (user == projectLeaderID) {
+            this.activityName = newName;
+        } else {
+            System.out.println("test!!!!");
+            throw new Exception("You must be project leader");
+        }
     }
 
 
@@ -90,5 +96,13 @@ public class Activity {
 
     public int getWorkedHalfHours(){
         return workedHalfHours;
+    }
+
+    public void setProjectLeaderID(int projectLeaderID) {
+        this.projectLeaderID = projectLeaderID;
+    }
+
+    public int getProjectLeaderID() {
+        return projectLeaderID;
     }
 }
