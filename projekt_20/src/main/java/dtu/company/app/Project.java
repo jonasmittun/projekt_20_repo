@@ -46,8 +46,13 @@ public class Project {
         this.projectLeaderID = id;
     }
 
-    public void setProjectName(String projectName){
-        this.projectName = projectName;
+    public void setProjectName(String projectName, int user) throws Exception{
+        if (user == projectLeaderID) {
+            this.projectName = projectName;
+        } else {
+            throw new Exception("You must be project leader");
+        }
+
     }
 
     public void setStartWeek(int week){

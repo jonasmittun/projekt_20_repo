@@ -23,7 +23,7 @@ public class ProjectSteps {
 	private ProjectHelper helper;
 	
 	//Constructor for dependency injection
-	public ProjectSteps (CompanyApp companyApp, CompanyHelper companyHelper, ErrorMessageHolder errorMessage, ProjectHelper helper){
+	public ProjectSteps (CompanyHelper companyHelper, ErrorMessageHolder errorMessage, ProjectHelper helper){
 		this.companyApp = companyHelper.getCompanyHelper();
 		this.errorMessage = errorMessage;
 		this.helper = helper;
@@ -74,7 +74,6 @@ public class ProjectSteps {
 
     @Then("the project name is {string}")
     public void the_project_name_is(String string) {
-	    project.setProjectName(string);
         assertTrue(companyApp.containsProjectWithName(string));
     }
 
@@ -97,12 +96,12 @@ public class ProjectSteps {
     @When("the deadline for {string} is set to {int}-{int}-{int}")
     public void the_deadline_for_is_set_to(String string, Integer int1, Integer int2, Integer int3) throws Exception {
         try {
-            project = companyApp.getProject(string);
-            project.setDeadline(int1, int2, int3);
+            //project = companyApp.getProject(string);
+            //project.setDeadline(int1, int2, int3);
             //Dette virker ikke:
-            //companyApp.getProjects(string).set(project);
+            companyApp.getProject(string).setDeadline(int1, int2, int3);
             //Derfor:
-            companyApp.updateProject(project);
+            //companyApp.updateProject(project);
 
         } catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
@@ -112,7 +111,6 @@ public class ProjectSteps {
     @Then("the deadline of project {string} is {int}-{int}-{int}")
     public void the_deadline_of_project_is(String string, Integer int1, Integer int2, Integer int3) throws Exception {
         LocalDate date = LocalDate.of(int1, int2, int3);
-        System.out.println(companyApp.getProject(string).getDeadline().toString());
         assertTrue(companyApp.getProject(string).getDeadline().equals(date));
     }
 
@@ -120,9 +118,7 @@ public class ProjectSteps {
     @When("the project {string} is edited with new name {string}")
     public void the_employee_is_edited_with_new_name(String string, String string2) throws Exception {
         try{
-            project = companyApp.getProject(string);
-            project.setProjectName(string2);
-            companyApp.updateProject(project);
+            companyApp.getProject(string).setProjectName(string2, companyApp.getUser());
         } catch (Exception e) {
             errorMessage.setErrorMessage(e.getMessage());
         }

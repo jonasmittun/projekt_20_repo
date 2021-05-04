@@ -118,11 +118,7 @@ public class CompanyApp {
     	employeeList.get(int2).removeActivity();
 	}
 	public void setProjectName(String projectName, String newProjectName, int ID) throws Exception{
-    	if(getProject(projectName).getProjectLeaderID()==ID){
-			getProject(projectName).setProjectName(newProjectName);
-		}else {
-			throw new Exception("You must be project leader");
-		}
+		getProject(projectName).setProjectName(newProjectName, user);
 	}
 
 
