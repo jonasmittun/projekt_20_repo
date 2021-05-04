@@ -8,6 +8,7 @@ public class Controller {
 	static View view;
 	static int CurrentUserID = -1;
 	private static ArrayList<String> userActivities;
+	private static ArrayList<String> userProjects;
 	
 	public static void main(String[] args) throws Exception {
 		companyApp = new CompanyApp();
@@ -50,7 +51,7 @@ public class Controller {
 		switch(result) {
 		case 0: view.PageBreak(); SelectUser();	break;
 		case 1: view.PageBreak(); RegisterMenu(CurrentUserID);	break;
-		case 2: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder2");	break;
+		case 2: view.PageBreak(); projectMenu(CurrentUserID); System.out.println("placeholder2");	break;
 		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
 		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
 		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
@@ -79,6 +80,23 @@ public class Controller {
 		//Registers users hours
 		companyApp.registerDaysWork(CurrentUserID,halfHours,activityID,projectName);
 		//System.out.println("Hours worked today: \t" + companyApp.getEmployee(CurrentUserID));
+	}
+
+	//TO BE CONTINUED (BORAN)
+	public static void projectMenu(int currentUserID) throws Exception {
+		//Gets user projects
+		ArrayList<Project> projects;
+		projects = companyApp.getProjectLeaderProjects(currentUserID);
+		for (Project project : projects){
+			String projectName = project.getProjectName();
+			userProjects.add(projectName);
+			System.out.println(userProjects.get(0));
+		}
+
+		//Runs Project Menu from view
+		view.projectMenu(currentUserID);
+
+		view.viewProjects(userProjects);
 	}
 
 }

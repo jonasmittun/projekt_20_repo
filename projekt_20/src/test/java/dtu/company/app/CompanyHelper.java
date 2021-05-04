@@ -56,7 +56,7 @@ public class CompanyHelper {
         //Employee <2> has below 20 activities
         companyHelper.getEmployee(2).setNumberOfActivities(0);
 
-        //Employee <3> has between 10 and 20 activites
+        //Employee <3> has between 10 and 20 activities
         companyHelper.getEmployee(3).setNumberOfActivities(10);
 
         //Employee <4> has 20 or above activities

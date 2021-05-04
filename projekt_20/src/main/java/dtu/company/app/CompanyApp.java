@@ -121,8 +121,6 @@ public class CompanyApp {
 		getProject(projectName).setProjectName(newProjectName, user);
 	}
 
-
-
 	public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
     	if(getProject(projectName).getProjectLeaderID()==userID){
     		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName, getProject(projectName).getProjectLeaderID());
@@ -145,6 +143,31 @@ public class CompanyApp {
 				if (act.containsEmployeeWithID(ID)){
 					String s = proj.getProjectName() + ":" + act.getActivityName() + ":" + act.getActivityID();
 					list.add(s);
+				}
+			}
+		}
+    	return list;
+	}
+
+	public ArrayList<Project> getEmployeeProjects(int ID){
+		ArrayList<Project> list = new ArrayList<Project>();
+		for(int i = 0; i < projectList.size(); i++){
+			//Project project = projectList.get(i);
+			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
+				if(projectList.get(i).getEmployees().get(i).getId() == ID){
+					list.add(projectList.get(i));
+				}
+			}
+		}
+		return list;
+	}
+
+	public ArrayList<Project> getProjectLeaderProjects(int ID){
+		ArrayList<Project> list = new ArrayList<Project>();
+		for(int i = 0; i < projectList.size(); i++){
+			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
+				if(projectList.get(i).getProjectLeaderID() == ID){
+					list.add(projectList.get(i));
 				}
 			}
 		}
@@ -231,5 +254,17 @@ public class CompanyApp {
 			holder++;
 			place = place + 5;
 		}
+
+		//Set ProjectLeaders
+		projectList.get(0).setProjectLeaderID(1);
+		projectList.get(1).setProjectLeaderID(1);
+		projectList.get(2).setProjectLeaderID(1);
+		projectList.get(3).setProjectLeaderID(4);
+		//projectList.get(4).setProjectLeaderID(5);
+		projectList.get(5).setProjectLeaderID(6);
+		projectList.get(6).setProjectLeaderID(7);
+		projectList.get(7).setProjectLeaderID(8);
+		projectList.get(8).setProjectLeaderID(9);
+		//projectList.get(9).setProjectLeaderID(10);
 	}
 }
