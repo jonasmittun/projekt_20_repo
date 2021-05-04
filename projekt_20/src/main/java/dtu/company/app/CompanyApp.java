@@ -158,20 +158,4 @@ public class CompanyApp {
     		throw new Exception("Project does not already exist");
 		}
     }
-
-	public void setSampleCompany() throws Exception {
-		for (int i = 1; i < 11; i++){
-			//Projects are named "project <int>"
-			Project project = new Project("project "+i);
-			for (int j = 1; j < 31; j++){
-				//Activities are named "activity <int>" and get their index as id
-				Activity activity = new Activity("activity "+j,j);
-
-				//Assign employees to activities
-
-			}
-			project.setProjectLeaderID(i);
-			addProject(project);
-		}
-	}
 }
