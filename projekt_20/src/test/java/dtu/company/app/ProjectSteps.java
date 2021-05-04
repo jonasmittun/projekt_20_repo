@@ -23,8 +23,8 @@ public class ProjectSteps {
 	private ProjectHelper helper;
 	
 	//Constructor for dependency injection
-	public ProjectSteps (CompanyApp companyApp, ErrorMessageHolder errorMessage, ProjectHelper helper){
-		this.companyApp = companyApp;
+	public ProjectSteps (CompanyApp companyApp, CompanyHelper companyHelper, ErrorMessageHolder errorMessage, ProjectHelper helper){
+		this.companyApp = companyHelper.getCompanyHelper();
 		this.errorMessage = errorMessage;
 		this.helper = helper;
 	}
@@ -114,6 +114,18 @@ public class ProjectSteps {
         LocalDate date = LocalDate.of(int1, int2, int3);
         System.out.println(companyApp.getProject(string).getDeadline().toString());
         assertTrue(companyApp.getProject(string).getDeadline().equals(date));
+    }
+
+
+    @When("the project {string} is edited with new name {string}")
+    public void the_employee_is_edited_with_new_name(String string, String string2) throws Exception {
+        try{
+            project = companyApp.getProject(string);
+            project.setProjectName(string2);
+            companyApp.updateProject(project);
+        } catch (Exception e) {
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
     
 }

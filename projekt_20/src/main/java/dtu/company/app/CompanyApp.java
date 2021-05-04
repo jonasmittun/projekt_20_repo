@@ -157,6 +157,7 @@ public class CompanyApp {
 
     //Updates an existing project with an edited one
     public void updateProject(Project update) throws Exception {
+    	assertUserIsProjectLeader(update.getProjectLeaderID());
     	if (containsProjectWithName(update.getProjectName())) {
 			for (int i = 0; i < projectList.size(); i++) {
 				if (projectList.get(i).getProjectName().equals(update.getProjectName())) {

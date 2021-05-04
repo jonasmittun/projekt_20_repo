@@ -95,15 +95,6 @@ public class EmployeeSteps {
 		assertFalse(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 
-	@When("the employee <{int}> sets the project name {string} to be {string}")
-	public void the_employee_sets_the_project_name_to_be(Integer int1, String string, String string2) {
-		try{
-			companyApp.setProjectName(string,string2,int1);
-		} catch (Exception e) {
-			errorMessage.setErrorMessage(e.getMessage());
-		}
-	}
-
 	@When("the employee <{int}> registers <{int}> half hours worked on activity <{int}> in project {string} for the day")
 	public void the_employee_registers_half_hours_worked_for_the_day(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
 		companyApp.registerDaysWork(employee, halfHours, activity, project);
