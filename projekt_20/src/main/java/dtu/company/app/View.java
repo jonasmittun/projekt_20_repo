@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class View {
@@ -69,6 +70,7 @@ public class View {
 		//Asks user for selection
 		System.out.println("");
 		System.out.println("Please select one of " + (list.size()) + " activities");
+
 		int input = this.scanner.nextInt();
 
 		//Updates selection with asked hours
@@ -76,13 +78,24 @@ public class View {
 		String activityID = list.get(input).substring(list.get(input).lastIndexOf(':')+1,list.get(input).length());
 
 		String s = projectName + ":" + activityID;
-		PageBreak();
 
-		System.out.println("Please input <int> number of half hours worked on activity " + activityID);
-		input = this.scanner.nextInt();
+		System.out.println("Please input number of hours worked on activity \"" + activityID + "\"");
+
+		double hours = this.scanner.nextDouble()*2;
+		input = (int) Math.round(hours);
 
 		s = s + ":" + input;
 		return s;
+	}
+
+	private int userIntInput(){
+		int input;
+		try {
+			input = this.scanner.nextInt();
+		} catch (Exception e){
+			input = -1;
+		}
+		return input;
 	}
 	
 	public void PageBreak() {
