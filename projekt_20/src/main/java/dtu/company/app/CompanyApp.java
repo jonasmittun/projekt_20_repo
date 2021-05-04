@@ -149,7 +149,7 @@ public class CompanyApp {
     	return list;
 	}
 
-	public ArrayList<Project> getUserProjects(int ID){
+	public ArrayList<Project> getEmployeeProjects(int ID){
 		ArrayList<Project> list = new ArrayList<Project>();
 		for(int i = 0; i < projectList.size(); i++){
 			//Project project = projectList.get(i);
@@ -160,6 +160,18 @@ public class CompanyApp {
 			}
 		}
 		return list;
+	}
+
+	public ArrayList<Project> getProjectLeaderProjects(int ID){
+		ArrayList<Project> list = new ArrayList<Project>();
+		for(int i = 0; i < projectList.size(); i++){
+			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
+				if(projectList.get(i).getProjectLeaderID() == ID){
+					list.add(projectList.get(i));
+				}
+			}
+		}
+    	return list;
 	}
 
     //Updates an existing project with an edited one

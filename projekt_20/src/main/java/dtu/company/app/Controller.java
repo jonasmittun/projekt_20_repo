@@ -86,7 +86,7 @@ public class Controller {
 	public static void projectMenu(int currentUserID) throws Exception {
 		//Gets user projects
 		ArrayList<Project> projects = new ArrayList<>();
-		projects = companyApp.getUserProjects(currentUserID);
+		projects = companyApp.getEmployeeProjects(currentUserID);
 		for (Project project : projects){
 			String projectName = project.getProjectName();
 			userProjects.add(projectName);
