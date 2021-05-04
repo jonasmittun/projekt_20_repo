@@ -32,8 +32,8 @@ public class ActivitySteps {
 		assertTrue(companyApp.getProject(string2).getActivityWithID(int1).getActivityName().equals(string));
 	}
 
-    @When("the activity <{int}> is edited with new name {string} in project {string} by the employee <{int}>")
-    public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName, Integer int2) throws Exception {
+    @When("the activity <{int}> is edited with new name {string} in project {string}")
+    public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName) throws Exception {
         try {
             activity = companyApp.getActivity(projectName, int1);
             activity.setActivityName(newActivityName);
