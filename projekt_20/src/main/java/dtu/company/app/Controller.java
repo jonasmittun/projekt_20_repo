@@ -85,15 +85,17 @@ public class Controller {
 	//TO BE CONTINUED (BORAN)
 	public static void projectMenu(int currentUserID) throws Exception {
 		//Gets user projects
-		ArrayList<Project> projects = new ArrayList<>();
-		projects = companyApp.getEmployeeProjects(currentUserID);
+		ArrayList<Project> projects;
+		projects = companyApp.getProjectLeaderProjects(currentUserID);
 		for (Project project : projects){
 			String projectName = project.getProjectName();
 			userProjects.add(projectName);
+			System.out.println(userProjects.get(0));
 		}
 
 		//Runs Project Menu from view
 		view.projectMenu(currentUserID);
+
 		view.viewProjects(userProjects);
 	}
 

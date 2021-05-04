@@ -114,10 +114,10 @@ public class View {
 
 		if (input == 1 || input == 2){
 			switch (input){
-				case 0:
+				case 1:
 					System.out.println("Viewing projects");
 					break;
-				case 1:
+				case 2:
 					System.out.println("Create new project");
 					break;
 			}
@@ -130,9 +130,9 @@ public class View {
 		}
 	}
 
-	void viewProjects(ArrayList<String> projects) {
-		for (int i = 0; i < projects.size(); i++) {
-			String projectName = projects.get(i).substring(0, projects.get(i).indexOf(':'));
+	public void viewProjects(ArrayList<String> projects) {
+		for (int i = 1; i < projects.size(); i++) {
+			System.out.println(projects.get(i));
 		}
 	}
 
