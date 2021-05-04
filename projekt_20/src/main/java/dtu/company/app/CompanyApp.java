@@ -121,8 +121,6 @@ public class CompanyApp {
 		getProject(projectName).setProjectName(newProjectName, user);
 	}
 
-
-
 	public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
     	if(getProject(projectName).getProjectLeaderID()==userID){
     		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName);
@@ -149,6 +147,19 @@ public class CompanyApp {
 			}
 		}
     	return list;
+	}
+
+	public ArrayList<Project> getUserProjects(int ID){
+		ArrayList<Project> list = new ArrayList<Project>();
+		for(int i = 0; i < projectList.size(); i++){
+			//Project project = projectList.get(i);
+			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
+				if(projectList.get(i).getEmployees().get(i).getId() == ID){
+					list.add(projectList.get(i));
+				}
+			}
+		}
+		return list;
 	}
 
     //Updates an existing project with an edited one

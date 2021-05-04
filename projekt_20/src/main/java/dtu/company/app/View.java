@@ -102,6 +102,40 @@ public class View {
 		System.out.println("\n # # # # # \n");
 	}
 
+	public int projectMenu(int currentUserID){
+		System.out.println("Employee " + currentUserID + ", you are now viewing Project Menu!");
+		System.out.println("Please choose an action from the list...");
+
+		System.out.println("[1]-" + "View projects");
+		System.out.println("[2]-" +"Create new project");
+
+		int input = -1;
+		input = this.scanner.nextInt();
+
+		if (input == 1 || input == 2){
+			switch (input){
+				case 0:
+					System.out.println("Viewing projects");
+					break;
+				case 1:
+					System.out.println("Create new project");
+					break;
+			}
+			return input;
+		}else {
+			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
+			System.out.println("Input any key to return to Main Menu...");
+			this.scanner.next();
+			return -1;
+		}
+	}
+
+	void viewProjects(ArrayList<String> projects) {
+		for (int i = 0; i < projects.size(); i++) {
+			String projectName = projects.get(i).substring(0, projects.get(i).indexOf(':'));
+		}
+	}
+
 	public int MainMenu(int currentUserID) {
 		System.out.println("Welcome to [CompanyName]'s [SoftwareName], employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
