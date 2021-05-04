@@ -192,4 +192,46 @@ public class CompanyApp {
     		throw new Exception("Project could not be updated");
 		}
 	}
+
+    //Constructor for sample company
+
+	public void setSampleCompany() throws Exception {
+		int numberActivities = 0;
+		for (int j = 0; j < 10; j++){
+			//Projects are named "project <int>"
+			Project project = new Project("project "+(j+1));
+			numberActivities = numberActivities + 5;
+			for(int k = 1; k <= numberActivities; k++) {
+				//Activities are named "activity <int>" and get their index as id
+				Activity activity = new Activity("activity " + k, k);
+				project.addActivity(activity);
+				if (numberActivities == 25) {
+					numberActivities = 0;
+					break;
+				}
+			}
+			addProject(project);
+		}
+
+		employeeList.removeAll(employeeList);
+		Employee employee;
+		for (int i = 1; i < 11; i++){
+			employee = new Employee(i);
+			employeeList.add(employee);
+		}
+
+		int place = 1;
+		int holder = 1;
+		for (int i = 4; i >= 1; i--) {
+
+			for (int j = 4; j >= holder; j--) {
+
+				for (int k = place; k < place + 5; k++){
+					assignEmployee(i,k,"project " + j);
+				}
+			}
+			holder++;
+			place = place + 5;
+		}
+	}
 }

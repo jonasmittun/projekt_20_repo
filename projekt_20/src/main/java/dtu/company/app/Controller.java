@@ -9,10 +9,12 @@ public class Controller {
 	static int CurrentUserID = -1;
 	private static ArrayList<String> userActivities;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		companyApp = new CompanyApp();
 		view = new View();
-		
+
+		companyApp.setSampleCompany();
+
 		view.StartUpText();
 		
 		view.PageBreak();
@@ -20,7 +22,7 @@ public class Controller {
 		SelectUser();
 		
 		view.PageBreak();
-		
+
 		MainMenu();
 
 		//Gather users activities from CompanyApp
@@ -69,9 +71,10 @@ public class Controller {
 		String s = view.RegisterMenu(userActivities);
 
 		//Saves users decision
+		System.out.println(s);
 		String projectName = s.substring(0,s.indexOf(':'));
-		int activityID = Integer.parseInt(s.substring(s.indexOf(':'),s.lastIndexOf(':')));
-		int halfHours = Integer.parseInt(s.substring(s.lastIndexOf(':'),s.length()-1));
+		int activityID = Integer.parseInt(s.substring(s.indexOf(':')+1,s.lastIndexOf(':')));
+		int halfHours = Integer.parseInt(s.substring(s.lastIndexOf(':')+1,s.length()-1));
 
 		//Registers users hours
 		companyApp.registerDaysWork(CurrentUserID,halfHours,activityID,projectName);
