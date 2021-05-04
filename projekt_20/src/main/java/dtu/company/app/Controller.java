@@ -25,7 +25,6 @@ public class Controller {
 
 		//Gather users activities from CompanyApp
 
-
 		view.ShutDownText();
 		
 	}
@@ -34,7 +33,7 @@ public class Controller {
 		boolean idConfirmed = false;
 		while(!idConfirmed) {
 			view.UserIDText();
-			CurrentUserID = Integer.parseInt(view.UserInput());
+			CurrentUserID = view.UserInput();
 			idConfirmed = view.ConfirmUserID(CurrentUserID);
 		}
 		companyApp.setUser(CurrentUserID);
@@ -42,7 +41,24 @@ public class Controller {
 	}
 	
 	public static void MainMenu() {
-		view.MainMenu(CurrentUserID);
+		int result = -1;
+		while(result == -1) {
+			result = view.MainMenu(CurrentUserID);
+		}
+		switch(result) {
+		case 0: view.PageBreak(); SelectUser();	break;
+		case 1: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder1");	break;
+		case 2: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder2");	break;
+		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
+		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
+		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
+		case 6: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder6");	break;
+		case 7: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder7");	break;
+		case 8: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder8");	break;
+		case 9: return;
+		}
+		view.PageBreak();
+		MainMenu();
 	}
 
 	public static void RegisterMenu(int CurrentUserID) throws Exception {
