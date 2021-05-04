@@ -146,4 +146,17 @@ public class Project {
             throw new Exception("Deadline is not defined");
         }
     }
+
+    public void updateActivity(Activity activity) throws Exception{
+        if (containsActivityWithID(activity.getActivityID())) {
+            for (int i = 0; i < activityList.size(); i++) {
+                if (activityList.get(i).getActivityID() == activity.getActivityID()) {
+                    activityList.set(i, activity);
+                    return;
+                }
+            }
+        } else {
+            throw new Exception("Activity does not already exist");
+        }
+    }
 }

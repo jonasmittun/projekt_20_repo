@@ -100,6 +100,14 @@ public class CompanyApp {
 		return this.user;
 	}
 
+	public boolean assertUserIsProjectLeader(int projectLeaderId) throws Exception {
+		if (user == projectLeaderId) {
+			return true;
+		} else {
+			throw new Exception("You must be project leader");
+		}
+	}
+
 	public void setUser(Integer int1) {
 		this.user = int1;
 	}
@@ -116,6 +124,8 @@ public class CompanyApp {
 			throw new Exception("You must be project leader");
 		}
 	}
+
+
 
 	public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
     	if(getProject(projectName).getProjectLeaderID()==userID){
@@ -158,4 +168,28 @@ public class CompanyApp {
     		throw new Exception("Project does not already exist");
 		}
     }
+
+	public Activity getActivity(String projectName, Integer int1) throws Exception {
+		if (getProject(projectName).getActivityWithID(int1).getActivityID() == int1) {
+			return getProject(projectName).getActivityWithID(int1);
+		} else {
+			throw new Exception("No such activity found");
+		}
+	}
+
+	public void updateActivity(String projectName, Activity activity) throws Exception {
+		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
+		int activityId = activity.getActivityID();
+		if (containsProjectWithName(projectName)) {
+			for (int i = 0; i < projectList.size(); i++) {
+				Project project = projectList.get(i);
+				if (project.getProjectName().equals(projectName) && project.containsActivityWithID(activityId)) {
+					project.updateActivity(activity);
+					return;
+				}
+			}
+    	} else {
+    		throw new Exception("Project could not be updated");
+		}
+	}
 }

@@ -35,7 +35,10 @@ public class ActivitySteps {
     @When("the activity <{int}> is edited with new name {string} in project {string} by the employee <{int}>")
     public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName, Integer int2) throws Exception {
         try {
-            companyApp.setActivityName(projectName,int1,int2,newActivityName);
+            activity = companyApp.getActivity(projectName, int1);
+            activity.setActivityName(newActivityName);
+            companyApp.updateActivity(projectName, activity);
+            //companyApp.setActivityName(projectName,int1,int2,newActivityName);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
