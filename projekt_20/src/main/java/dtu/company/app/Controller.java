@@ -49,7 +49,7 @@ public class Controller {
 		}
 		switch(result) {
 		case 0: view.PageBreak(); SelectUser();	break;
-		case 1: view.PageBreak(); RegisterMenu(CurrentUserID); System.out.println("placeholder1");	break;
+		case 1: view.PageBreak(); RegisterMenu(CurrentUserID);	break;
 		case 2: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder2");	break;
 		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
 		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
@@ -71,14 +71,14 @@ public class Controller {
 		String s = view.RegisterMenu(userActivities);
 
 		//Saves users decision
-		System.out.println(s);
+		//System.out.println(s);
 		String projectName = s.substring(0,s.indexOf(':'));
 		int activityID = Integer.parseInt(s.substring(s.indexOf(':')+1,s.lastIndexOf(':')));
-		int halfHours = Integer.parseInt(s.substring(s.lastIndexOf(':')+1,s.length()-1));
+		int halfHours = Integer.parseInt(s.substring(s.lastIndexOf(':')+1,s.length()));
 
 		//Registers users hours
 		companyApp.registerDaysWork(CurrentUserID,halfHours,activityID,projectName);
-
+		//System.out.println("Hours worked today: \t" + companyApp.getEmployee(CurrentUserID));
 	}
 
 }
