@@ -26,7 +26,6 @@ public class Controller {
 		//Gather users activities from CompanyApp
 
 
-
 		view.ShutDownText();
 		
 	}

@@ -102,7 +102,6 @@ public class EmployeeSteps {
 		} catch (Exception e) {
 			errorMessage.setErrorMessage(e.getMessage());
 		}
-
 	}
 
 	@When("the employee <{int}> registers <{int}> half hours worked on activity <{int}> in project {string} for the day")
