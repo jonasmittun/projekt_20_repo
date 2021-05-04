@@ -42,14 +42,14 @@ public class Controller {
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
 	
-	public static void MainMenu() {
+	public static void MainMenu() throws Exception {
 		int result = -1;
 		while(result == -1) {
 			result = view.MainMenu(CurrentUserID);
 		}
 		switch(result) {
 		case 0: view.PageBreak(); SelectUser();	break;
-		case 1: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder1");	break;
+		case 1: view.PageBreak(); RegisterMenu(CurrentUserID); System.out.println("placeholder1");	break;
 		case 2: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder2");	break;
 		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
 		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;

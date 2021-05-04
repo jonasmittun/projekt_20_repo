@@ -144,7 +144,7 @@ public class CompanyApp {
     	ArrayList<String> list = new ArrayList<String>();
     	for(int i = 0; i < projectList.size(); i++) {
 			Project proj = projectList.get(i);
-			for(int j = 0; j < proj.getActivities().size(); j++){
+			for(int j = 1; j < proj.getActivities().size(); j++){
 				Activity act = proj.getActivityWithID(j);
 				if (act.containsEmployeeWithID(ID)){
 					String s = proj.getProjectName() + ":" + act.getActivityName() + ":" + act.getActivityID();
