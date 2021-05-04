@@ -72,7 +72,7 @@ public class View {
 		String activityID = list.get(input).substring(list.get(input).lastIndexOf(':'),list.get(input).length()-1);
 
 		String s = projectName + ":" + activityID;
-		System.out.println("--------------------------------------------------------");
+		PageBreak();
 
 		System.out.println("Please input <int> number of half hours worked on activity " + activityID);
 		input = this.scanner.nextInt();
