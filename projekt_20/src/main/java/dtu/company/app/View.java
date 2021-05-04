@@ -22,8 +22,8 @@ public class View {
 	
 	public void ShutDownText() {
 		System.out.println("Exiting software!");
-		System.out.println("Press any key to continue...");
-		this.scanner.nextLine();
+		System.out.println("Input any key to continue...");
+		this.scanner.next();
 	}
 	
 	public void UserIDText() {
@@ -121,8 +121,8 @@ public class View {
 			return input;
 		} else {
 			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
-			System.out.println("Press any key to return to Main Menu...");
-			this.scanner.nextLine();
+			System.out.println("Input any key to return to Main Menu...");
+			this.scanner.next();
 			return -1;
 		}
 	}
