@@ -254,5 +254,17 @@ public class CompanyApp {
 			holder++;
 			place = place + 5;
 		}
+
+		//Set ProjectLeaders
+		projectList.get(0).setProjectLeaderID(1);
+		projectList.get(1).setProjectLeaderID(1);
+		projectList.get(2).setProjectLeaderID(1);
+		projectList.get(3).setProjectLeaderID(4);
+		//projectList.get(4).setProjectLeaderID(5);
+		projectList.get(5).setProjectLeaderID(6);
+		projectList.get(6).setProjectLeaderID(7);
+		projectList.get(7).setProjectLeaderID(8);
+		projectList.get(8).setProjectLeaderID(9);
+		//projectList.get(9).setProjectLeaderID(10);
 	}
 }
