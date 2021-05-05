@@ -1,9 +1,7 @@
 package dtu.company.app;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CompanyApp {
     private ArrayList<Employee> employeeList;
@@ -133,6 +131,12 @@ public class CompanyApp {
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
 		getProject(project).getActivityWithID(activity).addHalfHoursWorked(halfHours);
     }
+
+    public void removeWeeksWork(int employee, int halfHours, int activityID, String projectName) throws Exception {
+		int newHalfHours = getProject(projectName).getActivityWithID(activityID).removeHalfHoursWorked(halfHours);
+    	getEmployee(employee).removeWeeksWorkInHalfHours(newHalfHours);
+
+	}
 
     public ArrayList<String> getUserActivities(int ID){
     	ArrayList<String> list = new ArrayList<String>();

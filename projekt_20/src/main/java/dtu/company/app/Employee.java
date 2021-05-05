@@ -36,9 +36,23 @@ public class Employee {
     public void addDaysWorkInHalfHours(int halfHours) throws Exception {
         if (daysWorkInHalfHours + halfHours < 48) {
             this.daysWorkInHalfHours = daysWorkInHalfHours + halfHours;
-            this.weeksWorkInHalfHours = weeksWorkInHalfHours + daysWorkInHalfHours;
+            this.weeksWorkInHalfHours = weeksWorkInHalfHours + halfHours;
         } else {
             System.out.println("You can't work more than 24 hours. Try again");
+            System.out.println("");
+        }
+    }
+
+    public void removeWeeksWorkInHalfHours(int halfHours) throws Exception {
+        if (weeksWorkInHalfHours - halfHours > 0) {
+            this.weeksWorkInHalfHours = weeksWorkInHalfHours - halfHours;
+        } else {
+            halfHours = weeksWorkInHalfHours;
+            double hours = weeksWorkInHalfHours/2;
+            System.out.println("You have emptied your weeks work");
+            System.out.println("Removed " + hours + " hours from weeks work");
+            System.out.println("");
+            this.weeksWorkInHalfHours = 0;
         }
     }
 

@@ -50,7 +50,7 @@ public class Controller {
 		}
 		switch(result) {
 		case 0: view.PageBreak(); SelectUser();	break;
-		case 1: view.PageBreak(); RegisterMenu(CurrentUserID);	break;
+		case 1: view.PageBreak(); RegisterMenu();	break;
 		case 2: view.PageBreak(); projectMenu(CurrentUserID); System.out.println("placeholder2");	break;
 		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
 		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
@@ -64,12 +64,27 @@ public class Controller {
 		MainMenu();
 	}
 
-	public static void RegisterMenu(int CurrentUserID) throws Exception {
+	public static void RegisterMenu() throws Exception {
+		int result = -1;
+		while(result == -1) {
+			result = view.RegisterMenu(CurrentUserID);
+		}
+		switch(result) {
+			case 0: view.PageBreak(); SelectUser();	break;
+			case 1: view.PageBreak(); addHours(CurrentUserID);	break;
+			case 2: view.PageBreak(); removeHours(CurrentUserID);	break;
+			case 9: return;
+		}
+		view.PageBreak();
+		RegisterMenu();
+	}
+
+	public static void addHours(int CurrentUserID) throws Exception {
 		//Gets user activities
 		userActivities = companyApp.getUserActivities(CurrentUserID);
 
 		//Runs Register Menu to get users to register hours
-		String s = view.RegisterMenu(userActivities);
+		String s = view.activityOverview(userActivities);
 
 		//Saves users decision
 		//System.out.println(s);
@@ -79,7 +94,33 @@ public class Controller {
 
 		//Registers users hours
 		companyApp.registerDaysWork(CurrentUserID,halfHours,activityID,projectName);
-		//System.out.println("Hours worked today: \t" + companyApp.getEmployee(CurrentUserID));
+
+		double daysWork = companyApp.getEmployee(CurrentUserID).getDaysWorkInHalfHours()/2;
+		double weeksWork = companyApp.getEmployee(CurrentUserID).getWeeksWorkInHalfHours()/2;
+
+		System.out.println("Hours worked today: " + daysWork + " | Hours worked this week: " + weeksWork);
+	}
+
+	public static void removeHours(int CurrentUserID) throws Exception {
+		//Gets user activities
+		userActivities = companyApp.getUserActivities(CurrentUserID);
+
+		//Runs Register Menu to get users to register hours
+		String s = view.activityOverview(userActivities);
+
+		//Saves users decision
+		//System.out.println(s);
+		String projectName = s.substring(0,s.indexOf(':'));
+		int activityID = Integer.parseInt(s.substring(s.indexOf(':')+1,s.lastIndexOf(':')));
+		int halfHours = Integer.parseInt(s.substring(s.lastIndexOf(':')+1,s.length()));
+
+		//Registers users hours
+		companyApp.removeWeeksWork(CurrentUserID,halfHours,activityID,projectName);
+
+		double daysWork = companyApp.getEmployee(CurrentUserID).getDaysWorkInHalfHours()/2;
+		double weeksWork = companyApp.getEmployee(CurrentUserID).getWeeksWorkInHalfHours()/2;
+
+		System.out.println("Hours worked this week: " + weeksWork);
 	}
 
 	//TO BE CONTINUED (BORAN)

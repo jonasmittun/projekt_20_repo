@@ -52,7 +52,7 @@ public class View {
 		return input;
 	}
 
-	public String RegisterMenu(ArrayList<String> list){
+	public String activityOverview(ArrayList<String> list){
 		System.out.println("\t \t ProjectName: \t ActivityName: \t ActivityID:" );
 
 		//Prints all activities for the user
@@ -177,5 +177,35 @@ public class View {
 			return -1;
 		}
 	}
-	
+
+	public int RegisterMenu(int currentUserID) {
+		System.out.println("Welcome to RegisterMenu, employee " + currentUserID + "!");
+		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
+		System.out.println("Please choose an action from the list...");
+
+		System.out.println("[1]- " + "Add hours");
+		System.out.println("[2]- " + "Remove hours");
+		System.out.println("[9]- " + "Exit Program");
+		System.out.println("[0]- " + "User Selection");
+
+		int input = -1;
+		input = this.scanner.nextInt();
+
+		if (input > -1 && input < 3 || input == 9 || input == 0) {
+			System.out.print("Going to... ");
+			switch (input) {
+				case 0: System.out.println("User Selection");	break;
+				case 1: System.out.println("Add hours"); break;
+				case 2: System.out.println("Remove hours");	break;
+				case 9: System.out.println("Exit program");	break;
+			}
+			return input;
+		} else {
+			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
+			System.out.println("Input any key to return to Main Menu...");
+			this.scanner.next();
+			return -1;
+		}
+	}
+
 }
