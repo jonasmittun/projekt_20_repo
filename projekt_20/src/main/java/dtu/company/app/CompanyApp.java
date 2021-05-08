@@ -137,7 +137,7 @@ public class CompanyApp {
 
 	}
 
-    public ArrayList<String> getUserActivities(int ID){ //TODO: Consider replacing method with code from EmployeeSteps method system_gets_activities_for_employee_with_id
+    public ArrayList<String> getUserActivities(int ID){ //TODO: Roi coverage plz
     	ArrayList<String> list = new ArrayList<String>();
     	for(int i = 0; i < projectList.size(); i++) {
 			Project proj = projectList.get(i);
@@ -165,10 +165,11 @@ public class CompanyApp {
 		return list;
 	}*/
 
-	public ArrayList<String> getLeaderProjects(int ID){
+	public ArrayList<String> getLeaderProjects(int ID){ //TODO: Boran coverage plz
     	ArrayList<String> list = new ArrayList<String>();
+    	Project project;
     	for(int i = 0; i < projectList.size(); i++){
-    		Project project = projectList.get(i);
+    		project = projectList.get(i);
     		if (project.getProjectLeaderID() == ID){
     			list.add(project.getProjectName());
 			}
