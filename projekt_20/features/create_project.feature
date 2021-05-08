@@ -30,3 +30,7 @@ Scenario: an empty project with a starting week after the finish week
 	When a project named "project lol" with starting week <4> and finish week <1> is created
 	Then the error message "Starting week must be before finishing week" is given
 	
+Scenario: Get project that does not exist within system
+	Given a project "project lol" does not exist in the system
+	When a project named "project lol" is searched for
+	Then null is returned by system

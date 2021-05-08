@@ -51,7 +51,7 @@ public class View {
 		
 		return input;
 	}
-	public void projectOverview(ArrayList<String> list){
+	public String projectOverview(ArrayList<String> list){
 		System.out.println("\t \t ProjectName:");
 
 		//Prints all projects for the user
@@ -70,8 +70,36 @@ public class View {
 		}
 
 		String chosenProject = list.get(input-1);
-		System.out.println(chosenProject);
+		return chosenProject;
+	}
 
+	public int projectAccessMenu(){
+		System.out.println("Choose an action for the selected project");
+
+		System.out.println("[1]- " + "Add activity");
+		System.out.println("[2]- " + "Assign employee");
+		System.out.println("[3]- " + "Edit project name");
+		System.out.println("[4]- " + "Set project deadline");
+
+		int input = -1;
+		input = this.scanner.nextInt();
+
+		if (input > -1 && input < 4) {
+			System.out.print("Going to... ");
+			switch (input) {
+				case 0: System.out.println("User Selection"); 		break;
+				case 1: System.out.println("Add activity"); 		break;
+				case 2: System.out.println("Assign employee");  	break;
+				case 3: System.out.println("Edit project name"); 	break;
+				case 4: System.out.println("Set project deadline"); break;
+			}
+			return input;
+		} else {
+			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
+			System.out.println("Input any key to return to Main Menu...");
+			this.scanner.next();
+			return -1;
+		}
 	}
 
 	public String activityOverview(ArrayList<String> list){

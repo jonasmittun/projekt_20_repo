@@ -9,6 +9,7 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -122,6 +123,16 @@ public class ProjectSteps {
         } catch (Exception e) {
             errorMessage.setErrorMessage(e.getMessage());
         }
+    }
+    
+    @When("a project named {string} is searched for")
+    public void a_project_named_is_searched_for(String string) {
+        this.project = companyApp.getProject(string);
+    }
+
+    @Then("null is returned by system")
+    public void null_is_returned_by_system() {
+        assertNull(this.project);
     }
     
 }
