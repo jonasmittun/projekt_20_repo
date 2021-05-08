@@ -23,7 +23,6 @@ public class ActivitySteps {
 
     @Given("the activity <{int}> is registered in the project {string}")
     public void the_activity_is_registered_in_the_project(Integer int1,String projectName) {
-        System.out.println("acitivity leader id " + companyApp.getProject(projectName).getActivityWithID(int1).getProjectLeaderID());
         assertTrue(companyApp.getProject(projectName).containsActivityWithID(int1));
     }
 
@@ -36,12 +35,8 @@ public class ActivitySteps {
     @When("the activity <{int}> is edited with new name {string} in project {string}")
     public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName) throws Exception {
         try {
-            //activity = companyApp.getActivity(projectName, int1);
-            //activity.setActivityName(newActivityName);
-            //companyApp.updateActivity(projectName, activity);
-            int id = companyApp.getProject(projectName).getProjectLeaderID();
+            int id = companyApp.getUser();
             companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
-            //companyApp.setActivityName(projectName,int1,int2,newActivityName);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }

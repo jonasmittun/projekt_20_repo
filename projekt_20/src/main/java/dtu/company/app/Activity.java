@@ -37,7 +37,6 @@ public class Activity {
         if (user == projectLeaderID) {
             this.activityName = newName;
         } else {
-            System.out.println("test!!!!");
             throw new Exception("You must be project leader");
         }
     }
