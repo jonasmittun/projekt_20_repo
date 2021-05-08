@@ -15,7 +15,7 @@ public class Controller {
 		companyApp = new CompanyApp();
 		view = new View();
 
-		companyApp.setSampleCompany();
+		companyApp = setSampleCompany(companyApp);
 
 		view.StartUpText();
 		
@@ -196,6 +196,60 @@ public class Controller {
 
 	public static void addProject(int currentUserID) throws Exception{
 
+	}
+
+	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception {
+		int numberActivities = 0;
+		for (int j = 0; j < 10; j++){
+			//Projects are named "project <int>"
+			Project project = new Project("project "+(j+1));
+			numberActivities = numberActivities + 5;
+			for(int k = 1; k <= numberActivities; k++) {
+				//Activities are named "activity <int>" and get their index as id
+				Activity activity = new Activity("activity " + k, k);
+				project.addActivity(activity);
+				if (numberActivities == 25) {
+					numberActivities = 0;
+					break;
+				}
+			}
+			companyApp.addProject(project);
+		}
+
+		companyApp.getEmployees().removeAll(companyApp.getEmployees());
+		Employee employee;
+		for (int i = 1; i < 11; i++){
+			employee = new Employee(i);
+			companyApp.addNewEmployee(employee);
+		}
+
+		int place = 1;
+		int holder = 1;
+		for (int i = 4; i >= 1; i--) {
+
+			for (int j = 4; j >= holder; j--) {
+
+				for (int k = place; k < place + 5; k++){
+					companyApp.assignEmployee(i,k,"project " + j);
+					//System.out.println("Employee:" + i + " Project:" + j + " Activity" + k);
+				}
+			}
+			holder++;
+			place = place + 5;
+		}
+
+		//Set ProjectLeaders
+		companyApp.getProjects().get(0).setProjectLeaderID(1);
+		companyApp.getProjects().get(1).setProjectLeaderID(1);
+		companyApp.getProjects().get(2).setProjectLeaderID(1);
+		companyApp.getProjects().get(3).setProjectLeaderID(4);
+		//projectList.get(4).setProjectLeaderID(5);
+		companyApp.getProjects().get(5).setProjectLeaderID(6);
+		companyApp.getProjects().get(6).setProjectLeaderID(7);
+		companyApp.getProjects().get(7).setProjectLeaderID(8);
+		companyApp.getProjects().get(8).setProjectLeaderID(9);
+		//projectList.get(9).setProjectLeaderID(10);
+		return companyApp;
 	}
 
 }
