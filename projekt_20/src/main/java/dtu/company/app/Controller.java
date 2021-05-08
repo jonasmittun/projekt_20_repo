@@ -6,7 +6,7 @@ public class Controller {
 
 	static CompanyApp companyApp;
 	static View view;
-	static int CurrentUserID = -1;
+	static int currentUserID = -1;
 	private static ArrayList<String> userActivities;
 	private static ArrayList<String> userProjects;
 	
@@ -36,22 +36,22 @@ public class Controller {
 		boolean idConfirmed = false;
 		while(!idConfirmed) {
 			view.UserIDText();
-			CurrentUserID = view.UserInput();
-			idConfirmed = view.ConfirmUserID(CurrentUserID);
+			currentUserID = view.UserInput();
+			idConfirmed = view.ConfirmUserID(currentUserID);
 		}
-		companyApp.setUser(CurrentUserID);
+		companyApp.setUser(currentUserID);
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
 	
 	public static void MainMenu() throws Exception {
 		int result = -1;
 		while(result == -1) {
-			result = view.MainMenu(CurrentUserID);
+			result = view.MainMenu(currentUserID);
 		}
 		switch(result) {
 		case 0: view.PageBreak(); SelectUser();	break;
 		case 1: view.PageBreak(); RegisterMenu();	break;
-		case 2: view.PageBreak(); projectMenu(CurrentUserID); System.out.println("placeholder2");	break;
+		case 2: view.PageBreak(); ProjectMenu(); System.out.println("placeholder2");	break;
 		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
 		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
 		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
@@ -67,16 +67,31 @@ public class Controller {
 	public static void RegisterMenu() throws Exception {
 		int result = -1;
 		while(result == -1) {
-			result = view.RegisterMenu(CurrentUserID);
+			result = view.RegisterMenu(currentUserID);
 		}
 		switch(result) {
 			case 0: view.PageBreak(); SelectUser();	break;
-			case 1: view.PageBreak(); addHours(CurrentUserID);	break;
-			case 2: view.PageBreak(); removeHours(CurrentUserID);	break;
+			case 1: view.PageBreak(); addHours(currentUserID);	break;
+			case 2: view.PageBreak(); removeHours(currentUserID);	break;
 			case 9: return;
 		}
 		view.PageBreak();
 		RegisterMenu();
+	}
+
+	public static void ProjectMenu() throws Exception {
+		int result = -1;
+		while(result == -1) {
+			result = view.ProjectMenu(currentUserID);
+		}
+		switch(result) {
+			case 0: view.PageBreak(); SelectUser();	break;
+			case 1: view.PageBreak(); accessProject(currentUserID);	break;
+			case 2: view.PageBreak(); addProject(currentUserID);	break;
+			case 9: return;
+		}
+		view.PageBreak();
+		ProjectMenu();
 	}
 
 	public static void addHours(int CurrentUserID) throws Exception {
@@ -124,7 +139,7 @@ public class Controller {
 	}
 
 	//TO BE CONTINUED (BORAN)
-	public static void projectMenu(int currentUserID) throws Exception {
+	public static void accessProject(int currentUserID) throws Exception {
 		//Gets user projects
 		ArrayList<Project> projects;
 		projects = companyApp.getProjectLeaderProjects(currentUserID);
@@ -135,9 +150,12 @@ public class Controller {
 		}
 
 		//Runs Project Menu from view
-		view.projectMenu(currentUserID);
-
+		view.ProjectMenu(currentUserID);
 		view.viewProjects(userProjects);
+	}
+
+	public static void addProject(int currentUserID) throws Exception{
+
 	}
 
 }
