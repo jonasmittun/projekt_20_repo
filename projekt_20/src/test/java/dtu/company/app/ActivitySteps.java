@@ -20,8 +20,7 @@ public class ActivitySteps {
     public void an_activity_is_created_with_an_id_number_in_project(String projectName) throws Exception {
         try {
             this.activity = new Activity(companyApp.getProject(projectName).getIdForNewActivity(projectName));
-            int userID = companyApp.getUser();
-            companyApp.getProject(projectName).addActivity(activity);
+            companyApp.addActivity(activity, projectName);
         } catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
@@ -41,8 +40,8 @@ public class ActivitySteps {
     @When("the activity <{int}> is edited with new name {string} in project {string}")
     public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName) throws Exception {
         try {
-            int id = companyApp.getUser();
-            this.companyApp.getProject(projectName).getActivityWithID(int1).setActivityName(newActivityName, id);
+            int user = companyApp.getUser();
+            this.companyApp.getProject(projectName).getActivityWithID(int1).setActivityName(newActivityName, user);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }

@@ -52,9 +52,9 @@ public class Activity {
     }
 
     public void assignEmployee(int id, int activities, int user) throws Exception{
-        if (user != projectLeaderID) {
-            throw new Exception("You must be project leader");
-        }
+//        if (user != projectLeaderID) {
+//            throw new Exception("You must be project leader");
+//        }
         if (!assignedEmployees.contains(id)) {
             if (activities < 10) {
                 this.assignedEmployees.add(id);

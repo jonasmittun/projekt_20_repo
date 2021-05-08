@@ -15,6 +15,7 @@ public class Project {
     private LocalDate endDate;
     
     public Project(String projectName){
+        this.projectLeaderID = 0;
         this.projectName = projectName;
         this.activityList = new ArrayList<Activity>();
         this.employeeList = new ArrayList<Employee>();
@@ -45,14 +46,14 @@ public class Project {
     }
 
     //Adders
+    /*
     public void addActivity(Activity activity) throws Exception{
-        //assertUserIsProjectLeader(userID);
         if (activity.getActivityID() <= activityList.size()) {
             throw new Exception("Activity must have an orignal ID");
         }
         activity.setProjectLeaderID(projectLeaderID);
         activityList.add(activity);
-    }
+    }*/
 
     public void addEmployee(Employee employee) {
         employeeList.add(employee);

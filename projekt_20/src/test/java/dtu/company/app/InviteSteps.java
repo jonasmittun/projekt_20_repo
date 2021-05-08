@@ -28,11 +28,14 @@ public class InviteSteps {
 	    this.project = new Project("testProject");
 	    this.companyApp.addProject(this.project);
 	    this.activity = new Activity(int2);
-	    this.project.addActivity(this.activity);
+		int userStore = companyApp.getUser();
+		companyApp.setUser(companyApp.getProject("testProject").getProjectLeaderID());
+	    this.companyApp.addActivity(this.activity, "testProject");
 	    this.inviter = new Employee(int1);
 	    this.companyApp.addNewEmployee(this.inviter);
 	    this.project.addEmployee(this.inviter);
 	    this.activity.assignEmployee(this.inviter.getId(), 0, 0);
+		companyApp.setUser(userStore);
 	}
 
 	@Given("employee <{int}> exists within companyApp")

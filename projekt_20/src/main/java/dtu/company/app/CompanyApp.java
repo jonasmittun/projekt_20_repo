@@ -199,4 +199,12 @@ public class CompanyApp {
 
     //Constructor for sample company
 
+	public void addActivity(Activity activity, String projectName) throws Exception{
+		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
+		if (activity.getActivityID() <= getProject(projectName).getActivities().size()) {
+			throw new Exception("Activity must have an orignal ID");
+		}
+		activity.setProjectLeaderID(getProject(projectName).getProjectLeaderID());
+		getProject(projectName).getActivities().add(activity);
+	}
 }

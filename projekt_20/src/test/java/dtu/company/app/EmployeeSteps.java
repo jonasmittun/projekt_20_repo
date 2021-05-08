@@ -126,9 +126,12 @@ public class EmployeeSteps {
 	    this.activity = new Activity(int2);
 	    this.activity.assignEmployee(int1, 0, 0);
 	    this.project = new Project("testName");
-	    this.project.addActivity(this.activity);
-	    this.companyApp.addProject(project);
+		this.companyApp.addProject(project);
+		int userStore = companyApp.getUser();
+		companyApp.setUser(companyApp.getProject("testname").getProjectLeaderID());
+	    this.companyApp.addActivity(this.activity, "testName");
 	    assertTrue(this.companyApp.getProject("testName").getActivityWithID(int2).containsEmployeeWithID(int1));
+		companyApp.setUser(userStore);
 	}
 
 	@When("system gets activities for employee with id <{int}>")

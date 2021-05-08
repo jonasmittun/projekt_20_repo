@@ -3,19 +3,19 @@ Feature: Software UI
    Actor: Controller
 
 Scenario: User starts program
-Given program is not started
+#Given program is not started
 When someone starts the program
 Then display first program screens
 
 Scenario: User inputs valid id <1> and accepts
-Given program is not started
+#Given program is not started
 When someone starts the program
 And someone inputs valid id <1>
 And someone confirms by inputting "y"
 Then display main menu screen
 
 Scenario: User inputs valid id <1> and declines
-Given program is not started
+#Given program is not started
 When someone starts the program
 And someone inputs valid id <1>
 And someone declines by inputting "n"

@@ -17,13 +17,25 @@ public class CompanyHelper {
         //Employee <20> becomes project leader of project "project 20"
         companyHelper.getProject("project 20").setProjectLeaderID(20);
 
+        String projectName;
+        int userStore = companyHelper.getUser();
         for (int i = 1; i < 31; i++) {
             for (int j = 1; j < 31; j++){
                 //Activities are named "activity <int>" and get their index as id
                 Activity activity = new Activity("activity "+j,j);
-                companyHelper.getProject("project " + i).addActivity(activity);
+                projectName = "project " + i;
+
+                if (i == 1) {
+                    companyHelper.setUser(1);
+                } else if (i == 20) {
+                    companyHelper.setUser(20);
+                } else {
+                    companyHelper.setUser(0);
+                }
+                companyHelper.addActivity(activity, projectName);
             }
         }
+        companyHelper.setUser(userStore);
 
         //Employee <2> has below 20 activities
         companyHelper.getEmployee(2).setNumberOfActivities(0);

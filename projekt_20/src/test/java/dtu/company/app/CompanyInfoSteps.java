@@ -79,7 +79,10 @@ public class CompanyInfoSteps {
 	@Given("activity with id <{int}> exists within project {string}")
 	public void activity_with_id_exists_within_project(Integer int1, String string) throws Exception {
 	    this.activity = new Activity(int1);
-	    this.companyApp.getProject(string).addActivity(this.activity);
+	    int userStore = companyApp.getUser();
+	    companyApp.setUser(companyApp.getProject(string).getProjectLeaderID());
+	    this.companyApp.addActivity(this.activity, string);
+		companyApp.setUser(userStore);
 	}
 	
 	@Then("assert that activity with id <{int}> exists within project {string}")

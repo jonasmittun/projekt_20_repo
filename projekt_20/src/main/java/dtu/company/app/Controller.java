@@ -220,7 +220,7 @@ public class Controller {
 		int activities = companyApp.getProject(chosenProject).getActivities().size()+1;
 		System.out.println(activities);
 		Activity activity = view.addActivity(activities, chosenProject, currentUserID);
-		companyApp.getProject(chosenProject).addActivity(activity);
+		companyApp.addActivity(activity, chosenProject);
 
 	}
 
@@ -235,20 +235,21 @@ public class Controller {
 	}
 
 	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception {
-		int numberActivities = 0;
-		for (int j = 0; j < 10; j++){
+		//int numberActivities = 0;
+		for (int j = 1; j < 11; j++){
 			//Projects are named "project <int>"
-			Project project = new Project("project "+(j+1));
-			numberActivities = numberActivities + 5;
-			for(int k = 1; k <= numberActivities; k++) {
-				//Activities are named "activity <int>" and get their index as id
-				Activity activity = new Activity("activity " + k, k);
-				project.addActivity(activity);
-				if (numberActivities == 25) {
-					numberActivities = 0;
-					break;
-				}
-			}
+			Project project = new Project("project "+j);
+			//numberActivities = numberActivities + 5;
+//			for(int k = 1; k <= numberActivities; k++) {
+//				//Activities are named "activity <int>" and get their index as id
+//				Activity activity = new Activity("activity " + k, k);
+//				companyApp.setUser(0);
+//				companyApp.addActivity(activity, project.getProjectName());
+//				if (numberActivities == 25) {
+//					numberActivities = 0;
+//					break;
+//				}
+//			}
 			companyApp.addProject(project);
 		}
 
@@ -257,21 +258,6 @@ public class Controller {
 		for (int i = 1; i < 11; i++){
 			employee = new Employee(i);
 			companyApp.addNewEmployee(employee);
-		}
-
-		int place = 1;
-		int holder = 1;
-		for (int i = 4; i >= 1; i--) {
-
-			for (int j = 4; j >= holder; j--) {
-
-				for (int k = place; k < place + 5; k++){
-					companyApp.assignEmployee(i,k,"project " + j);
-					//System.out.println("Employee:" + i + " Project:" + j + " Activity" + k);
-				}
-			}
-			holder++;
-			place = place + 5;
 		}
 
 		//Set ProjectLeaders
@@ -285,6 +271,74 @@ public class Controller {
 		companyApp.getProjects().get(7).setProjectLeaderID(8);
 		companyApp.getProjects().get(8).setProjectLeaderID(9);
 		//projectList.get(9).setProjectLeaderID(10);
+
+		int numberActivities = 0;
+		for (int j = 1; j < 11; j++){
+			numberActivities = numberActivities + 5;
+			for(int k = 1; k <= numberActivities; k++) {
+				//Activities are named "activity <int>" and get their index as id
+				Activity activity = new Activity("activity " + k, k);
+
+				//sets user to be the project leader of the project
+				if (j < 4) {
+					companyApp.setUser(1);
+				} else if (j == 4) {
+					companyApp.setUser(4);
+				} else if (j == 6) {
+					companyApp.setUser(6);
+				} else if (j == 7) {
+					companyApp.setUser(7);
+				} else if (j == 8) {
+					companyApp.setUser(8);
+				} else if (j == 9) {
+					companyApp.setUser(9);
+				}
+
+				//now the activity can be added to the project
+				if (j != 5 && j!= 10) {
+					if (j == 5) {
+						System.out.println("test!!! at " + companyApp.getUser() + " er " + companyApp.getProject("project " + j).getProjectLeaderID());
+					}
+					companyApp.addActivity(activity, companyApp.getProject("project " + j).getProjectName());
+				}
+				if (numberActivities == 25) {
+					numberActivities = 0;
+					break;
+				}
+			}
+		}
+
+		int place = 1;
+		int holder = 1;
+		for (int i = 4; i >= 1; i--) {
+
+			for (int j = 4; j >= holder; j--) {
+				//sets user to be the project leader
+				if (j < 4) {
+					companyApp.setUser(1);
+				} else if (j == 4) {
+					companyApp.setUser(4);
+				} else if (j == 6) {
+					companyApp.setUser(6);
+				} else if (j == 7) {
+					companyApp.setUser(7);
+				} else if (j == 8) {
+					companyApp.setUser(8);
+				} else if (j == 9) {
+					companyApp.setUser(9);
+				}
+
+				for (int k = place; k < place + 5; k++){
+					if (j != 5 && j!= 10) {
+						companyApp.assignEmployee(i, k, "project " + j);
+						//System.out.println("Employee:" + i + " Project:" + j + " Activity" + k);
+					}
+				}
+			}
+			holder++;
+			place = place + 5;
+		}
+
 		return companyApp;
 	}
 
