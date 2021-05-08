@@ -61,11 +61,6 @@ public class EmployeeSteps {
 		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 
-//	@Given("the employee <{int}> is currently working on <{int}> activities or more")
-//	public void the_employee_is_currently_working_on_activities_or_more(Integer int1, Integer int2) {
-//		assertFalse(companyApp.getEmployee(int1).getNumberOfActivities() < int2);
-//	}
-
 	@When("the employee <{int}> is assigned as project leader of the project {string}")
 	public void the_employee_is_assigned_as_project_leader_of_the_project(Integer int1, String string) {
 		this.project = new Project(string);
@@ -152,30 +147,17 @@ public class EmployeeSteps {
 	public void return_list_of_activities_that_includes_activity_with_id(Integer int2) {
 	    assertTrue(this.activities.contains(this.activity) && this.activity.getActivityID() == int2);
 	}
-	
-	// TODO: Boran lav en feature der tester din getLeaderProjects i companyapp
-	/* @Given("an employee with id <{int}> is the leader of a project named {string}")
-	public void an_employee_with_id_is_the_leader_of_a_project_named(Integer int1, String string) throws Exception {
-	    this.project = new Project(string);
-	    this.employee = new Employee(int1);
-	    this.project.setProjectLeaderID(this.employee.getId());
-	    this.companyApp = new CompanyApp();
-	    this.companyApp.addProject(this.project);
-	    this.companyApp.addNewEmployee(this.employee);
-	    assertTrue(this.companyApp.getProject(string).getProjectLeaderID() == this.employee.getId());
-	}
 
 	@When("system gets list of projects that employee <{int}> is leading")
 	public void system_gets_list_of_projects_that_employee_is_leading(Integer int1) {
-	    ArrayList<String> list = new ArrayList<String>();
-	    list = this.companyApp.getLeaderProjects(int1);
-	    list.forEach(n -> System.out.println(n));
+		ArrayList<String> list = new ArrayList<String>();
+		list = this.companyApp.getLeaderProjects(int1);
+		list.forEach(n -> System.out.println(n));
 	}
 
 	@Then("return list of projects that includes project named {string}")
 	public void return_list_of_projects_that_includes_project_named(String string) {
-	    assertTrue(this.companyApp.getProjects().contains(this.project));
-	} */
-
+		assertTrue(this.companyApp.getProjects().contains(companyApp.getProject(string)));
+	}
 }
 
