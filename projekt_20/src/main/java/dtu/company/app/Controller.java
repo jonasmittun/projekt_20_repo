@@ -95,7 +95,7 @@ public class Controller {
 		ProjectMenu();
 	}
 
-	public static void ProjectAccessMenu(String chosenProject){
+	public static void ProjectAccessMenu(String chosenProject) throws Exception {
 		int result = -1;
 		while(result == -1) {
 			result = view.projectAccessMenu(); //projectAccessMenu i view
@@ -193,9 +193,11 @@ public class Controller {
 		ProjectAccessMenu(chosenProject);
 	}
 
-	private static void addActivity(String chosenProject) {
-		int activites = companyApp.getActivities().size();
-		String activityName = view.addActivity();
+	private static void addActivity(String chosenProject) throws Exception {
+		int activities = companyApp.getProject(chosenProject).getActivities().size()+1;
+		System.out.println(activities);
+		Activity activity = view.addActivity(activities, chosenProject, currentUserID);
+		companyApp.getProject(chosenProject).addActivity(activity);
 
 	}
 

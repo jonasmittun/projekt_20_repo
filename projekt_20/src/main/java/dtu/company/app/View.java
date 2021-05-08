@@ -225,10 +225,32 @@ public class View {
 		return input;
 	}
 
-	public String addActivity() {
-		String activityName ="";
-
-		return activityName;
+	public Activity addActivity(int activityID, String project, int userID) throws Exception {
+		Activity activity = new Activity(activityID);
+		activity.setActivityName("activity " + activityID, 0);
+		System.out.println("You are about to to add an activity to \"" + project +"\"");
+		System.out.println("Press 'y' to continue, press 'n' to return to Project Menu");
+		String input = this.scanner.next();
+		if (input.equalsIgnoreCase("y")){
+			System.out.println("The activities default name is: \"" + activity.getActivityName() + "\"");
+			System.out.println("Press 'y' to keep it, press 'n' to change it");
+			String input2 = this.scanner.next();
+			if (input2.equalsIgnoreCase("y")){
+				System.out.println("Activity, \"" + activity.getActivityName() + "\" with ID, \"" + activity.getActivityID() + "\" has been added to the project, \"" + project + "\"" );
+				return activity;
+			} else if (!input2.equalsIgnoreCase("y")){
+				System.out.println("Insert the activities new name");
+				String newName = this.scanner.next();
+				activity.setActivityName(newName,0);
+				System.out.println("Name has been updated to \"" + newName + "\"");
+				System.out.println("Activity, \"" + activity.getActivityName() + "\" with ID, \"" + activity.getActivityID() + "\" has been added to the project, \"" + project + "\"" );
+				return activity;
+			}
+			System.out.println("Activity, \"" + activity.getActivityName() + "\" with ID, \"" + activity.getActivityID() + "\" has been added to the project, \"" + project + "\"" );
+		} else if (!input.equalsIgnoreCase("y")){
+			return null;
+		}
+		return activity;
 	}
 	
 	public void PageBreak() {
