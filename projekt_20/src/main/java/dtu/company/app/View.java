@@ -137,7 +137,6 @@ public class View {
 				}
 		}
 
-
 		System.out.println("Add a deadline for the project? Press y to add a deadline. " +
 				"Press any other key than 'y' to creat your project without start-end dates.");
 
@@ -151,13 +150,43 @@ public class View {
 			System.out.println("Your project is being created with startDate: " + startDate +
 					" and endDate: " + endDate + "...");
 			this.project = new Project(projectName, startDate, endDate);
-			System.out.println("Project " + "\"" +projectName + "\"" + "is created with startDate: " +
+			System.out.println("Project " + "\"" +projectName + "\"" + " is created with startDate: " +
 					startDate + " and endDate: " + endDate + "!");
 		}else{
 			this.project = new Project(projectName);
-			System.out.println("Project " + "\"" +projectName + "\"" + "is created!");
+			System.out.println("Project " + "\"" +projectName + "\"" + " is created!");
 		}
 		return project;
+	}
+
+	public Activity activityOverviewAndAssignEmployee(Project project){
+		System.out.println("Activity list for the chosen project " + project.getProjectName() + ":");
+
+		//Gets activity list from the project
+		ArrayList<Activity> activities = project.getActivities();
+
+		//Print all the activities
+		for(int i = 0; i < activities.size(); i++){
+			if (i < 9) {
+				System.out.println("[" + (i + 1) + "]\t \t" + activities.get(i).getActivityName());
+			}else{
+				System.out.println("[" + (i + 1) + "]\t " + activities.get(i).getActivityName());
+			}
+		}
+
+		//Asks user for selection
+		PageBreak();
+		System.out.println("Please select one of the " + (activities.size()) + " activities");
+
+		int input = userIntInput() - 1;
+
+		return activities.get(input);
+	}
+
+	public int chooseEmployee(){
+		System.out.println("Please enter employee ID to assign ");
+		int input = userIntInput();
+		return input;
 	}
 
 	public String activityOverview(ArrayList<String> list){
@@ -256,7 +285,6 @@ public class View {
 	public void PageBreak() {
 		System.out.println("\n # # # # # \n");
 	}
-
 
 	public void viewProjects(ArrayList<String> projects) {
 		for (int i = 1; i < projects.size(); i++) {
