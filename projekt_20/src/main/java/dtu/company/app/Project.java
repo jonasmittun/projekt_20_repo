@@ -32,6 +32,18 @@ public class Project {
         }
     }
 
+    public Project(String projectName, LocalDate startDate, LocalDate endDate) throws Exception{
+        this.projectName = projectName;
+        this.activityList = new ArrayList<Activity>();
+        this.employeeList = new ArrayList<Employee>();
+        if(startDate.isBefore(endDate)){
+            this.startDate = startDate;
+            this.endDate = endDate;
+        }else {
+            throw new Exception("Deadline should not be before the starting date!");
+        }
+    }
+
     //Adders
     public void addActivity(Activity activity) throws Exception{
         //assertUserIsProjectLeader(userID);

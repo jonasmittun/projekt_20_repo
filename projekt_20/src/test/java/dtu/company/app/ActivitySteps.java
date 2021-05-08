@@ -43,7 +43,6 @@ public class ActivitySteps {
         try {
             int id = companyApp.getUser();
             this.companyApp.getProject(projectName).getActivityWithID(int1).setActivityName(newActivityName, id);
-            //companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }

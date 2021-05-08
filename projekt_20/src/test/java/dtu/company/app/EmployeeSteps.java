@@ -129,7 +129,7 @@ public class EmployeeSteps {
 	public void an_employee_with_id_is_registered_to_an_activity_in_the_system_with_id(Integer int1, Integer int2) throws Exception {
 	    assertTrue(this.employee.getId() == int1);
 	    this.activity = new Activity(int2);
-	    this.activity.assignEmployee(int1, 0);
+	    this.activity.assignEmployee(int1, 0, 0);
 	    this.project = new Project("testName");
 	    this.project.addActivity(this.activity);
 	    this.companyApp.addProject(project);
