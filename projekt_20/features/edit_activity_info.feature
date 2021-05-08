@@ -13,6 +13,6 @@ Feature: Create Activity
     Given a project "project 1" exists with employee <1> as project leader
     And the activity <1> is registered in the project "project 1"
     And employee <2> is the user
-    #When the activity <1> is edited with new name "Activity 2" in project "project 1"
-    #Then the error message "You must be project leader" is given
+    When the activity <1> is edited with new name "Activity 2" in project "project 1"
+    Then the error message "You must be project leader" is given
 
