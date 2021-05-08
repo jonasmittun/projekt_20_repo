@@ -113,17 +113,18 @@ public class CompanyApp {
     	getProject(string).getActivityWithID(int3).unassignEmployee(int2);
     	employeeList.get(int2).removeActivity();
 	}
-	public void setProjectName(String projectName, String newProjectName, int ID) throws Exception{
+	
+	/*public void setProjectName(String projectName, String newProjectName, int ID) throws Exception{
 		getProject(projectName).setProjectName(newProjectName, user);
-	}
+	}*/
 
-	public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
+	/*public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
     	if(getProject(projectName).getProjectLeaderID()==userID){
     		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName, getProject(projectName).getProjectLeaderID());
 		}else {
     		throw new Exception("You must be project leader");
 		}
-	}
+	}*/
 
 	public void registerDaysWork(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
@@ -136,7 +137,7 @@ public class CompanyApp {
 
 	}
 
-    public ArrayList<String> getUserActivities(int ID){
+    public ArrayList<String> getUserActivities(int ID){ //TODO: Consider replacing method with code from EmployeeSteps method system_gets_activities_for_employee_with_id
     	ArrayList<String> list = new ArrayList<String>();
     	for(int i = 0; i < projectList.size(); i++) {
 			Project proj = projectList.get(i);
@@ -151,7 +152,7 @@ public class CompanyApp {
     	return list;
 	}
 
-	public ArrayList<Project> getEmployeeProjects(int ID){
+	/*public ArrayList<Project> getEmployeeProjects(int ID){
 		ArrayList<Project> list = new ArrayList<Project>();
 		for(int i = 0; i < projectList.size(); i++){
 			//Project project = projectList.get(i);
@@ -162,7 +163,7 @@ public class CompanyApp {
 			}
 		}
 		return list;
-	}
+	}*/
 
 	public ArrayList<String> getLeaderProjects(int ID){
     	ArrayList<String> list = new ArrayList<String>();
@@ -175,7 +176,7 @@ public class CompanyApp {
     	return list;
 	}
 
-	public ArrayList<Project> getProjectLeaderProjects(int ID){
+	/*public ArrayList<Project> getProjectLeaderProjects(int ID){
 		ArrayList<Project> list = new ArrayList<Project>();
 		for(int i = 0; i < projectList.size(); i++){
 			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
@@ -185,15 +186,15 @@ public class CompanyApp {
 			}
 		}
     	return list;
-	}
+	}*/
 
-	public Activity getActivity(String projectName, Integer int1) throws Exception {
+	/*public Activity getActivity(String projectName, Integer int1) throws Exception {
 		if (getProject(projectName).getActivityWithID(int1).getActivityID() == int1) {
 			return getProject(projectName).getActivityWithID(int1);
 		} else {
 			throw new Exception("No such activity found");
 		}
-	}
+	}*/
 
     //Constructor for sample company
 	public void setSampleCompany() throws Exception {
