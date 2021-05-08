@@ -95,10 +95,13 @@ public class Controller {
 		ProjectMenu();
 	}
 
-	private static void companyOverview() {
+	private static void companyOverview() throws Exception {
 		ArrayList<Project> projects;
 		projects = companyApp.getProjects();
 		ArrayList<Employee> employees;
+		employees = companyApp.getEmployees();
+
+		view.companyOverview(projects, employees);
 	}
 
 	public static void addHours(int CurrentUserID) throws Exception {

@@ -1,5 +1,6 @@
 package dtu.company.app;
 
+import java.sql.SQLOutput;
 import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -121,7 +122,7 @@ public class View {
 		System.out.println("");
 		System.out.println("Please select one of " + (list.size()) + " activities");
 
-		int input = this.scanner.nextInt();
+		int input = this.scanner.nextInt() - 1;
 
 		if (input > list.size()){
 			return "";
@@ -133,7 +134,7 @@ public class View {
 
 		String s = projectName + ":" + activityID;
 
-		System.out.println("Please input number of hours worked on activity \"" + activityID + "\"");
+		System.out.println("Please input number of hours worked on activity " + activityID);
 
 		double hours = this.scanner.nextDouble()*2;
 		input = (int) Math.round(hours);
@@ -170,7 +171,7 @@ public class View {
 		
 		System.out.println("[1]- " + "Time Registration");
 		System.out.println("[2]- " + "Projects");
-		System.out.println("[3]- " + "Activities");
+		System.out.println("[3]- " + "Company Overview");
 		System.out.println("[4]- " + "Management");
 		System.out.println("[5]- " + "Reports");
 		System.out.println("[6]- " + "xxx");
@@ -188,7 +189,7 @@ public class View {
 			case 0: System.out.println("User Selection"); 		break;
 			case 1: System.out.println("Time Registration"); 	break;
 			case 2: System.out.println("Projects"); 			break;
-			case 3: System.out.println("Activities"); 			break;
+			case 3: System.out.println("Company Overview"); 	break;
 			case 4: System.out.println("Management"); 			break;
 			case 5: System.out.println("Reports"); 				break;
 			case 6: System.out.println("xxx"); 					break;
@@ -265,4 +266,18 @@ public class View {
 		}
 	}
 
+	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception {
+		System.out.println("\tProjects: \tDeadline: \tEmployees: \tWeekhours: ");
+		for (int i = 0; i < employees.size() || i < projects.size(); i++){
+			String projectName = (projects.get(i) == null) ? "\n" : projects.get(i).getProjectName();
+			//String deadline = (projects.get(i).getDeadline() == null) ? "\n" : String.valueOf(projects.get(i).getDeadline());
+			String employeeID = (employees.get(i) == null) ? "\n" : "employee " + employees.get(i).getId();
+			double weekHours = employees.get(i).getWeeksWorkInHalfHours()*2;
+
+			System.out.print("\t" + projectName + "\t" +
+					/*deadline +*/ "\t\t\t");
+			System.out.print(employeeID + "\t" + weekHours + "\n");
+		}
+
+	}
 }
