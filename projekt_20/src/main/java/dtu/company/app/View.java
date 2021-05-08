@@ -116,37 +116,47 @@ public class View {
 		System.out.println("Press y to confirm, n to rename");
 
 		String input2 = this.scanner.next();
+		String projectName = "";
 
-		if(this.scanner.next().equalsIgnoreCase("y")){
-			System.out.println("Name Confirmed: " + input);
+		if(input2.equalsIgnoreCase("y")){
+			System.out.println("Name Confirmed: " + input + "!");
+			projectName = input;
 		}
-		else if (this.scanner.next().equalsIgnoreCase("n")) {
+		else if (input2.equalsIgnoreCase("n")) {
 				System.out.println("Enter new name for your project:");
 				input = this.scanner.next();
 				System.out.println("New name for your project " + input);
-				System.out.println("Press y to confirm, n to rename");
-				if (scanner.next().equalsIgnoreCase("y")) {
+				System.out.println("Press y to confirm, n to restart the operation");
+				String input3 = this.scanner.next();
+				if (input3.equalsIgnoreCase("y")) {
 					System.out.println("Name confirmed!");
-				}else if(scanner.next().equalsIgnoreCase("n")){
+					projectName = input;
+				}else if(input3.equalsIgnoreCase("n")){
+					System.out.println("Restarting the operation...");
 					return null;
 				}
 		}
 
-		String projectName = input;
 
 		System.out.println("Add a deadline for the project? Press y to add a deadline. " +
-				"Otherwise your project will be created without start-end dates.");
-		if (scanner.next() == "y"){
+				"Press any other key than 'y' to creat your project without start-end dates.");
+
+		String input4 = this.scanner.next();
+
+		if (input4.equalsIgnoreCase("y")){
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			LocalDate startDate = LocalDate.now();
-			System.out.println("Enter a deadline for your project [dd. MMM. yyyy]:");
-			LocalDate endDate = LocalDate.parse(scanner.next());
+			System.out.println("Enter a deadline for your project [dd/MM/yyyy]:");
+			LocalDate endDate = LocalDate.parse(scanner.next(), formatter);
 			System.out.println("Your project is being created with startDate: " + startDate +
-					"and endDate: " + endDate);
+					" and endDate: " + endDate + "...");
 			this.project = new Project(projectName, startDate, endDate);
+			System.out.println("Project " + "\"" +projectName + "\"" + "is created with startDate: " +
+					startDate + " and endDate: " + endDate + "!");
 		}else{
 			this.project = new Project(projectName);
+			System.out.println("Project " + "\"" +projectName + "\"" + "is created!");
 		}
-		System.out.println("Project " + projectName + "is created!");
 		return project;
 	}
 
