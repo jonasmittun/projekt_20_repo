@@ -42,9 +42,12 @@ public class HelperSteps {
 	
 	@Given("there exists an employee <{int}> who is assigned to the activity <{int}> in project {string}")
 	public void there_exists_an_employee_who_is_assigned_to_the_activity_in_project(Integer int1, Integer int2, String string) throws Exception {
+		int idHolder = companyApp.getUser();
+		companyApp.setUser(companyApp.getProject(string).getProjectLeaderID());		//Owerwrite current user to become project leader
 		companyApp.assignEmployee(int1,int2,string);
 		assertTrue(companyApp.containsEmployeeWithId(int1));
 		assertTrue(companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
+		companyApp.setUser(idHolder);	//set user back to current user
 	}
 
 	@Given("the employee <{int}> is currently working on <{int}> activities or more")
