@@ -54,6 +54,7 @@ public class View {
 		
 		return input;
 	}
+	
 	public String projectOverview(ArrayList<String> list){
 		System.out.println("\t \t ProjectName:");
 
