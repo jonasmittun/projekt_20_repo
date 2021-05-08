@@ -88,11 +88,6 @@ public class CompanyApp {
 		return activityList;
 	}
 
-	public int getIdForNewActivity(String projectName){
-		return getProject(projectName).getActivities().size()+1;
-	}
-
-	
 	public ArrayList<Employee> getEmployees(){
 		return this.employeeList;
 	}
@@ -192,42 +187,11 @@ public class CompanyApp {
     	return list;
 	}
 
-    //Updates an existing project with an edited one
-    public void updateProject(Project update) throws Exception {
-    	assertUserIsProjectLeader(update.getProjectLeaderID());
-    	if (containsProjectWithName(update.getProjectName())) {
-			for (int i = 0; i < projectList.size(); i++) {
-				if (projectList.get(i).getProjectName().equals(update.getProjectName())) {
-					projectList.set(i, update);
-					return;
-				}
-			}
-		} else {
-    		throw new Exception("Project does not already exist");
-		}
-    }
-
 	public Activity getActivity(String projectName, Integer int1) throws Exception {
 		if (getProject(projectName).getActivityWithID(int1).getActivityID() == int1) {
 			return getProject(projectName).getActivityWithID(int1);
 		} else {
 			throw new Exception("No such activity found");
-		}
-	}
-
-	public void updateActivity(String projectName, Activity activity) throws Exception {
-		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
-		int activityId = activity.getActivityID();
-		if (containsProjectWithName(projectName)) {
-			for (int i = 0; i < projectList.size(); i++) {
-				Project project = projectList.get(i);
-				if (project.getProjectName().equals(projectName) && project.containsActivityWithID(activityId)) {
-					project.updateActivity(activity);
-					return;
-				}
-			}
-    	} else {
-    		throw new Exception("Project could not be updated");
 		}
 	}
 

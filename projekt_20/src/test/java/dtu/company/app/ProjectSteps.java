@@ -135,4 +135,27 @@ public class ProjectSteps {
         assertNull(this.project);
     }
     
+    @Given("a project {string} does exist in the system")
+    public void a_project_does_exist_in_the_system(String string) throws Exception {
+        this.project = new Project(string);
+        this.companyApp.addProject(this.project);
+        assertTrue(this.companyApp.containsProjectWithName(string));
+    }
+
+    @Given("a project named {string} does not exist in the system")
+    public void a_project_named_does_not_exist_in_the_system(String string2) {
+        assertFalse(this.companyApp.containsProjectWithName(string2));
+    }
+
+    @When("a project named {string} is renamed to {string}")
+    public void a_project_named_is_renamed_to(String string, String string2) throws Exception {
+    	this.project = this.companyApp.getProject(string);
+        this.project.setProjectName(string2, 0);
+    }
+
+    @Then("the system does not contain a project named {string}")
+    public void the_system_does_not_contain_a_project_named(String string) {
+        assertFalse(this.companyApp.containsProjectWithName(string));
+    }
+    
 }

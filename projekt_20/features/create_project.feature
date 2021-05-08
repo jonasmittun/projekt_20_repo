@@ -34,3 +34,10 @@ Scenario: Get project that does not exist within system
 	Given a project "project lol" does not exist in the system
 	When a project named "project lol" is searched for
 	Then null is returned by system
+	
+Scenario: Rename project that exists in system
+	Given a project "project lol" does exist in the system
+	And a project named "project omegalul" does not exist in the system
+	When a project named "project lol" is renamed to "project omegalul"
+	Then the system contains a project named "project omegalul"
+	But the system does not contain a project named "project lol"

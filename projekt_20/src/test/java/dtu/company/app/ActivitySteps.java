@@ -17,8 +17,13 @@ public class ActivitySteps {
     }
 
     @When("an activity is created in project {string}")
-    public void an_activity_is_created_with_an_id_number_in_project(String projectName) {
-        this.activity = new Activity(companyApp.getIdForNewActivity(projectName));
+    public void an_activity_is_created_with_an_id_number_in_project(String projectName) throws Exception {
+        try {
+            this.activity = new Activity(companyApp.getProject(projectName).getIdForNewActivity(projectName));
+            companyApp.getProject(projectName).addActivity(activity);
+        } catch (Exception e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
     }
 
     @Given("the activity <{int}> is registered in the project {string}")
@@ -36,7 +41,8 @@ public class ActivitySteps {
     public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName) throws Exception {
         try {
             int id = companyApp.getUser();
-            companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
+            this.companyApp.getProject(projectName).getActivityWithID(int1).setActivityName(newActivityName, id);
+            //companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }

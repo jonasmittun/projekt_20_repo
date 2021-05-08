@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,6 +18,7 @@ public class EmployeeSteps {
 	private ErrorMessageHolder errorMessage;
 	private Activity activity;
 	private Project project;
+	private ArrayList<Activity> activities;
 	
 	public EmployeeSteps(ErrorMessageHolder errorMessage, CompanyHelper companyHelper) {
 		this.companyApp = companyHelper.getCompanyHelper();
@@ -113,6 +116,41 @@ public class EmployeeSteps {
 	@Then("activity <{int}> in project {string} worked hours is updated to <{int}> half hours")
 	public void activity_in_project_worked_hours_is_updated_to_half_hours(Integer int1, String string, Integer int2) {
 		assertTrue(companyApp.getProject(string).getActivityWithID(int1).getWorkedHalfHours() == int2);
+	}
+	
+	@Given("an employee with id <{int}> is registered to the system")
+	public void an_employee_with_id_is_registered_to_the_system(Integer int1) {
+	    this.employee = new Employee(int1);
+	    this.companyApp.addNewEmployee(this.employee);
+	    assertTrue(this.companyApp.containsEmployeeWithId(int1));
+	}
+
+	@Given("an employee with id <{int}> is registered to an activity in the system with id <{int}>")
+	public void an_employee_with_id_is_registered_to_an_activity_in_the_system_with_id(Integer int1, Integer int2) throws Exception {
+	    assertTrue(this.employee.getId() == int1);
+	    this.activity = new Activity(int2);
+	    this.activity.assignEmployee(int1, 0);
+	    this.project = new Project("testName");
+	    this.project.addActivity(this.activity);
+	    this.companyApp.addProject(project);
+	    assertTrue(this.companyApp.getProject("testName").getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
+	@When("system gets activities for employee with id <{int}>")
+	public void system_gets_activities_for_employee_with_id(Integer int1) {
+		this.activities = this.companyApp.getActivities();
+		ArrayList<Activity> newActivities = new ArrayList<Activity>();
+		this.activities.forEach(n -> {
+			if(n.containsEmployeeWithID(int1)) {
+			newActivities.add(n);
+			}}
+		);
+		this.activities = newActivities;
+	}
+
+	@Then("return list of activities that includes activity with id <{int}>")
+	public void return_list_of_activities_that_includes_activity_with_id(Integer int2) {
+	    assertTrue(this.activities.contains(this.activity) && this.activity.getActivityID() == int2);
 	}
 
 }
