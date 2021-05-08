@@ -33,7 +33,10 @@ public class Project {
     }
 
     //Adders
-    public void addActivity(Activity activity){
+    public void addActivity(Activity activity) throws Exception{
+        if (activity.getActivityID() <= activityList.size()) {
+            throw new Exception("Activity must have an orignal ID");
+        }
         activity.setProjectLeaderID(projectLeaderID);
         activityList.add(activity);
     }
@@ -164,5 +167,9 @@ public class Project {
         } else {
             throw new Exception("Activity does not already exist");
         }
+    }
+
+    public int getIdForNewActivity(String projectName){
+        return activityList.size()+1;
     }
 }
