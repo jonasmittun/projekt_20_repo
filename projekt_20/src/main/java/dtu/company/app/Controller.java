@@ -52,7 +52,7 @@ public class Controller {
 		case 0: view.PageBreak(); SelectUser();	break;
 		case 1: view.PageBreak(); RegisterMenu();	break;
 		case 2: view.PageBreak(); ProjectMenu(); System.out.println("placeholder2");	break;
-		case 3: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder3");	break;
+		case 3: view.PageBreak(); companyOverview();	break;
 		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
 		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
 		case 6: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder6");	break;
@@ -94,6 +94,12 @@ public class Controller {
 		ProjectMenu();
 	}
 
+	private static void companyOverview() {
+		ArrayList<Project> projects;
+		projects = companyApp.getProjects();
+		ArrayList<Employee> employees;
+	}
+
 	public static void addHours(int CurrentUserID) throws Exception {
 		//Gets user activities
 		userActivities = companyApp.getUserActivities(CurrentUserID);
@@ -105,6 +111,11 @@ public class Controller {
 
 		//Runs Register Menu to get users to register hours
 		String s = view.activityOverview(userActivities);
+
+		if (s.equals("")){
+			System.out.println("Please enter a value between 1 and " + userActivities.size());
+			return;
+		}
 
 		//Saves users decision
 		//System.out.println(s);
@@ -132,6 +143,11 @@ public class Controller {
 
 		//Runs Register Menu to get users to register hours
 		String s = view.activityOverview(userActivities);
+
+		if (s.equals("")){
+			System.out.println("Please enter a value between 1 and " + userActivities.size());
+			return;
+		}
 
 		//Saves users decision
 		//System.out.println(s);

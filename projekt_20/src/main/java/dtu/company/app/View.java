@@ -73,6 +73,10 @@ public class View {
 
 		int input = this.scanner.nextInt();
 
+		if (input > list.size()){
+			return "";
+		}
+
 		//Updates selection with asked hours
 		String projectName = list.get(input).substring(0,list.get(input).indexOf(':'));
 		String activityID = list.get(input).substring(list.get(input).lastIndexOf(':')+1,list.get(input).length());
