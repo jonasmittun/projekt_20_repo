@@ -13,7 +13,6 @@ Feature: Assigning Employee
        When the project leader <1> assigns the employee <2> to the activity <1> in project "project 1"
        Then the employee <2> is assigned to the activity <1> in project "project 1"
 
-   #Assigning an employee
    Scenario: An employee is assigned to an activity by a user that is not the project leader
 
       Given there exists an activity "activity 1" with id <1> in project "project 1"

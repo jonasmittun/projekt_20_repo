@@ -75,9 +75,10 @@ public class CompanyApp {
 	}
 
 	public void assignEmployee(Integer employeeID, Integer activityID, String projectName) throws Exception {
-    	assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
+		int projectLeaderID = getProject(projectName).getProjectLeaderID();
+    	assertUserIsProjectLeader(projectLeaderID);
 		int noOfActivities = employeeList.get(employeeID).getNumberOfActivities();
-    	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,noOfActivities);
+    	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,noOfActivities,projectLeaderID);
 		employeeList.get(employeeID).addActivity();
     }
 

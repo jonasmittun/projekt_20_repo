@@ -32,7 +32,7 @@ public class InviteSteps {
 	    this.inviter = new Employee(int1);
 	    this.companyApp.addNewEmployee(this.inviter);
 	    this.project.addEmployee(this.inviter);
-	    this.activity.assignEmployee(this.inviter.getId(), 0);
+	    this.activity.assignEmployee(this.inviter.getId(), 0, 0);
 	}
 
 	@Given("employee <{int}> exists within companyApp")
@@ -63,8 +63,8 @@ public class InviteSteps {
 		this.inviter = new Employee(int1 + 1);
 		this.invitee = new Employee(int1);
 		this.activity = new Activity(int2);
-		this.activity.assignEmployee(this.inviter.getId(), 1);
-		this.activity.assignEmployee(this.invitee.getId(), 1);
+		this.activity.assignEmployee(this.inviter.getId(), 1, 0);
+		this.activity.assignEmployee(this.invitee.getId(), 1, 0);
 		try {
 			this.activity.inviteEmployee(this.inviter, this.invitee);
 		} catch (Exception e) {

@@ -129,7 +129,7 @@ public class CompanyInfoSteps {
 	public void employee_with_id_exists_within_activity_with_id(Integer int1, Integer int2) throws Exception {
 		this.activity = new Activity(int2);
 		this.employee = new Employee(int1);
-	    this.activity.assignEmployee(int1, 0);
+	    this.activity.assignEmployee(int1, 0,0);
 	}
 	
 	@Then("assert that employee with id <{int}> exists within activity with id <{int}>")
@@ -181,7 +181,7 @@ public class CompanyInfoSteps {
 	@When("system asks which employees exist within activity with id <{int}>")
 	public void system_asks_which_employees_exist_within_activity_with_id(Integer int1) throws Exception {
 	    this.activity = new Activity(int1);
-	    this.activity.assignEmployee(56, 0); //56 used as test here
+	    this.activity.assignEmployee(56, 0, 0); //56 used as test here
 	    this.employeeIds = this.activity.getEmployees();
 	}
 	

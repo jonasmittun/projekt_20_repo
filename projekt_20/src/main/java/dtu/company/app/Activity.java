@@ -15,6 +15,7 @@ public class Activity {
         this.id = id;
         this.assignedEmployees = new ArrayList<Integer>();
         this.workedHalfHours = 0;
+        this.projectLeaderID = 0;
     }
     
     public Activity(String activityName, int id){
@@ -50,7 +51,10 @@ public class Activity {
         }
     }
 
-    public void assignEmployee(int id, int activities) throws Exception{
+    public void assignEmployee(int id, int activities, int user) throws Exception{
+        if (user != projectLeaderID) {
+            throw new Exception("You must be project leader");
+        }
         if (!assignedEmployees.contains(id)) {
             if (activities < 10) {
                 this.assignedEmployees.add(id);
@@ -80,7 +84,7 @@ public class Activity {
     public void inviteEmployee(Employee inviter, Employee invitee) throws Exception {
     	if(containsEmployeeWithID(inviter.getId())) {
     		if(!(containsEmployeeWithID(invitee.getId()))) {
-    			assignEmployee(invitee.getId(),invitee.getNumberOfActivities());
+    			assignEmployee(invitee.getId(),invitee.getNumberOfActivities(), projectLeaderID);
     		} else {
     			throw new Exception("Employee being invited is already assigned to activity!");
     		}
