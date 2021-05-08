@@ -41,7 +41,8 @@ public class ActivitySteps {
     public void the_activity_is_edited_with_new_name_in_project(Integer int1, String newActivityName, String projectName) throws Exception {
         try {
             int id = companyApp.getUser();
-            companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
+            this.companyApp.getProject(projectName).getActivityWithID(int1).setActivityName(newActivityName, id);
+            //companyApp.getActivity(projectName, int1).setActivityName(newActivityName, id);
         }catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
