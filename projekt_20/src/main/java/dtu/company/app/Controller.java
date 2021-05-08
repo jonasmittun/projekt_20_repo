@@ -83,6 +83,11 @@ public class Controller {
 		//Gets user activities
 		userActivities = companyApp.getUserActivities(CurrentUserID);
 
+		if (userActivities.isEmpty()){
+			System.out.println("You have no active activities");
+			return;
+		}
+
 		//Runs Register Menu to get users to register hours
 		String s = view.activityOverview(userActivities);
 
@@ -95,15 +100,20 @@ public class Controller {
 		//Registers users hours
 		companyApp.registerDaysWork(CurrentUserID,halfHours,activityID,projectName);
 
-		double daysWork = companyApp.getEmployee(CurrentUserID).getDaysWorkInHalfHours()/2;
+		double activityWork = companyApp.getProject(projectName).getActivityWithID(activityID).getWorkedHalfHours()/2;
 		double weeksWork = companyApp.getEmployee(CurrentUserID).getWeeksWorkInHalfHours()/2;
 
-		System.out.println("Hours worked today: " + daysWork + " | Hours worked this week: " + weeksWork);
+		System.out.println("Hours worked on activity: " + activityWork + " | Hours worked this week: " + weeksWork);
 	}
 
 	public static void removeHours(int CurrentUserID) throws Exception {
 		//Gets user activities
 		userActivities = companyApp.getUserActivities(CurrentUserID);
+
+		if (userActivities.isEmpty()){
+			System.out.println("You have no active activities");
+			return;
+		}
 
 		//Runs Register Menu to get users to register hours
 		String s = view.activityOverview(userActivities);
@@ -117,10 +127,10 @@ public class Controller {
 		//Registers users hours
 		companyApp.removeWeeksWork(CurrentUserID,halfHours,activityID,projectName);
 
-		double daysWork = companyApp.getEmployee(CurrentUserID).getDaysWorkInHalfHours()/2;
+		double activityWork = companyApp.getProject(projectName).getActivityWithID(activityID).getWorkedHalfHours()/2;
 		double weeksWork = companyApp.getEmployee(CurrentUserID).getWeeksWorkInHalfHours()/2;
 
-		System.out.println("Hours worked this week: " + weeksWork);
+		System.out.println("Hours worked on activity: " + activityWork + " | Hours worked this week: " + weeksWork);
 	}
 
 	//TO BE CONTINUED (BORAN)
