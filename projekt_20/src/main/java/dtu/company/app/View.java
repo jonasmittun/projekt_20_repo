@@ -77,6 +77,19 @@ public class View {
 		return chosenProject;
 	}
 
+	public void getProjectOverview(ArrayList<Activity> activities, String projectName){
+		System.out.println("Project overview for: \"" + projectName + "\"");
+		System.out.println("");
+		System.out.println("\t\tActivity: \tID: \tEmployees: \tWork:");
+		for (int i = 0; i < activities.size(); i++){
+			Activity activity = activities.get(i);
+			double activityHours = activity.getWorkedHalfHours()/2;
+			System.out.println("[" + i + "] \t" + activity.getActivityName() + "\t" +
+					activity.getActivityID() + "\t\t" + activity.getEmployees().size() + "\t\t\t" +
+					activityHours);
+		}
+	}
+
 	public int projectAccessMenu(){
 		System.out.println("Choose an action for the selected project");
 
@@ -84,11 +97,12 @@ public class View {
 		System.out.println("[2]- " + "Assign employee");
 		System.out.println("[3]- " + "Edit project name");
 		System.out.println("[4]- " + "Set project deadline");
+		System.out.println("[5]- " + "Get project overview");
 
 		int input = -1;
 		input = this.scanner.nextInt();
 
-		if (input > -1 && input < 4) {
+		if (input > -1 && input < 6) {
 			System.out.print("Going to... ");
 			switch (input) {
 				case 0: System.out.println("User Selection"); 		break;
@@ -96,6 +110,7 @@ public class View {
 				case 2: System.out.println("Assign employee");  	break;
 				case 3: System.out.println("Edit project name"); 	break;
 				case 4: System.out.println("Set project deadline"); break;
+				case 5: System.out.println("Get project overview"); break;
 			}
 			return input;
 		} else {

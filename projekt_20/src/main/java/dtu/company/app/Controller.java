@@ -1,6 +1,5 @@
 package dtu.company.app;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Controller {
@@ -102,11 +101,11 @@ public class Controller {
 			result = view.projectAccessMenu(); //projectAccessMenu i view
 		}
 		switch(result) {
-			case 0: view.PageBreak(); SelectUser();	break; //Project features should be implemented here
-			case 1: view.PageBreak(); addActivity(chosenProject);					break;
-			case 2: view.PageBreak(); assignEmployee(chosenProject, currentUserID);	break;
-			case 3: view.PageBreak(); /*editProjectName*/    						break;
-			case 4: view.PageBreak(); /*setProjectDeadline*/ 						break;
+			case 1: view.PageBreak(); addActivity(chosenProject);	break;
+			case 2: view.PageBreak(); assignEmployee(chosenProject,currentUserID); break;
+			case 3: view.PageBreak(); /*editProjectName(currentUserID);*/	break;
+			case 4: view.PageBreak(); /*setProjectDeadline(currentUserID);*/	break;
+			case 5: view.PageBreak(); getProjectOverview(chosenProject);break;
 			case 9: return;
 		}
 		view.PageBreak();
@@ -126,6 +125,12 @@ public class Controller {
 			System.out.println("Employee " + employeeID + " is successfully assigned to the activity "
 					+ activity.getActivityName() + " in project" + project.getProjectName());
 
+	}
+
+	private static void getProjectOverview(String chosenProject) {
+		ArrayList<Activity> activities;
+		activities = companyApp.getProject(chosenProject).getActivities();
+		view.getProjectOverview(activities, chosenProject);
 	}
 
 	private static void companyOverview() throws Exception {
@@ -226,6 +231,7 @@ public class Controller {
 			project = view.addProjectMenu(currentUserID);
 		}
 		companyApp.addProject(project);
+		System.out.println("TEST PROJECT ADDED!");
 	}
 
 	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception {
