@@ -190,6 +190,21 @@ public class View {
 		return s;
 	}
 
+	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception {
+		System.out.println("\tProjects: \tDeadline: \tEmployees: \tWeekhours: ");
+		for (int i = 0; i < employees.size() || i < projects.size(); i++){
+			String projectName = (projects.get(i) == null) ? "\n" : projects.get(i).getProjectName();
+			//String deadline = (projects.get(i).getDeadline() == null) ? "\n" : String.valueOf(projects.get(i).getDeadline());
+			String employeeID = (employees.get(i) == null) ? "\n" : "employee " + employees.get(i).getId();
+			double weekHours = employees.get(i).getWeeksWorkInHalfHours()*2;
+
+			System.out.print("\t" + projectName + "\t" +
+					/*deadline +*/ "\t\t\t");
+			System.out.print(employeeID + "\t" + weekHours + "\n");
+		}
+
+	}
+
 	private int userIntInput(){
 		int input;
 		try {
@@ -198,6 +213,12 @@ public class View {
 			input = -1;
 		}
 		return input;
+	}
+
+	public String addActivity() {
+		String activityName ="";
+
+		return activityName;
 	}
 	
 	public void PageBreak() {
@@ -313,18 +334,5 @@ public class View {
 		}
 	}
 
-	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception {
-		System.out.println("\tProjects: \tDeadline: \tEmployees: \tWeekhours: ");
-		for (int i = 0; i < employees.size() || i < projects.size(); i++){
-			String projectName = (projects.get(i) == null) ? "\n" : projects.get(i).getProjectName();
-			//String deadline = (projects.get(i).getDeadline() == null) ? "\n" : String.valueOf(projects.get(i).getDeadline());
-			String employeeID = (employees.get(i) == null) ? "\n" : "employee " + employees.get(i).getId();
-			double weekHours = employees.get(i).getWeeksWorkInHalfHours()*2;
 
-			System.out.print("\t" + projectName + "\t" +
-					/*deadline +*/ "\t\t\t");
-			System.out.print(employeeID + "\t" + weekHours + "\n");
-		}
-
-	}
 }

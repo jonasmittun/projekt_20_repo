@@ -95,6 +95,21 @@ public class Controller {
 		ProjectMenu();
 	}
 
+	public static void ProjectAccessMenu(String chosenProject){
+		int result = -1;
+		while(result == -1) {
+			result = view.projectAccessMenu(); //projectAccessMenu i view
+		}
+		switch(result) {
+			case 0: view.PageBreak(); SelectUser();	break; //Project features should be implemented here
+			case 1: view.PageBreak(); addActivity(chosenProject);	break;
+			case 2: view.PageBreak(); /*addProject(currentUserID);*/	break;
+			case 9: return;
+		}
+		view.PageBreak();
+		ProjectAccessMenu(chosenProject);
+	}
+
 	private static void companyOverview() throws Exception {
 		ArrayList<Project> projects;
 		projects = companyApp.getProjects();
@@ -178,19 +193,10 @@ public class Controller {
 		ProjectAccessMenu(chosenProject);
 	}
 
-	public static void ProjectAccessMenu(String chosenProject){
-		int result = -1;
-		while(result == -1) {
-			result = view.projectAccessMenu(); //projectAccessMenu i view
-		}
-//		switch(result) {
-//			case 0: view.PageBreak(); SelectUser();	break; //Project features should be implemented here
-//			case 1: view.PageBreak(); accessProject(currentUserID);	break;
-//			case 2: view.PageBreak(); addProject(currentUserID);	break;
-//			case 9: return;
-//		}
-//		view.PageBreak();
-		ProjectAccessMenu(chosenProject);
+	private static void addActivity(String chosenProject) {
+		int activites = companyApp.getActivities().size();
+		String activityName = view.addActivity();
+
 	}
 
 
