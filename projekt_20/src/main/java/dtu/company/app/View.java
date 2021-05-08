@@ -2,6 +2,7 @@ package dtu.company.app;
 
 import java.sql.SQLOutput;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class View {
 	
 	public Scanner scanner;
+	public Project project;
 	
 	public View() {
 		scanner = new Scanner(System.in);
@@ -101,6 +103,50 @@ public class View {
 			this.scanner.next();
 			return -1;
 		}
+	}
+
+	public Project addProjectMenu(int currentUserID) throws Exception {
+		System.out.println("Welcome to AddProject Menu" + " Employee " + currentUserID);
+		System.out.println("Please enter the name for your new project:");
+
+		String input = this.scanner.next();
+
+		System.out.println("You have chosen the name " + "\"" + input + "\"" + " for your new project.");
+		System.out.println("Press y to confirm, n to rename");
+
+		String input2 = this.scanner.next();
+
+		if(this.scanner.next().equalsIgnoreCase("y")){
+			System.out.println("Name Confirmed: " + input);
+		}
+		else if (this.scanner.next().equalsIgnoreCase("n")) {
+				System.out.println("Enter new name for your project:");
+				input = this.scanner.next();
+				System.out.println("New name for your project " + input);
+				System.out.println("Press y to confirm, n to rename");
+				if (scanner.next().equalsIgnoreCase("y")) {
+					System.out.println("Name confirmed!");
+				}else if(scanner.next().equalsIgnoreCase("n")){
+					return null;
+				}
+		}
+
+		String projectName = input;
+
+		System.out.println("Add a deadline for the project? Press y to add a deadline. " +
+				"Otherwise your project will be created without start-end dates.");
+		if (scanner.next() == "y"){
+			LocalDate startDate = LocalDate.now();
+			System.out.println("Enter a deadline for your project [dd. MMM. yyyy]:");
+			LocalDate endDate = LocalDate.parse(scanner.next());
+			System.out.println("Your project is being created with startDate: " + startDate +
+					"and endDate: " + endDate);
+			this.project = new Project(projectName, startDate, endDate);
+		}else{
+			this.project = new Project(projectName);
+		}
+		System.out.println("Project " + projectName + "is created!");
+		return project;
 	}
 
 	public String activityOverview(ArrayList<String> list){

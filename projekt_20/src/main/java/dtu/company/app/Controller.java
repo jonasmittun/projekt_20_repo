@@ -195,7 +195,9 @@ public class Controller {
 
 
 	public static void addProject(int currentUserID) throws Exception{
-
+		Project project = view.addProjectMenu(currentUserID);
+		companyApp.addProject(project);
+		System.out.println("TEST PROJECT ADDED!");
 	}
 
 }
