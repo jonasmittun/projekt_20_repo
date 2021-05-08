@@ -9,6 +9,7 @@ public class Controller {
 	static int currentUserID = -1;
 	private static ArrayList<String> userActivities;
 	private static ArrayList<String> userProjects;
+
 	
 	public static void main(String[] args) throws Exception {
 		companyApp = new CompanyApp();
@@ -164,15 +165,31 @@ public class Controller {
 		System.out.println("Hours worked on activity: " + activityWork + " | Hours worked this week: " + weeksWork);
 	}
 
-	//TO BE CONTINUED (BORAN)
+
 	public static void accessProject(int currentUserID) throws Exception {
 		//Gets user projects
 		userProjects = companyApp.getLeaderProjects(currentUserID);
 
 		//Runs Project Menu to get overview of the current user projects
-		view.projectOverview(userProjects);
-
+		String chosenProject = view.projectOverview(userProjects);
+		ProjectAccessMenu(chosenProject);
 	}
+
+	public static void ProjectAccessMenu(String chosenProject){
+		int result = -1;
+		while(result == -1) {
+			result = view.projectAccessMenu(); //projectAccessMenu i view
+		}
+//		switch(result) {
+//			case 0: view.PageBreak(); SelectUser();	break; //Project features should be implemented here
+//			case 1: view.PageBreak(); accessProject(currentUserID);	break;
+//			case 2: view.PageBreak(); addProject(currentUserID);	break;
+//			case 9: return;
+//		}
+//		view.PageBreak();
+		ProjectAccessMenu(chosenProject);
+	}
+
 
 	public static void addProject(int currentUserID) throws Exception{
 
