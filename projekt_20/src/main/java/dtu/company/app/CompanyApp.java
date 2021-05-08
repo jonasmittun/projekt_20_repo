@@ -165,7 +165,7 @@ public class CompanyApp {
 		return list;
 	}*/
 
-	public ArrayList<String> getLeaderProjects(int ID){ //TODO: Boran coverage plz
+	public ArrayList<String> getLeaderProjects(int ID){
     	ArrayList<String> list = new ArrayList<String>();
     	Project project;
     	for(int i = 0; i < projectList.size(); i++){
