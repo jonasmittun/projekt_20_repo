@@ -167,17 +167,11 @@ public class Controller {
 	//TO BE CONTINUED (BORAN)
 	public static void accessProject(int currentUserID) throws Exception {
 		//Gets user projects
-		ArrayList<Project> projects;
-		projects = companyApp.getProjectLeaderProjects(currentUserID);
-		for (Project project : projects){
-			String projectName = project.getProjectName();
-			userProjects.add(projectName);
-			System.out.println(userProjects.get(0));
-		}
+		userProjects = companyApp.getLeaderProjects(currentUserID);
 
-		//Runs Project Menu from view
-		view.ProjectMenu(currentUserID);
-		view.viewProjects(userProjects);
+		//Runs Project Menu to get overview of the current user projects
+		view.projectOverview(userProjects);
+
 	}
 
 	public static void addProject(int currentUserID) throws Exception{

@@ -51,6 +51,28 @@ public class View {
 		
 		return input;
 	}
+	public void projectOverview(ArrayList<String> list){
+		System.out.println("\t \t ProjectName:");
+
+		//Prints all projects for the user
+		for(int i = 0; i < list.size(); i++){
+			System.out.println("[" + (i + 1) + "]\t \t " + list.get(i));
+		}
+
+		//Asks user for selection
+		PageBreak();
+		System.out.println("Please select one of " + (list.size()) + " projects");
+
+		int input = userIntInput();
+
+		if (input > list.size()){
+			System.out.println("Please choose a value from 1 to" + list.size());
+		}
+
+		String chosenProject = list.get(input-1);
+		System.out.println(chosenProject);
+
+	}
 
 	public String activityOverview(ArrayList<String> list){
 		System.out.println("\t \t ProjectName: \t ActivityName: \t ActivityID:" );
