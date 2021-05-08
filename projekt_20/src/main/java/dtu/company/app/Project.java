@@ -34,6 +34,7 @@ public class Project {
 
     //Adders
     public void addActivity(Activity activity) throws Exception{
+        //assertUserIsProjectLeader(userID);
         if (activity.getActivityID() <= activityList.size()) {
             throw new Exception("Activity must have an orignal ID");
         }
@@ -51,12 +52,8 @@ public class Project {
     }
 
     public void setProjectName(String projectName, int user) throws Exception{
-        if (user == projectLeaderID) {
-            this.projectName = projectName;
-        } else {
-            throw new Exception("You must be project leader");
-        }
-
+        assertUserIsProjectLeader(user);
+        this.projectName = projectName;
     }
 
     public void setStartWeek(int week){
@@ -171,5 +168,13 @@ public class Project {
 
     public int getIdForNewActivity(String projectName){
         return activityList.size()+1;
+    }
+
+    public boolean assertUserIsProjectLeader(int user) throws Exception {
+        if (user == projectLeaderID) {
+            return true;
+        } else {
+            throw new Exception("You must be project leader");
+        }
     }
 }

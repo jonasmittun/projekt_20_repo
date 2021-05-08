@@ -20,6 +20,7 @@ public class ActivitySteps {
     public void an_activity_is_created_with_an_id_number_in_project(String projectName) throws Exception {
         try {
             this.activity = new Activity(companyApp.getProject(projectName).getIdForNewActivity(projectName));
+            int userID = companyApp.getUser();
             companyApp.getProject(projectName).addActivity(activity);
         } catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());

@@ -96,8 +96,8 @@ public class CompanyApp {
 		return this.user;
 	}
 
-	public boolean assertUserIsProjectLeader(int projectLeaderId) throws Exception {
-		if (user == projectLeaderId) {
+	public boolean assertUserIsProjectLeader(int projectLeaderID) throws Exception {
+		if (user == projectLeaderID) {
 			return true;
 		} else {
 			throw new Exception("You must be project leader");
