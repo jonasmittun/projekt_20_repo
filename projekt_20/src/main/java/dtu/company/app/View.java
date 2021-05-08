@@ -51,6 +51,28 @@ public class View {
 		
 		return input;
 	}
+	public void projectOverview(ArrayList<String> list){
+		System.out.println("\t \t ProjectName:");
+
+		//Prints all projects for the user
+		for(int i = 0; i < list.size(); i++){
+			System.out.println("[" + (i + 1) + "]\t \t " + list.get(i));
+		}
+
+		//Asks user for selection
+		PageBreak();
+		System.out.println("Please select one of " + (list.size()) + " projects");
+
+		int input = userIntInput();
+
+		if (input > list.size()){
+			System.out.println("Please choose a value from 1 to" + list.size());
+		}
+
+		String chosenProject = list.get(input-1);
+		System.out.println(chosenProject);
+
+	}
 
 	public String activityOverview(ArrayList<String> list){
 		System.out.println("\t \t ProjectName: \t ActivityName: \t ActivityID:" );
@@ -72,6 +94,10 @@ public class View {
 		System.out.println("Please select one of " + (list.size()) + " activities");
 
 		int input = this.scanner.nextInt();
+
+		if (input > list.size()){
+			return "";
+		}
 
 		//Updates selection with asked hours
 		String projectName = list.get(input).substring(0,list.get(input).indexOf(':'));
@@ -102,33 +128,6 @@ public class View {
 		System.out.println("\n # # # # # \n");
 	}
 
-	public int projectMenu(int currentUserID){
-		System.out.println("Employee " + currentUserID + ", you are now viewing Project Menu!");
-		System.out.println("Please choose an action from the list...");
-
-		System.out.println("[1]-" + "View projects");
-		System.out.println("[2]-" +"Create new project");
-
-		int input = -1;
-		input = this.scanner.nextInt();
-
-		if (input == 1 || input == 2){
-			switch (input){
-				case 1:
-					System.out.println("Viewing projects");
-					break;
-				case 2:
-					System.out.println("Create new project");
-					break;
-			}
-			return input;
-		}else {
-			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
-			System.out.println("Input any key to return to Main Menu...");
-			this.scanner.next();
-			return -1;
-		}
-	}
 
 	public void viewProjects(ArrayList<String> projects) {
 		for (int i = 1; i < projects.size(); i++) {
@@ -178,8 +177,38 @@ public class View {
 		}
 	}
 
+	public int ProjectMenu(int currentUserID) {
+		System.out.println("Welcome to Project Menu, employee " + currentUserID + "!");
+		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
+		System.out.println("Please choose an action from the list...");
+
+		System.out.println("[1]- " + "View Projects");
+		System.out.println("[2]- " + "Add new project");
+		System.out.println("[9]- " + "Exit Program");
+		System.out.println("[0]- " + "User Selection");
+
+		int input = -1;
+		input = this.scanner.nextInt();
+
+		if (input > -1 && input < 3 || input == 9 || input == 0) {
+			System.out.print("Going to... ");
+			switch (input) {
+				case 0: System.out.println("User Selection");	break;
+				case 1: System.out.println("View projects"); break;
+				case 2: System.out.println("Add new project");	break;
+				case 9: System.out.println("Exit program");	break;
+			}
+			return input;
+		} else {
+			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
+			System.out.println("Input any key to return to Main Menu...");
+			this.scanner.next();
+			return -1;
+		}
+	}
+
 	public int RegisterMenu(int currentUserID) {
-		System.out.println("Welcome to RegisterMenu, employee " + currentUserID + "!");
+		System.out.println("Welcome to Register Menu, employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
 		System.out.println("Please choose an action from the list...");
 

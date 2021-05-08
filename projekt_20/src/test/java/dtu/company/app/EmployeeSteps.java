@@ -100,9 +100,14 @@ public class EmployeeSteps {
 		companyApp.registerDaysWork(employee, halfHours, activity, project);
 	}
 
+	@When("the employee <{int}> removes <{int}> half hours from the week registry and activity <{int}> in project {string}")
+	public void the_employee_removes_half_hours_from_the_week_registry_and_activity_in_project(Integer int1, Integer int2, Integer int3, String string) throws Exception {
+		companyApp.removeWeeksWork(int1,int2,int3,string);
+	}
+
 	@Then("employee <{int}>'s worked hours is updated to <{int}> half hours")
 	public void employee_s_worked_hours_is_updated_to_half_hours(Integer int1, Integer int2) {
-		assertTrue(companyApp.getEmployee(int1).getDaysWorkInHalfHours()==int2);
+		assertTrue(companyApp.getEmployee(int1).getWeeksWorkInHalfHours()==int2);
 	}
 
 	@Then("activity <{int}> in project {string} worked hours is updated to <{int}> half hours")

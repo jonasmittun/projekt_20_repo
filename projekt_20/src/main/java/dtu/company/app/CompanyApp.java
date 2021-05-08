@@ -168,6 +168,17 @@ public class CompanyApp {
 		return list;
 	}
 
+	public ArrayList<String> getLeaderProjects(int ID){
+    	ArrayList<String> list = new ArrayList<String>();
+    	for(int i = 0; i < projectList.size(); i++){
+    		Project project = projectList.get(i);
+    		if (project.getProjectLeaderID() == ID){
+    			list.add(project.getProjectName());
+			}
+		}
+    	return list;
+	}
+
 	public ArrayList<Project> getProjectLeaderProjects(int ID){
 		ArrayList<Project> list = new ArrayList<Project>();
 		for(int i = 0; i < projectList.size(); i++){
