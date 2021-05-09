@@ -106,7 +106,7 @@ public class Controller {
 		}
 		switch(result) {
 			case 1: view.PageBreak(); addActivity(chosenProject);	break;
-			case 2: view.PageBreak(); assignEmployee(chosenProject,currentUserID); break;
+			case 2: view.PageBreak(); assignEmployee(chosenProject); break;
 			case 3: view.PageBreak(); /*editProjectName(currentUserID);*/	break;
 			case 4: view.PageBreak(); /*setProjectDeadline(currentUserID);*/	break;
 			case 5: view.PageBreak(); getProjectOverview(chosenProject);break;
@@ -116,18 +116,21 @@ public class Controller {
 		ProjectAccessMenu(chosenProject);
 	}
 
-	private static void assignEmployee(String chosenProject, int currentUserID) throws Exception {
+	private static void assignEmployee(String chosenProject) throws Exception {
 			//Get the project from the app with the name chosenProject
 			Project project = companyApp.getProject(chosenProject);
 
 			Activity activity = view.activityOverviewAndAssignEmployee(project);
 			int employeeID = view.chooseEmployee();
 
-			currentUserID = 0;
-			activity.assignEmployee(employeeID,companyApp.getEmployee(employeeID).getNumberOfActivities(),currentUserID);
-
-			System.out.println("Employee " + employeeID + " is successfully assigned to the activity "
-					+ activity.getActivityName() + " in project" + project.getProjectName());
+			try {
+				activity.assignEmployee(employeeID, companyApp.getEmployee(employeeID).getNumberOfActivities(), currentUserID);
+			}catch(Exception e){
+				System.out.println("The process has failed. Check employees working hours and try again.");
+				assignEmployee(chosenProject);
+			}
+			System.out.println("Employee " + employeeID + " is successfully assigned to the "
+					+ activity.getActivityName() + project.getProjectName());
 
 	}
 
