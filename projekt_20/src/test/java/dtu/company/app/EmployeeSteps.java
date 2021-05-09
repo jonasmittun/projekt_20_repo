@@ -67,6 +67,7 @@ public class EmployeeSteps {
 		this.project = new Project(string);
 		project.setProjectLeaderID(int1);
 	}
+
 	@Then("the project leader is the employee <{int}>")
 	public void the_project_leader_is_the_employee(Integer int1) {
 		assertTrue(project.getProjectLeaderID() == int1);
@@ -135,7 +136,7 @@ public class EmployeeSteps {
 	    assertTrue(this.companyApp.containsEmployeeWithId(int1));
 	}
 
-	@Given("an employee with id <{int}> is registered to an activity in the system with id <{int}>")
+	/*@Given("an employee with id <{int}> is registered to an activity in the system with id <{int}>")
 	public void an_employee_with_id_is_registered_to_an_activity_in_the_system_with_id(Integer int1, Integer int2) throws Exception {
 	    assertTrue(this.employee.getId() == int1);
 	    this.activity = new Activity(int2);
@@ -147,9 +148,10 @@ public class EmployeeSteps {
 	    this.companyApp.addActivity(this.activity, "testName");
 	    assertTrue(this.companyApp.getProject("testName").getActivityWithID(int2).containsEmployeeWithID(int1));
 		companyApp.setUser(userStore);
-	}
+	}*/
 
-	@When("system gets activities for employee with id <{int}>")
+	//I hvilken cucumber skal bruges?
+	/*@When("system gets activities for employee with id <{int}>")
 	public void system_gets_activities_for_employee_with_id(Integer int1) {
 		this.activities = this.companyApp.getActivities();
 		ArrayList<Activity> newActivities = new ArrayList<Activity>();
@@ -159,12 +161,12 @@ public class EmployeeSteps {
 			}}
 		);
 		this.activities = newActivities;
-	}
+	}*/
 
-	@Then("return list of activities that includes activity with id <{int}>")
+	/*@Then("return list of activities that includes activity with id <{int}>")
 	public void return_list_of_activities_that_includes_activity_with_id(Integer int2) {
 	    assertTrue(this.activities.contains(this.activity) && this.activity.getActivityID() == int2);
-	}
+	}*/
 
 	@When("system gets list of projects that employee <{int}> is leading")
 	public void system_gets_list_of_projects_that_employee_is_leading(Integer int1) {
