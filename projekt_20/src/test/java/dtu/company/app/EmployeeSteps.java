@@ -110,7 +110,11 @@ public class EmployeeSteps {
 
 	@When("the employee <{int}> removes <{int}> half hours from the week registry and activity <{int}> in project {string}")
 	public void the_employee_removes_half_hours_from_the_week_registry_and_activity_in_project(Integer int1, Integer int2, Integer int3, String string) throws Exception {
-		companyApp.removeWeeksWork(int1,int2,int3,string);
+		try {
+			companyApp.removeWeeksWork(int1,int2,int3,string);
+		} catch (Exception e){
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
 
 	@Then("employee <{int}>'s worked hours is updated to <{int}> half hours")

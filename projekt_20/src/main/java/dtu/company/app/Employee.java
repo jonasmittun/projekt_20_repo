@@ -55,12 +55,8 @@ public class Employee {
         if (weeksWorkInHalfHours - halfHours > 0) {
             this.weeksWorkInHalfHours = weeksWorkInHalfHours - halfHours;
         } else {
-            halfHours = weeksWorkInHalfHours;
-            double hours = weeksWorkInHalfHours/2;
-            System.out.println("You have emptied your weeks work");
-            System.out.println("Removed " + hours + " hours from weeks work");
-            System.out.println("");
             this.weeksWorkInHalfHours = 0;
+            throw new Exception("You have emptied your weeks work");
         }
     }
 
