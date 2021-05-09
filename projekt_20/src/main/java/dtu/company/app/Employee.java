@@ -34,12 +34,19 @@ public class Employee {
     }
 
     public void addDaysWorkInHalfHours(int halfHours) throws Exception {
-        if (daysWorkInHalfHours + halfHours < 48) {
-            this.daysWorkInHalfHours = daysWorkInHalfHours + halfHours;
-            this.weeksWorkInHalfHours = weeksWorkInHalfHours + halfHours;
+        assert halfHours >= 0 : "Precondition violated";
+        int halfHoursAtPre = daysWorkInHalfHours;
+        if (halfHours > 0) {
+            if (daysWorkInHalfHours + halfHours <= 48) {
+                this.daysWorkInHalfHours = daysWorkInHalfHours + halfHours;
+                this.weeksWorkInHalfHours = weeksWorkInHalfHours + halfHours;
+            } else {
+                throw new Exception("Employee can't work more than 24 hours. Try again");
+            }
         } else {
-            throw new Exception("Employee can't work more than 24 hours. Try again");
+            throw new Exception("Invalid input. Please insert a positive Integer...");
         }
+        assert halfHoursAtPre + halfHours == daysWorkInHalfHours;
     }
 
     public void removeWeeksWorkInHalfHours(int halfHours) throws Exception {
