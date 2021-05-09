@@ -289,21 +289,30 @@ public class View {
 	}
 
 	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception {
-		System.out.println("\tProjects: \tDeadline: \tEmployees: \tWeekhours: ");
-		for (int i = 0; i < employees.size() || i < projects.size(); i++){
-			String projectName = (projects.get(i) == null) ? "\n" : projects.get(i).getProjectName();
-			String deadline = "";
-			try {
-				deadline = (projects.get(i).getDeadline() == null) ? "\n" : String.valueOf(projects.get(i).getDeadline());
-			} catch (Exception e) {
-				deadline = "N/A";
+		System.out.println("\tProjects: \tDeadline: \tEmployees: \tHoursWorked: ");
+		int size = employees.size() > projects.size() ? employees.size() : projects.size();
+		System.out.println("");
+		for (int i = 0; i < size; i++){
+			String projectName = "\t";
+			String deadline = "\t";
+			if (i < projects.size()) {
+				projectName = projects.get(i).getProjectName();
+				try {
+					deadline = String.valueOf(projects.get(i).getDeadline());
+				} catch (Exception e) {
+					deadline = "N/A";
+				}
 			}
-			String employeeID = (employees.get(i) == null) ? "\n" : "employee " + employees.get(i).getId();
-			double weekHours = employees.get(i).getWeeksWorkInHalfHours()/2;
+			String employeeID = "\t";
+			String hoursWorked = "\t";
+			if (i < employees.size()) {
+				employeeID = "employee " + employees.get(i).getId();
+				hoursWorked = String.valueOf(employees.get(i).getWeeksWorkInHalfHours()/2);
+			}
 
 			System.out.print("\t" + projectName + "\t" +
 					deadline + "\t\t\t");
-			System.out.print(employeeID + "\t" + weekHours + "\n");
+			System.out.print(employeeID + "\t\t" + hoursWorked + "\n");
 		}
 		this.test[17] = true;
 	}
