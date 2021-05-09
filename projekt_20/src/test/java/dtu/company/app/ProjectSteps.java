@@ -99,13 +99,7 @@ public class ProjectSteps {
     @When("the deadline for {string} is set to {int}-{int}-{int}")
     public void the_deadline_for_is_set_to(String string, Integer int1, Integer int2, Integer int3) throws Exception {
         try {
-            //project = companyApp.getProject(string);
-            //project.setDeadline(int1, int2, int3);
-            //Dette virker ikke:
             companyApp.getProject(string).setDeadline(int1, int2, int3);
-            //Derfor:
-            //companyApp.updateProject(project);
-
         } catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
@@ -159,5 +153,24 @@ public class ProjectSteps {
     public void the_system_does_not_contain_a_project_named(String string) {
         assertFalse(this.companyApp.containsProjectWithName(string));
     }
-    
+
+    @When("the deadline for {string} is set to the current date")
+    public void the_deadline_for_is_set_to_the_current_date(String string) {
+        try {
+            LocalDate date = LocalDate.now();
+            companyApp.getProject(string).setDeadline(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+        } catch (Exception e){
+            errorMessage.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the project {string} is expired")
+    public void the_project_is_expired(String string) {
+        assertTrue(companyApp.getProject(string).isExpired());
+    }
+
+    @Then("the project {string} is not expired")
+    public void the_project_is_not_expired(String string) {
+        assertFalse(companyApp.getProject(string).isExpired());
+    }
 }

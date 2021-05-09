@@ -30,3 +30,11 @@ Feature: Edit project info
         And employee <1> is the user
         When the deadline for "project 1" is set to 2022-01-01
         Then the deadline of project "project 1" is 2022-01-01
+        And the project "project 1" is not expired
+
+   Scenario: Projects deadline is the current date
+        Given the system contains a project "project 1"
+        And an employee “employee 1” is the project leader for the project "project 1"
+        And employee <1> is the user
+        When the deadline for "project 1" is set to the current date
+        Then the project "project 1" is expired

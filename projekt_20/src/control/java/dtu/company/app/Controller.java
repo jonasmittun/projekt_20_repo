@@ -51,7 +51,21 @@ public class Controller {
 
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
-	
+
+	public static void checkForExpiredProjects() {
+		int counter = 0;
+		for (Project project : companyApp.getProjects()) {
+			if (project.isExpired()) {
+				counter++;
+			}
+		}
+		if (counter > 0) {
+			view.PageBreak();
+			errorMessage.setErrorMessage("You currently have " + counter + " expired project(s)");
+			view.printErrorMessage(errorMessage);
+		}
+	}
+
 	public static void MainMenu() throws Exception {
 		int result = -1;
 		while(result == -1) {

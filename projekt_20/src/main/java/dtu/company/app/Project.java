@@ -90,11 +90,10 @@ public class Project {
         return false;
 	}
 
-    public void setDeadline(Integer int1, Integer int2, Integer int3) throws Exception {
-        LocalDate newDeadline = LocalDate.of(int1, int2, int3);
-        if (LocalDate.now().compareTo(newDeadline) < 0) {
-            this.endDate = LocalDate.of(int1, int2, int3);
-            System.out.println("test");
+    public void setDeadline(int year, Integer month, Integer day) throws Exception {
+        LocalDate newDeadline = LocalDate.of(year, month, day);
+        if (LocalDate.now().compareTo(newDeadline) <= 0) {
+            this.endDate = LocalDate.of(year, month, day);
         } else {
             throw new Exception("Deadline must be in the future");
         }
@@ -117,6 +116,14 @@ public class Project {
             return true;
         } else {
             throw new Exception("You must be project leader");
+        }
+    }
+
+    public boolean isExpired() {
+        if (LocalDate.now().compareTo(endDate) >= 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
