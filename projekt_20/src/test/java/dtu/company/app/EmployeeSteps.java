@@ -181,8 +181,7 @@ public class EmployeeSteps {
 	@Then("return list of activities that include the number of activities")
 	public void return_list_of_activities_that_include_the_number_activities() {
 		for (int i = 0; i < 5; i++){
-			int id = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':')+1,list.get(i).length()));
-			assertTrue(id == i + 1);
+			assertTrue(Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':')+1,list.get(i).length())) == i + 1);
 		}
 	}
 }
