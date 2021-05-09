@@ -100,6 +100,7 @@ public class EmployeeSteps {
 
 	@When("the employee <{int}> registers <{int}> half hours worked on activity <{int}> in project {string} for the day")
 	public void the_employee_registers_half_hours_worked_for_the_day(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
+		//assertTrue(halfHours < 10);
 		try {
 			companyApp.registerDaysWork(employee, halfHours, activity, project);
 		} catch (Exception e){
