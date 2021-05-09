@@ -5,7 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import io.cucumber.java.en.Given;
@@ -21,6 +23,7 @@ public class ControllerSteps {
 	private Project project;
 	private String input; 
 	private String output;
+	private ByteArrayOutputStream holder;
 	
 	public ControllerSteps() {
 		this.errorMessage = errorMessage;
@@ -28,21 +31,27 @@ public class ControllerSteps {
 
 	@Given("program is not started")
 	public void program_is_not_started() {
-	    assertTrue(Controller.companyApp.equals(null));
+		Controller.companyApp = null;
+	    assertTrue(Controller.companyApp == null);
 	}
 
 	@When("someone starts the program")
 	public void someone_starts_the_program() {
-	    input = "";
+	    input = "1 \n y \n 9 \n something";
 	}
 
 	@Then("display first program screens")
 	public void display_first_program_screens() throws Exception {
+		holder = new ByteArrayOutputStream();
 		System.setIn(new ByteArrayInputStream(input.getBytes()));
+		PrintStream ps = new PrintStream(holder);
+		System.setOut(ps);
 		Controller.main(null);
+		ps.close();
 		System.setIn(System.in);
-		output = System.out.toString();
-		System.out.println("test1 \n test \n" + output + "\n test \n test \n");
+		System.setOut(System.out);
+		output = holder.toString();
+		System.out.println("\n test1 \n " + output + "\n test1 \n ");
 		assertTrue(output.contains("Software started successfully!"));
 		System.exit(0);
 	}
@@ -54,7 +63,7 @@ public class ControllerSteps {
 
 	@When("someone confirms by inputting {string}")
 	public void someone_confirms_by_inputting(String string) {
-		input += "\n" + string;
+		input += " \n" + string;
 	}
 
 	@Then("display main menu screen")
@@ -68,7 +77,7 @@ public class ControllerSteps {
 
 	@When("someone declines by inputting {string}")
 	public void someone_declines_by_inputting(String string) {
-		input += "\n" + string;
+		input += " \n" + string;
 	}
 
 	@Then("display input user ID screen")
