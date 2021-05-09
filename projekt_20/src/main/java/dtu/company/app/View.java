@@ -200,7 +200,7 @@ public class View {
 			if (i < 9) {
 				System.out.println("[" + (i + 1) + "]\t \t" + activities.get(i).getActivityName());
 			}else{
-				System.out.println("[" + (i + 1) + "]\t " + activities.get(i).getActivityName());
+				System.out.println("[" + (i + 1) + "]\t" + activities.get(i).getActivityName());
 			}
 		}
 

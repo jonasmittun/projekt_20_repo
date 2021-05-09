@@ -123,10 +123,12 @@ public class Controller {
 			Activity activity = view.activityOverviewAndAssignEmployee(project);
 			int employeeID = view.chooseEmployee();
 
+			//Error handling - if employee has more than 20 activities, process fails
 			try {
 				activity.assignEmployee(employeeID, companyApp.getEmployee(employeeID).getNumberOfActivities(), currentUserID);
 			}catch(Exception e){
 				System.out.println("The process has failed. Check employees working hours and try again.");
+				view.PageBreak();
 				assignEmployee(chosenProject);
 			}
 			System.out.println("Employee " + employeeID + " is successfully assigned to the "
@@ -242,7 +244,6 @@ public class Controller {
 			project = view.addProjectMenu(currentUserID);
 		}
 		companyApp.addProject(project);
-		System.out.println("TEST PROJECT ADDED!");
 	}
 
 	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception {
