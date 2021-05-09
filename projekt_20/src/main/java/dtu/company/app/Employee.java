@@ -34,7 +34,8 @@ public class Employee {
     }
 
     public void addDaysWorkInHalfHours(int halfHours) throws Exception {
-        assert halfHours >= 0 : "Precondition violated";
+        //Precondition
+        assert halfHours > 0 && daysWorkInHalfHours + halfHours <= 48: "Precondition";
         int halfHoursAtPre = daysWorkInHalfHours;
         if (halfHours > 0) {
             if (daysWorkInHalfHours + halfHours <= 48) {
@@ -46,7 +47,8 @@ public class Employee {
         } else {
             throw new Exception("Invalid input. Please insert a positive Integer...");
         }
-        assert halfHoursAtPre + halfHours == daysWorkInHalfHours;
+        //Post-condition
+        assert halfHoursAtPre + halfHours == daysWorkInHalfHours : "Post-condition";
     }
 
     public void removeWeeksWorkInHalfHours(int halfHours) throws Exception {

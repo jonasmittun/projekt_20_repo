@@ -100,8 +100,13 @@ public class EmployeeSteps {
 
 	@When("the employee <{int}> registers <{int}> half hours worked on activity <{int}> in project {string} for the day")
 	public void the_employee_registers_half_hours_worked_for_the_day(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
-		companyApp.registerDaysWork(employee, halfHours, activity, project);
+		try {
+			companyApp.registerDaysWork(employee, halfHours, activity, project);
+		} catch (Exception e){
+			errorMessage.setErrorMessage(e.getMessage());
+		}
 	}
+
 
 	@When("the employee <{int}> removes <{int}> half hours from the week registry and activity <{int}> in project {string}")
 	public void the_employee_removes_half_hours_from_the_week_registry_and_activity_in_project(Integer int1, Integer int2, Integer int3, String string) throws Exception {
