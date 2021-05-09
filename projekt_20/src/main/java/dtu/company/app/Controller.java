@@ -109,15 +109,21 @@ public class Controller {
 			result = view.projectAccessMenu(); //projectAccessMenu i view
 		}
 		switch(result) {
-			case 1: view.PageBreak(); addActivity(chosenProject);	break;
-			case 2: view.PageBreak(); assignEmployee(chosenProject); break;
-			case 3: view.PageBreak(); /*editProjectName(currentUserID);*/	break;
+			case 1: view.PageBreak(); addActivity(chosenProject);		break;
+			case 2: view.PageBreak(); assignEmployee(chosenProject); 	break;
+			case 3: view.PageBreak(); editProjectName(chosenProject);	break;
 			case 4: view.PageBreak(); /*setProjectDeadline(currentUserID);*/	break;
 			case 5: view.PageBreak(); getProjectOverview(chosenProject);break;
 			case 9: return;
 		}
 		view.PageBreak();
 		ProjectAccessMenu(chosenProject);
+	}
+	public static void editProjectName(String chosenProject) throws Exception{
+		String oldName = companyApp.getProject(chosenProject).getProjectName();
+		String newName = view.editProjectNameMenu();
+		companyApp.getProject(chosenProject).setProjectName(newName,currentUserID);
+		System.out.println(oldName + " has successfully edited to " + newName);
 	}
 
 	private static void assignEmployee(String chosenProject) throws Exception {

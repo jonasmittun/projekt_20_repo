@@ -52,6 +52,9 @@ public class Activity {
     }
 
     public void assignEmployee(int id, int activities, int user) throws Exception{
+        //Precondition
+        assert user == projectLeaderID && !assignedEmployees.contains(id) && activities < 20: "Precondition";
+
         if (user != projectLeaderID) {
             throw new Exception("You must be project leader");
         }
@@ -64,6 +67,8 @@ public class Activity {
         } else {
             throw new Exception("Employee is already assigned");
         }
+        //Post-condition
+        assert containsEmployeeWithID(id) : "Post-condition";
     }
 
 	public ArrayList<Integer> getEmployees(){

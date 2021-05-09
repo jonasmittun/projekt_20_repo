@@ -101,6 +101,13 @@ public class View {
 		this.test[7] = true;
 	}
 
+	public String editProjectNameMenu(){
+		System.out.println("Enter the name you would like to change for the chosen project");
+		//Asks user for the new name
+		String input = this.scanner.next();
+		return input;
+	}
+
 	public int projectAccessMenu(){
 		System.out.println("Choose an action for the selected project");
 
@@ -109,11 +116,12 @@ public class View {
 		System.out.println("[3]- " + "Edit project name");
 		System.out.println("[4]- " + "Set project deadline");
 		System.out.println("[5]- " + "Get project overview");
+		System.out.println("[9]- " + "Return");
 
 		int input = -1;
 		input = this.scanner.nextInt();
 
-		if (input > -1 && input < 6) {
+		if (input > -1 && input < 10) {
 			System.out.print("Going to... ");
 			switch (input) {
 				case 0: System.out.println("User Selection"); 		break;
@@ -122,6 +130,7 @@ public class View {
 				case 3: System.out.println("Edit project name"); 	break;
 				case 4: System.out.println("Set project deadline"); break;
 				case 5: System.out.println("Get project overview"); break;
+				case 9: System.out.println("Return");
 			}
 			this.test[8] = true;
 			return input;
@@ -302,12 +311,12 @@ public class View {
 	public int UserIntInput(){
 		int input = -1;
 		while (input == -1) {
-			//this.scanner = new Scanner(System.in);
+			this.scanner = new Scanner(System.in);
 			try {
 				input = this.scanner.nextInt();
 			} catch (InputMismatchException m) {
 				System.out.println("You need to insert an Integer. Try again...");
-				continue;
+
 			}
 		}
 		this.test[18] = true;
