@@ -302,7 +302,7 @@ public class View {
 	public int UserIntInput(){
 		int input = -1;
 		while (input == -1) {
-			this.scanner = new Scanner(System.in);
+			//this.scanner = new Scanner(System.in);
 			try {
 				input = this.scanner.nextInt();
 			} catch (InputMismatchException m) {
@@ -377,7 +377,11 @@ public class View {
 		this.test[31] = true;
 		
 		int input = -1;
-		input = this.scanner.nextInt();
+		try {
+			input = this.scanner.nextInt();
+		} catch (Exception e) {
+			input = -1;
+		}
 		
 		if (input > -1 && input < 10) {
 			System.out.print("Going to... ");
@@ -398,7 +402,11 @@ public class View {
 		} else {
 			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
 			System.out.println("Input any key to return to Main Menu...");
-			this.scanner.next();
+			try {
+				this.scanner.next();
+			} catch (Exception e) {
+				System.out.println("Warning bad input when returning to Main Menu!!");
+			}
 			this.test[26] = true;
 			return -1;
 		}
