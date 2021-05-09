@@ -54,8 +54,12 @@ public class View {
 
 	public int UserInput() {
 		int input = -1;
-		
-		input = this.scanner.nextInt();
+			try {
+				input = this.scanner.nextInt();
+			} catch (Exception e) {
+				System.out.println("Wrong input format! Please input an integer!");
+				input = -1;
+			} 
 		this.test[5] = true;
 		return input;
 	}
@@ -370,6 +374,8 @@ public class View {
 		System.out.println("[9]- " + "Exit Program");
 		System.out.println("[0]- " + "User Selection");
 		
+		this.test[31] = true;
+		
 		int input = -1;
 		input = this.scanner.nextInt();
 		
@@ -464,5 +470,6 @@ public class View {
 
 	public void printErrorMessage(ErrorMessageHolder errorMessage) {
 		System.out.println(errorMessage.getErrorMessage());
+		test[32] = true;
 	}
 }
