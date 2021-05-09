@@ -130,7 +130,7 @@ public class Controller {
 			try {
 				activity.assignEmployee(employeeID, companyApp.getEmployee(employeeID).getNumberOfActivities(), currentUserID);
 			}catch(Exception e){
-				System.out.println("The process has failed. Check employees working hours and try again.");
+				System.out.println("The process has failed. Check employees working hours/employee ID and try again.");
 				view.PageBreak();
 				assignEmployee(chosenProject);
 			}
