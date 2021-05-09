@@ -78,14 +78,14 @@ public class ProjectSteps {
         assertTrue(companyApp.containsProjectWithName(string));
     }
 
-    @When("a project named {string} with starting week <{int}> and finish week <{int}> is created")
+   /* @When("a project named {string} with starting week <{int}> and finish week <{int}> is created")
     public void a_project_named_with_starting_week_and_finish_week_is_created(String string, Integer int1, Integer int2) throws Exception {
         try {
             this.project = new Project(string, int1, int2);
         } catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
-    }
+    }*/
 
     @Then("the system contains a project named {string} with starting week <{int}> and finishing week <{int}>")
     public void the_system_contains_a_project_named_with_starting_week_and_finishing_week(String string, Integer int1, Integer int2) {

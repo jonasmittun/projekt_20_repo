@@ -21,7 +21,7 @@ public class Project {
         this.employeeList = new ArrayList<Employee>();
     }
 
-    public Project(String projectName, int startWeek, int endWeek) throws Exception {
+    /*public Project(String projectName, int startWeek, int endWeek) throws Exception {
         this.projectName = projectName;
         this.activityList = new ArrayList<Activity>();
         this.employeeList = new ArrayList<Employee>();
@@ -31,7 +31,7 @@ public class Project {
         } else {
             throw new Exception("Starting week must be before finishing week");
         }
-    }
+    }*/
 
     public Project(String projectName, LocalDate startDate, LocalDate endDate) throws Exception{
         this.projectName = projectName;
