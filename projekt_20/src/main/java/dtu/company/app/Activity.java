@@ -66,10 +66,6 @@ public class Activity {
         }
     }
 
-	public int getEmployeeWithId(int i) {
-		return assignedEmployees.get(i);
-	}
-	
 	public ArrayList<Integer> getEmployees(){
 		return assignedEmployees;
 	}
@@ -100,10 +96,6 @@ public class Activity {
 
     public void setProjectLeaderID(int projectLeaderID) {
         this.projectLeaderID = projectLeaderID;
-    }
-
-    public int getProjectLeaderID() {
-        return projectLeaderID;
     }
 
     public int removeHalfHoursWorked(int halfHours) {

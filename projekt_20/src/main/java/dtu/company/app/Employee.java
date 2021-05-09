@@ -64,18 +64,6 @@ public class Employee {
         }
     }
 
-    public void resetDaysWork() {
-        this.daysWorkInHalfHours = 0;
-    }
-
-    public void resetWeeksWork() {
-        this.weeksWorkInHalfHours = 0;
-    }
-
-    public int getDaysWorkInHalfHours(){
-        return daysWorkInHalfHours;
-    }
-
     public int getWeeksWorkInHalfHours(){
         return weeksWorkInHalfHours;
     }

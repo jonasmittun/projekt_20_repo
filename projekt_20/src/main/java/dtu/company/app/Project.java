@@ -9,8 +9,6 @@ public class Project {
     private int projectLeaderID;
     private ArrayList<Activity> activityList;
     private ArrayList<Employee> employeeList;
-    private int startWeek;
-    private int endWeek;
     private LocalDate startDate;
     private LocalDate endDate;
     
@@ -20,18 +18,6 @@ public class Project {
         this.activityList = new ArrayList<Activity>();
         this.employeeList = new ArrayList<Employee>();
     }
-
-    /*public Project(String projectName, int startWeek, int endWeek) throws Exception {
-        this.projectName = projectName;
-        this.activityList = new ArrayList<Activity>();
-        this.employeeList = new ArrayList<Employee>();
-        if (startWeek < endWeek) {
-            this.startWeek = startWeek;
-            this.endWeek = endWeek;
-        } else {
-            throw new Exception("Starting week must be before finishing week");
-        }
-    }*/
 
     public Project(String projectName, LocalDate startDate, LocalDate endDate) throws Exception{
         this.projectName = projectName;
@@ -44,8 +30,6 @@ public class Project {
             throw new Exception("Deadline should not be before the starting date!");
         }
     }
-
-    //Adders1
 
     public void addEmployee(Employee employee) {
         employeeList.add(employee);
@@ -85,14 +69,6 @@ public class Project {
 
     public ArrayList<Employee> getEmployees(){
         return employeeList;
-    }
-
-    public int getStartWeek(){
-        return startWeek;
-    }
-
-    public int getEndWeek(){
-        return endWeek;
     }
 
     //Contains

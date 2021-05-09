@@ -87,12 +87,6 @@ public class ProjectSteps {
         }
     }*/
 
-    @Then("the system contains a project named {string} with starting week <{int}> and finishing week <{int}>")
-    public void the_system_contains_a_project_named_with_starting_week_and_finishing_week(String string, Integer int1, Integer int2) {
-        assertTrue(companyApp.containsProjectWithName(string));
-        assertTrue(companyApp.getProject(string).getStartWeek()==int1);
-        assertTrue(companyApp.getProject(string).getEndWeek()==int2);
-    }
 
     @When("the deadline for {string} is set to {int}-{int}-{int}")
     public void the_deadline_for_is_set_to(String string, Integer int1, Integer int2, Integer int3) throws Exception {
