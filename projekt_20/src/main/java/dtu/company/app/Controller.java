@@ -38,13 +38,14 @@ public class Controller {
 		while(!idConfirmed) {
 			view.UserIDText();
 			currentUserID = view.UserInput();
-			idConfirmed = view.ConfirmUserID(currentUserID);
+			try {
+				companyApp.setUser(currentUserID);
+				idConfirmed = view.ConfirmUserID(currentUserID);
+			} catch (Exception e){
+				System.out.println("No employee with ID " + currentUserID + " exists");
+			}
 		}
-		try {
-			companyApp.setUser(currentUserID);
-		} catch (Exception e){
-			System.out.println(e);
-		}
+
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
 	
