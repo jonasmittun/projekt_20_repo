@@ -79,6 +79,7 @@ public class CompanyApp {
     	assertUserIsProjectLeader(projectLeaderID);
 		int noOfActivities = employeeList.get(employeeID).getNumberOfActivities();
     	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,noOfActivities,projectLeaderID);
+    	getProject(projectName).addEmployee(getEmployee(employeeID));
 		employeeList.get(employeeID).addActivity();
     }
 

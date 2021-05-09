@@ -28,8 +28,8 @@ public class CompanyInfoSteps {
 	private Project project;
 	private ArrayList<Project> projects = new ArrayList<Project>();
 	
-	public CompanyInfoSteps(CompanyApp companyApp, ErrorMessageHolder errorMessage) {
-		this.companyApp = companyApp;
+	public CompanyInfoSteps(CompanyHelper companyHelper, ErrorMessageHolder errorMessage) {
+		this.companyApp = companyHelper.getCompanyHelper();
 		this.errorMessage = errorMessage;
 	}
 	
@@ -37,7 +37,7 @@ public class CompanyInfoSteps {
 	
 	@Given("companyApp exists")
 	public void company_app_exists() {
-	    this.companyApp = new CompanyApp();
+	    assertTrue(this.companyApp != null);
 	}
 
 	@Given("project {string} exists within companyApp")
@@ -135,8 +135,9 @@ public class CompanyInfoSteps {
 	    this.activity.assignEmployee(int1, 0,0);
 	}
 	
-	@Then("assert that employee with id <{int}> exists within activity with id <{int}>")
-	public void assert_that_employee_with_id_exists_within_activity_with_id(Integer int1, Integer int2) {
+	@Then("assert that employee with id <{int}> exists within activity with id <{int}> in {string}")
+	public void assert_that_employee_with_id_exists_within_activity_with_id(Integer int1, Integer int2, String string) {
+		this.activity = companyApp.getProject(string).getActivityWithID(int2);
 	    assertTrue(this.activity.getActivityID() == int2 && this.activity.containsEmployeeWithID(int1));
 	}
 	
@@ -149,12 +150,14 @@ public class CompanyInfoSteps {
 	@Given("employee with id <{int}> exists within project {string}")
 	public void employee_with_id_exists_within_project(Integer int1, String string) {
 	    this.employee = new Employee(int1);
-	    this.project = new Project(string);
-	    this.project.addEmployee(this.employee);
+	    //this.project = new Project(string);
+		this.companyApp.getProject(string).addEmployee(this.employee);
+	    //this.project.addEmployee(this.employee);
 	}
 	
 	@Then("assert that employee with id <{int}> exists within project {string}")
 	public void assert_that_employee_with_id_exists_within_project(Integer int1, String string) {
+		this.project = this.companyApp.getProject(string);
 	    assertTrue(this.project.getProjectName().equals(string) && this.project.containsEmployeeWithID(int1));
 	}
 	

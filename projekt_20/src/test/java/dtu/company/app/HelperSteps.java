@@ -69,4 +69,10 @@ public class HelperSteps {
 	public void an_employee_employee_is_not_the_project_leader_for_the_project(Integer int1, String string) {
 		assertTrue(companyApp.getProject(string).getProjectLeaderID()!=int1);
 	}
+
+	@Given("a project {string} exists in the system")
+	public void a_project_exists_in_the_system(String string) {
+		assertTrue(companyApp.getProject(string).getProjectName().equals(string));
+	}
+
 }
