@@ -56,7 +56,7 @@ public class Activity {
             throw new Exception("You must be project leader");
         }
         if (!assignedEmployees.contains(id)) {
-            if (activities < 10) {
+            if (activities < 20) {
                 this.assignedEmployees.add(id);
             } else if (activities >= 20) {
                 throw new Exception("Employee is working too much");
