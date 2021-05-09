@@ -9,6 +9,7 @@ public class Controller {
 	static int currentUserID = -1;
 	private static ArrayList<String> userActivities;
 	private static ArrayList<String> userProjects;
+	private static ErrorMessageHolder errorMessage = new ErrorMessageHolder();
 
 	
 	public static void main(String[] args) throws Exception {
@@ -42,7 +43,8 @@ public class Controller {
 				companyApp.setUser(currentUserID);
 				idConfirmed = view.ConfirmUserID(currentUserID);
 			} catch (Exception e){
-				System.out.println("No employee with ID " + currentUserID + " exists");
+				errorMessage.setErrorMessage(e.getMessage());
+				view.printErrorMessage(errorMessage);
 			}
 		}
 

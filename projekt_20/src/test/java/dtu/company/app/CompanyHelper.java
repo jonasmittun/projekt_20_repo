@@ -5,6 +5,8 @@ public class CompanyHelper {
 
     public CompanyHelper() throws Exception {
         this.companyHelper = new CompanyApp();
+        Employee adminEmployee = new Employee(0);
+        companyHelper.addNewEmployee(adminEmployee);
 
         for (int i = 1; i < 31; i++){
             //Projects are named "project <int>"

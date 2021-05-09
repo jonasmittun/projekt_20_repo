@@ -429,5 +429,7 @@ public class View {
 		}
 	}
 
-
+	public void printErrorMessage(ErrorMessageHolder errorMessage) {
+		System.out.println(errorMessage.getErrorMessage());
+	}
 }
