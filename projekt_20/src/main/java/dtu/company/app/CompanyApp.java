@@ -137,7 +137,7 @@ public class CompanyApp {
 
 	}
 
-    public ArrayList<String> getUserActivities(int ID){ //TODO: Roi coverage plz
+    public ArrayList<String> getUserActivities(int ID){
     	ArrayList<String> list = new ArrayList<String>();
     	for(int i = 0; i < projectList.size(); i++) {
 			Project proj = projectList.get(i);

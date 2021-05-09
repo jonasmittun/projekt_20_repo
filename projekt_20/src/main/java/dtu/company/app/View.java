@@ -263,12 +263,17 @@ public class View {
 		System.out.println("\tProjects: \tDeadline: \tEmployees: \tWeekhours: ");
 		for (int i = 0; i < employees.size() || i < projects.size(); i++){
 			String projectName = (projects.get(i) == null) ? "\n" : projects.get(i).getProjectName();
-			//String deadline = (projects.get(i).getDeadline() == null) ? "\n" : String.valueOf(projects.get(i).getDeadline());
+			String deadline = "";
+			try {
+				deadline = (projects.get(i).getDeadline() == null) ? "\n" : String.valueOf(projects.get(i).getDeadline());
+			} catch (Exception e) {
+				deadline = "N/A";
+			}
 			String employeeID = (employees.get(i) == null) ? "\n" : "employee " + employees.get(i).getId();
-			double weekHours = employees.get(i).getWeeksWorkInHalfHours()*2;
+			double weekHours = employees.get(i).getWeeksWorkInHalfHours()/2;
 
 			System.out.print("\t" + projectName + "\t" +
-					/*deadline +*/ "\t\t\t");
+					deadline + "\t\t\t");
 			System.out.print(employeeID + "\t" + weekHours + "\n");
 		}
 

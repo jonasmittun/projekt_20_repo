@@ -45,15 +45,7 @@ public class Project {
         }
     }
 
-    //Adders
-    /*
-    public void addActivity(Activity activity) throws Exception{
-        if (activity.getActivityID() <= activityList.size()) {
-            throw new Exception("Activity must have an orignal ID");
-        }
-        activity.setProjectLeaderID(projectLeaderID);
-        activityList.add(activity);
-    }*/
+    //Adders1
 
     public void addEmployee(Employee employee) {
         employeeList.add(employee);
@@ -69,14 +61,6 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public void setStartWeek(int week){
-        this.startWeek = week;
-    }
-
-    public void setEndWeek(int week){
-        this.endWeek = week;
-    }
-
     //Getters
     public int getProjectLeaderID(){
         return projectLeaderID;
@@ -89,15 +73,6 @@ public class Project {
     public Activity getActivityWithID(int id){
         for (int i = 0; i < activityList.size(); i++){
             if (activityList.get(i).getActivityID()==id){
-                return activityList.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Activity getActivityWithName(String activityName){
-        for (int i = 0; i < activityList.size(); i++){
-            if(activityList.get(i).getActivityName() == activityName){
                 return activityList.get(i);
             }
         }
@@ -130,15 +105,6 @@ public class Project {
         return false;
     }
 
-    public Boolean containsActivityWithName(String activityName){
-        for (int i = 0; i < activityList.size(); i++){
-            if (activityList.get(i).getActivityName() == activityName){
-                return true;
-            }
-        }
-        return false;
-    }
-
 	public boolean containsEmployeeWithID(Integer id) {
 		for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getId() == id) {
@@ -163,19 +129,6 @@ public class Project {
             return endDate;
         } else {
             throw new Exception("Deadline is not defined");
-        }
-    }
-
-    public void updateActivity(Activity activity) throws Exception{
-        if (containsActivityWithID(activity.getActivityID())) {
-            for (int i = 0; i < activityList.size(); i++) {
-                if (activityList.get(i).getActivityID() == activity.getActivityID()) {
-                    activityList.set(i, activity);
-                    return;
-                }
-            }
-        } else {
-            throw new Exception("Activity does not already exist");
         }
     }
 

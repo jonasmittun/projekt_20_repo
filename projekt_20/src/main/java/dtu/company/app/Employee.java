@@ -38,8 +38,7 @@ public class Employee {
             this.daysWorkInHalfHours = daysWorkInHalfHours + halfHours;
             this.weeksWorkInHalfHours = weeksWorkInHalfHours + halfHours;
         } else {
-            System.out.println("You can't work more than 24 hours. Try again");
-            System.out.println("");
+            throw new Exception("You can't work more than 24 hours. Try again");
         }
     }
 

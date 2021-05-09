@@ -166,8 +166,13 @@ public class Controller {
 		int halfHours = Integer.parseInt(s.substring(s.lastIndexOf(':')+1,s.length()));
 
 		//Registers users hours
-		companyApp.registerDaysWork(CurrentUserID,halfHours,activityID,projectName);
 
+		try {
+			companyApp.registerDaysWork(CurrentUserID, halfHours, activityID, projectName);
+		} catch (Exception e){
+			System.out.println("You can't work more than 24 hours. Try again");
+			System.out.println("");
+		}
 		double activityWork = companyApp.getProject(projectName).getActivityWithID(activityID).getWorkedHalfHours()/2;
 		double weeksWork = companyApp.getEmployee(CurrentUserID).getWeeksWorkInHalfHours()/2;
 
