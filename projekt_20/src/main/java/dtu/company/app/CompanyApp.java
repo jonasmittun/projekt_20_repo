@@ -104,8 +104,12 @@ public class CompanyApp {
 		}
 	}
 
-	public void setUser(Integer int1) {
-		this.user = int1;
+	public void setUser(Integer int1) throws Exception{
+    	if (containsEmployeeWithId(int1)) {
+			this.user = int1;
+		} else {
+    		throw new Exception("ID does not not match any employee");
+		}
 	}
 
 

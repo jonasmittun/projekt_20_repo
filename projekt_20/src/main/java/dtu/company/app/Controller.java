@@ -40,7 +40,11 @@ public class Controller {
 			currentUserID = view.UserInput();
 			idConfirmed = view.ConfirmUserID(currentUserID);
 		}
-		companyApp.setUser(currentUserID);
+		try {
+			companyApp.setUser(currentUserID);
+		} catch (Exception e){
+			System.out.println(e);
+		}
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
 	

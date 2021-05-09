@@ -73,8 +73,12 @@ public class EmployeeSteps {
 	}
 
 	@Given("employee <{int}> is the user")
-	public void employee_is_the_user(Integer int1) {
-		companyApp.setUser(int1);
+	public void employee_is_the_user(Integer int1) throws Exception {
+		try {
+			companyApp.setUser(int1);
+		} catch (Exception e){
+			System.out.print(e);
+		}
 	    assertTrue(companyApp.getUser() == int1);
 	}
 
