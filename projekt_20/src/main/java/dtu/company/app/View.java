@@ -1,7 +1,5 @@
 package dtu.company.app;
 
-import java.sql.SQLOutput;
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +12,7 @@ public class View {
 	public Scanner scanner;
 	public Project project;
 	public Boolean[] test;
-	
+
 	public View() {
 		scanner = new Scanner(System.in);
 		this.test = new Boolean[40];
@@ -74,7 +72,7 @@ public class View {
 		PageBreak();
 		System.out.println("Please select one of " + (list.size()) + " projects");
 
-		int input = userIntInput();
+		int input = UserIntInput();
 
 		if (input > list.size()){
 			System.out.println("Please choose a value from 1 to" + list.size());
@@ -222,15 +220,16 @@ public class View {
 		PageBreak();
 		System.out.println("Please select one of the " + (activities.size()) + " activities");
 
-		int input = userIntInput() - 1;
 		this.test[13] = true;
+		int input = UserIntInput() - 1;
+
 		return activities.get(input);
 	}
 
 	public int chooseEmployee(){
 		System.out.println("Please enter employee ID to assign ");
-		int input = userIntInput();
 		this.test[14] = true;
+		int input = UserIntInput();
 		return input;
 	}
 
@@ -296,12 +295,16 @@ public class View {
 		this.test[17] = true;
 	}
 
-	private int userIntInput(){
-		int input;
-		try {
-			input = this.scanner.nextInt();
-		} catch (Exception e){
-			input = -1;
+	public int UserIntInput(){
+		int input = -1;
+		while (input == -1) {
+			this.scanner = new Scanner(System.in);
+			try {
+				input = this.scanner.nextInt();
+			} catch (InputMismatchException m) {
+				System.out.println("You need to insert an Integer. Try again...");
+				continue;
+			}
 		}
 		this.test[18] = true;
 		return input;

@@ -38,7 +38,7 @@ public class Employee {
             this.daysWorkInHalfHours = daysWorkInHalfHours + halfHours;
             this.weeksWorkInHalfHours = weeksWorkInHalfHours + halfHours;
         } else {
-            throw new Exception("You can't work more than 24 hours. Try again");
+            throw new Exception("Employee can't work more than 24 hours. Try again");
         }
     }
 

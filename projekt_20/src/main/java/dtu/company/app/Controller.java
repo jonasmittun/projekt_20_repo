@@ -38,13 +38,14 @@ public class Controller {
 		boolean idConfirmed = false;
 		while(!idConfirmed) {
 			view.UserIDText();
-			currentUserID = view.UserInput();
+			currentUserID = view.UserIntInput();
 			try {
 				companyApp.setUser(currentUserID);
 				idConfirmed = view.ConfirmUserID(currentUserID);
 			} catch (Exception e){
 				errorMessage.setErrorMessage(e.getMessage());
 				view.printErrorMessage(errorMessage);
+				SelectUser();
 			}
 		}
 
