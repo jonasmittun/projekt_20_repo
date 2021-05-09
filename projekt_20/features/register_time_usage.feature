@@ -17,8 +17,9 @@ Feature: Register time-usage
     Then employee <2>'s worked hours is updated to <5> half hours
     Then activity <1> in project "project 1" worked hours is updated to <5> half hours
 
-#  Scenario: Get activities that an employee is assigned to
-#    Given an employee with id <2> is registered to the system
-#    And the employee <2> is assigned to the activity <1> in project "project 1"
-#    When system
-#    Then return list of projects that includes project named "project 1"
+  Scenario: Get activities that an employee is assigned to
+    Given an employee with id <2> is registered to the system
+    And employee <1> is the user
+    And the employee <2> is assigned to a number of activities in project "project 1"
+    When system gets list of activities that employee <2> is assigned to
+    Then return list of activities that include the number of activities

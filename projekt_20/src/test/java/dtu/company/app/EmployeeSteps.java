@@ -19,7 +19,8 @@ public class EmployeeSteps {
 	private Activity activity;
 	private Project project;
 	private ArrayList<Activity> activities;
-	
+	private ArrayList<String> list;
+
 	public EmployeeSteps(ErrorMessageHolder errorMessage, CompanyHelper companyHelper) {
 		this.companyApp = companyHelper.getCompanyHelper();
 		this.errorMessage = errorMessage;
@@ -161,6 +162,28 @@ public class EmployeeSteps {
 	@Then("return list of projects that includes project named {string}")
 	public void return_list_of_projects_that_includes_project_named(String string) {
 		assertTrue(this.companyApp.getProjects().contains(companyApp.getProject(string)));
+	}
+
+	@Given("the employee <{int}> is assigned to a number of activities in project {string}")
+	public void the_employee_is_assigned_to_a_number_of_activities_in_project(Integer int1, String string) throws Exception {
+		companyApp.assignEmployee(int1, 1,string);
+		companyApp.assignEmployee(int1, 2,string);
+		companyApp.assignEmployee(int1, 3,string);
+		companyApp.assignEmployee(int1, 4,string);
+		companyApp.assignEmployee(int1, 5,string);
+	}
+
+	@When("system gets list of activities that employee <{int}> is assigned to")
+	public void system_gets_list_of_activities_that_employee_is_assigned_to(Integer int1) {
+		this.list = companyApp.getUserActivities(int1);
+	}
+
+	@Then("return list of activities that include the number of activities")
+	public void return_list_of_activities_that_include_the_number_activities() {
+		for (int i = 0; i < 5; i++){
+			int id = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':')+1,list.get(i).length()));
+			assertTrue(id == i + 1);
+		}
 	}
 }
 

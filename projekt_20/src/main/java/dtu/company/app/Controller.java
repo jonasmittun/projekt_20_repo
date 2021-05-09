@@ -218,7 +218,6 @@ public class Controller {
 
 	private static void addActivity(String chosenProject) throws Exception {
 		int activities = companyApp.getProject(chosenProject).getActivities().size()+1;
-		System.out.println(activities);
 		Activity activity = view.addActivity(activities, chosenProject, currentUserID);
 		companyApp.addActivity(activity, chosenProject);
 
