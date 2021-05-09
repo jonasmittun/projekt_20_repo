@@ -154,7 +154,7 @@ public class EmployeeSteps {
 
 	@When("system gets list of projects that employee <{int}> is leading")
 	public void system_gets_list_of_projects_that_employee_is_leading(Integer int1) {
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list;
 		list = this.companyApp.getLeaderProjects(int1);
 		list.forEach(n -> System.out.println(n));
 	}

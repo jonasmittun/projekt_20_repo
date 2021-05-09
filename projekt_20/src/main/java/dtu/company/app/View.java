@@ -133,6 +133,7 @@ public class View {
 		String input2 = this.scanner.next();
 		String projectName = "";
 
+		//User decision
 		if(input2.equalsIgnoreCase("y")){
 			System.out.println("Name Confirmed: " + input + "!");
 			projectName = input;
@@ -157,16 +158,30 @@ public class View {
 
 		String input4 = this.scanner.next();
 
+		//User decision
 		if (input4.equalsIgnoreCase("y")){
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			LocalDate startDate = LocalDate.now();
 			System.out.println("Enter a deadline for your project [dd/MM/yyyy]:");
 			LocalDate endDate = LocalDate.parse(scanner.next(), formatter);
+
 			System.out.println("Your project is being created with startDate: " + startDate +
 					" and endDate: " + endDate + "...");
-			this.project = new Project(projectName, startDate, endDate);
+
+			//Error handling for invalid deadline
+			try {
+				this.project = new Project(projectName, startDate, endDate);
+			}catch (Exception e){
+				System.out.println("Invalid deadline, process is restarting");
+				PageBreak();
+				return null;
+			}
+
+			//Project created with deadline
 			System.out.println("Project " + "\"" +projectName + "\"" + " is created with startDate: " +
 					startDate + " and endDate: " + endDate + "!");
+
+			//Project created without deadline
 		}else{
 			this.project = new Project(projectName);
 			System.out.println("Project " + "\"" +projectName + "\"" + " is created!");
