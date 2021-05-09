@@ -23,17 +23,6 @@ Feature: Assigning Employee
       When the project leader <1> assigns the employee <2> to the activity <1> in project "project 1"
       Then the error message "You must be project leader" is given
 
-     #Alternative scenario
-  Scenario: The employee is currently working on <10> activities
-    Given there exists an activity "activity 1" with id <1> in project "project 1"
-    And there exists an employee with id <1> which is project leader for project "project 1"
-    And employee <1> is the user
-    And there exists an employee <3> who is not assigned to the activity <1> in project "project 1"
-    And the employee <3> is currently working on <10> activities or more
-    When the project leader <1> assigns the employee <3> to the activity <1> in project "project 1"
-    #Then the error message "Warning: Employee is working a lot" is given
-    And the employee <3> is assigned to the activity <1> in project "project 1"
-
    #Alternative scenario
    Scenario: The employee is currently working on <20> activities
      Given there exists an activity "activity 1" with id <1> in project "project 1"

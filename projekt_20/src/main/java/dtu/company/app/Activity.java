@@ -58,9 +58,6 @@ public class Activity {
         if (!assignedEmployees.contains(id)) {
             if (activities < 10) {
                 this.assignedEmployees.add(id);
-            } else if (activities < 20 && activities >= 10) {
-                this.assignedEmployees.add(id);
-                //throw new Exception("Warning: Employee is working a lot");
             } else if (activities >= 20) {
                 throw new Exception("Employee is working too much");
             }

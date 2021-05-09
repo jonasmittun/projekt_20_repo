@@ -10,14 +10,14 @@ public class CompanyApp {
     private LocalDate date;
 
     public CompanyApp() {
-    	employeeList = new ArrayList<Employee>();
+    	employeeList = new ArrayList<>();
         Employee employee;
         for (int i = 1; i < 51; i++){
             employee = new Employee(i);
             employeeList.add(employee);
         }
         this.date = LocalDate.now();
-        this.projectList = new ArrayList<Project>();
+        this.projectList = new ArrayList<>();
     }
 
 	public boolean containsProjectWithName(String string) {
@@ -206,7 +206,7 @@ public class CompanyApp {
 	public void addActivity(Activity activity, String projectName) throws Exception{
 		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
 		if (activity.getActivityID() <= getProject(projectName).getActivities().size()) {
-			throw new Exception("Activity must have an orignal ID");
+			throw new Exception("Activity must have an original ID");
 		}
 		activity.setProjectLeaderID(getProject(projectName).getProjectLeaderID());
 		getProject(projectName).getActivities().add(activity);
