@@ -8,6 +8,12 @@ Scenario: an empty project is created
 	And the project is added to the system
 	Then the system contains a project named "project lol"
 
+Scenario: a new project is created with currentDate and endDate
+	Given a project "project dtu" does not exist in the system
+	When a project named "project dtu" is created with a startDate 01/01/2020 and an endDate 02/01/2020
+	And the project is added to the system
+	Then the system contains a project named "project dtu"
+
 Scenario: Create project with existing project name
 	Given a project exists in the system
 	When the project is added to the system

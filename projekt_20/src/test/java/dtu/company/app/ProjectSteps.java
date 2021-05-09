@@ -39,7 +39,15 @@ public class ProjectSteps {
     public void create_project_named(String string) {
         this.project = new Project(string);
     }
-    
+
+    @When("a project named {string} is created with a startDate {int}\\/{int}\\/{int} and an endDate {int}\\/{int}\\/{int}")
+    public void a_project_named_is_created_with_a_start_date_and_an_end_date(String string, Integer int1, Integer int2, Integer int3, Integer int4, Integer int5, Integer int6) throws Exception {
+        LocalDate startDate = LocalDate.of(int3,int2,int1);
+        LocalDate endDate = LocalDate.of(int6,int5,int4);
+	    this.project = new Project(string,startDate,endDate);
+    }
+
+
     @When("the project is added to the system")
     public void the_project_is_added_to_the_system() throws Exception{
     	try {
