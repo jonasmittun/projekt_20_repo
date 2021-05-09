@@ -20,8 +20,9 @@ Feature: Edit project info
         Given the system contains a project "project 20"
         And the system contains a project "project 1"
         And an employee “employee 20” is the project leader for the project "project 20"
-        #When the project "project 20" is edited with new name "project 1"
-        #Then the error message "Project name must original" is given
+        And employee <20> is the user
+        When the project "project 20" is edited with new name "project 1"
+        Then the error message "Project already exists" is given
 
    Scenario: Projects deadline is changed
         Given the system contains a project "project 1"

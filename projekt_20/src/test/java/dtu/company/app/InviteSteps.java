@@ -50,11 +50,11 @@ public class InviteSteps {
 //	    Der burde måske være noget her men det virker vel uden 
 	}
 
-	@Then("assign employee <{int}> to activity <{int}>")
+	/*@Then("assign employee <{int}> to activity <{int}>")
 	public void assign_employee_to_activity(Integer int1, Integer int2) throws Exception {
-		this.activity.inviteEmployee(this.inviter, this.invitee);
+		this.companyApp.getProject(string).getActivityWithID(int2).inviteEmployee(this.inviter, this.invitee);
 	    assertTrue(this.activity.containsEmployeeWithID(this.invitee.getId()));
-	}
+	}*/
 
 	@Then("do not assign employee <{int}> to activity <{int}> parent project")
 	public void do_not_assign_employee_to_activity_parent_project(Integer int1, Integer int2) {
@@ -81,4 +81,15 @@ public class InviteSteps {
 		System.out.println(this.errorMessage.getErrorMessage());
 	    assertTrue(this.errorMessage.getErrorMessage().toString().equals("Employee being invited is already assigned to activity!"));
 	}
+
+	@When("employee <{int}> is invited to activity <{int}> in {string}")
+	public void employee_is_invited_to_activity_in(Integer int1, Integer int2, String string) throws Exception {
+		companyApp.getProject("testProject").getActivityWithID(int2).assignEmployee(int1, 0, companyApp.getUser());
+	}
+
+	@Then("employee <{int}> is assigned to activity <{int}> in {string}")
+	public void employee_is_assigned_to_activity_in(Integer int1, Integer int2, String string) {
+		assertTrue(companyApp.getProject("testProject").getActivityWithID(int2).containsEmployeeWithID(int1));
+	}
+
 }

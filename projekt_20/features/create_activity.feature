@@ -12,6 +12,6 @@ Feature: Create Activity
    Scenario: An activity is created by a user that is not the project leader
          Given a project "project 1" exists with employee <1> as project leader
          And employee <2> is the user
-         #When an activity is created in project "project 1"
-         #Then the error message "You must be project leader" is given
+         When an activity is created in project "project 1"
+         Then the error message "You must be project leader" is given
 

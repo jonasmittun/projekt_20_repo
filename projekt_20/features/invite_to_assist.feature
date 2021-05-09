@@ -4,10 +4,10 @@ Feature: Invite to assist
 
 	# Invite Employee to Activity
 	Scenario: employee <1> invites employee <2> to assist with activity <3>
-		Given employee <1> exists within activity <3> in project "project 1"
+		Given employee <1> exists within activity <3>
 		And employee <2> exists within companyApp
-		When employee <1> invites employee <2> to assist with activity <3>
-		Then assign employee <2> to activity <3>
+		When employee <2> is invited to activity <3> in "project 1"
+		Then employee <2> is assigned to activity <3> in "project 1"
 		But do not assign employee <2> to activity <3> parent project
 
 	# Invite Employee to Activity where said Employee already exists

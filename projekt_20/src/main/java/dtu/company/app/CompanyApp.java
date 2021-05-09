@@ -206,7 +206,7 @@ public class CompanyApp {
 
 	public void addActivity(Activity activity, String projectName) throws Exception{
 		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
-		if (activity.getActivityID() <= getProject(projectName).getActivities().size()) {
+		if (getProject(projectName).containsActivityWithID(activity.getActivityID())) {
 			throw new Exception("Activity must have an original ID");
 		}
 		activity.setProjectLeaderID(getProject(projectName).getProjectLeaderID());
