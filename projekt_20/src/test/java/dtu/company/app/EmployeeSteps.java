@@ -166,11 +166,11 @@ public class EmployeeSteps {
 
 	@Given("the employee <{int}> is assigned to a number of activities in project {string}")
 	public void the_employee_is_assigned_to_a_number_of_activities_in_project(Integer int1, String string) throws Exception {
-		companyApp.assignEmployee(int1, 1,string);
-		companyApp.assignEmployee(int1, 2,string);
-		companyApp.assignEmployee(int1, 3,string);
-		companyApp.assignEmployee(int1, 4,string);
-		companyApp.assignEmployee(int1, 5,string);
+		this.companyApp.assignEmployee(int1, 1,string);
+		this.companyApp.assignEmployee(int1, 2,string);
+		this.companyApp.assignEmployee(int1, 3,string);
+		this.companyApp.assignEmployee(int1, 4,string);
+		this.companyApp.assignEmployee(int1, 5,string);
 	}
 
 	@When("system gets list of activities that employee <{int}> is assigned to")
