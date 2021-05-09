@@ -498,4 +498,52 @@ public class View {
 		System.out.println(errorMessage.getErrorMessage());
 		test[32] = true;
 	}
+
+	public LocalDate editProjectDeadline() {
+		boolean confirm = false;
+		LocalDate date;
+		int year;
+		int month;
+		int day;
+		while (confirm == false) {
+			System.out.println("Please choose a date");
+			System.out.println("Enter year:");
+			year = getUserInputInt(LocalDate.now().getYear(), LocalDate.now().getYear() + 100);
+			System.out.println("Enter month:");
+			month = getUserInputInt(1, 12);
+			date = LocalDate.of(year, month, 1);
+			System.out.println("Enter day:");
+			day = getUserInputInt(1, date.lengthOfMonth());
+			System.out.println("The date [year-month-day]: " + year + "-" + month + "-" + day + " has been chosen");
+			confirm = ConfirmInput();
+			date = LocalDate.of(year, month, day);
+			if (confirm == true) {
+				return date;
+			}
+		}
+		return null;
+	}
+
+	public int getUserInputInt(int minSize,int maxSize) {
+		int input = this.scanner.nextInt();
+		while (input < minSize || input >= maxSize) {
+			System.out.println("Input must be between " + minSize + " & " + maxSize + ". Please try again:");
+			input = this.scanner.nextInt();
+		}
+		return input;
+	}
+
+	public boolean ConfirmInput() {
+		String input = "";
+		System.out.println("Please input 'y' if your input is correct, else input 'n' to go back.");
+		input = this.scanner.next();
+		if(input.equalsIgnoreCase("y")) {
+			this.test[3] = true;
+			return true;
+		} else {
+			System.out.println("Going back...");
+			this.test[4] = true;
+			return false;
+		}
+	}
 }

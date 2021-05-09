@@ -1,5 +1,6 @@
 package dtu.company.app;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Controller {
@@ -126,7 +127,7 @@ public class Controller {
 			case 1: view.PageBreak(); addActivity(chosenProject);		break;
 			case 2: view.PageBreak(); assignEmployee(chosenProject); 	break;
 			case 3: view.PageBreak(); editProjectName(chosenProject);	break;
-			case 4: view.PageBreak(); /*setProjectDeadline(currentUserID);*/	break;
+			case 4: view.PageBreak(); setProjectDeadline(chosenProject);	break;
 			case 5: view.PageBreak(); getProjectOverview(chosenProject);break;
 			case 9: return;
 		}
@@ -158,6 +159,21 @@ public class Controller {
 			System.out.println("Employee " + employeeID + " is successfully assigned to the "
 					+ activity.getActivityName() + project.getProjectName());
 
+	}
+
+	private static void setProjectDeadline(String chosenProject) {
+		try {
+			LocalDate newDeadline = view.editProjectDeadline();
+			int year = newDeadline.getYear();
+			int month = newDeadline.getMonthValue();
+			int day = newDeadline.getDayOfMonth();
+			companyApp.getProject(chosenProject).setDeadline(year, month, day);
+			errorMessage.setErrorMessage("Deadline has been updated!");
+			view.printErrorMessage(errorMessage);
+		} catch (Exception e) {
+			errorMessage.setErrorMessage(e.getMessage());
+			view.printErrorMessage(errorMessage);
+		}
 	}
 
 	private static void getProjectOverview(String chosenProject) {
