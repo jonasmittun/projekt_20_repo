@@ -30,12 +30,10 @@ public class View {
 		System.out.println("Exiting software!");
 		System.out.println("Input any key to continue...");
 		this.scanner.next();
-		this.test[1] = true;
 	}
 	
 	public void UserIDText() {
 		System.out.println("Please enter user ID:");
-		this.test[2] = true;
 	}
 	
 	public boolean ConfirmUserID(int ID) {
@@ -44,27 +42,13 @@ public class View {
 		System.out.println("Please input 'y' if the selected ID is correct, else input 'n' to go back.");
 		input = this.scanner.next();
 		if(input.equalsIgnoreCase("y")) {
-			this.test[3] = true;
 			return true;
 		} else {
 			System.out.println("Going back...");
-			this.test[4] = true;
 			return false;
 		}
 	}
 
-	public int UserInput() {
-		int input = -1;
-			try {
-				input = this.scanner.nextInt();
-			} catch (Exception e) {
-				System.out.println("Wrong input format! Please input an integer!");
-				input = -1;
-			} 
-		this.test[5] = true;
-		return input;
-	}
-	
 	public String projectOverview(ArrayList<String> list){
 		System.out.println("\t \t ProjectName:");
 
@@ -85,7 +69,6 @@ public class View {
 
 
 		String chosenProject = list.get(input-1);
-		this.test[6] = true;
 		return chosenProject;
 	}
 
@@ -100,7 +83,6 @@ public class View {
 					activity.getActivityID() + "\t\t" + activity.getEmployees().size() + "\t\t\t" +
 					activityHours);
 		}
-		this.test[7] = true;
 	}
 
 	public String editProjectNameMenu(){
@@ -162,7 +144,6 @@ public class View {
 				case 5: System.out.println("Get project overview"); break;
 				case 9: System.out.println("Return");
 			}
-			this.test[8] = true;
 			return input;
 		} else {
 			System.out.println("Your input of is not recognized as a valid option!");
@@ -173,7 +154,6 @@ public class View {
 			} catch (Exception e) {
 				System.out.println("Warning bad input when returning to Main Menu!!");
 			}
-			this.test[9] = true;
 			return -1;
 		}
 	}
@@ -206,7 +186,6 @@ public class View {
 					projectName = input;
 				}else if(input3.equalsIgnoreCase("n")){
 					System.out.println("Restarting the operation...");
-					this.test[10] = true;
 					return null;
 				}
 		}
@@ -232,7 +211,6 @@ public class View {
 			}catch (Exception e){
 				System.out.println("Invalid deadline, process is restarting");
 				PageBreak();
-				this.test[11] = true;
 				return null;
 			}
 
@@ -245,7 +223,6 @@ public class View {
 			this.project = new Project(projectName);
 			System.out.println("Project " + "\"" +projectName + "\"" + " is created!");
 		}
-		this.test[12] = true;
 		return project;
 	}
 
@@ -268,7 +245,6 @@ public class View {
 		PageBreak();
 		System.out.println("Please select one of the " + (activities.size()) + " activities");
 
-		this.test[13] = true;
 		int input = UserIntInput() - 1;
 
 		return activities.get(input);
@@ -276,7 +252,6 @@ public class View {
 
 	public int chooseEmployee(){
 		System.out.println("Please enter employee ID to assign ");
-		this.test[14] = true;
 		int input = UserIntInput();
 		return input;
 	}
@@ -307,7 +282,6 @@ public class View {
 		}
 
 		if (input > list.size()){
-			this.test[15] = true;
 			return "";
 		}
 
@@ -323,7 +297,6 @@ public class View {
 		input = (int) Math.round(hours);
 
 		s = s + ":" + input;
-		this.test[16] = true;
 		return s;
 	}
 
@@ -355,9 +328,8 @@ public class View {
 		}
 		System.out.println("");
 		System.out.println("Press any key to continue:");
-		String input = this.scanner.next();
+		this.scanner.next();
 
-		this.test[17] = true;
 	}
 
 	public int UserIntInput(){
@@ -371,7 +343,6 @@ public class View {
 
 			}
 		}
-		this.test[18] = true;
 		return input;
 	}
 
@@ -387,7 +358,6 @@ public class View {
 			String input2 = this.scanner.next();
 			if (input2.equalsIgnoreCase("y")){
 				System.out.println("Activity, \"" + activity.getActivityName() + "\" with ID, \"" + activity.getActivityID() + "\" has been added to the project, \"" + project + "\"" );
-				this.test[19] = true;
 				return activity;
 			} else if (!input2.equalsIgnoreCase("y")){
 				System.out.println("Insert the activities new name");
@@ -395,28 +365,17 @@ public class View {
 				activity.setActivityName(newName,0);
 				System.out.println("Name has been updated to \"" + newName + "\"");
 				System.out.println("Activity, \"" + activity.getActivityName() + "\" with ID, \"" + activity.getActivityID() + "\" has been added to the project, \"" + project + "\"" );
-				this.test[20] = true;
 				return activity;
 			}
 			System.out.println("Activity, \"" + activity.getActivityName() + "\" with ID, \"" + activity.getActivityID() + "\" has been added to the project, \"" + project + "\"" );
 		} else if (!input.equalsIgnoreCase("y")){
-			this.test[21] = true;
 			return null;
 		}
-		this.test[22] = true;
 		return activity;
 	}
 	
 	public void PageBreak() {
 		System.out.println("\n # # # # # \n");
-		this.test[23] = true;
-	}
-
-	public void viewProjects(ArrayList<String> projects) {
-		for (int i = 1; i < projects.size(); i++) {
-			System.out.println(projects.get(i));
-		}
-		this.test[24] = true;
 	}
 
 	public int MainMenu(int currentUserID) {
@@ -434,9 +393,7 @@ public class View {
 		System.out.println("[8]- " + "zzz");
 		System.out.println("[9]- " + "Exit Program");
 		System.out.println("[0]- " + "User Selection");
-		
-		this.test[31] = true;
-		
+
 		int input = -1;
 		try {
 			input = this.scanner.nextInt();
@@ -458,7 +415,6 @@ public class View {
 			case 8: System.out.println("zzz"); 					break;
 			case 9: System.out.println("Exit program");			break;
 			}
-			this.test[25] = true;
 			return input;
 		} else {
 			System.out.println("Your input of is not recognized as a valid option!");
@@ -469,7 +425,6 @@ public class View {
 			} catch (Exception e) {
 				System.out.println("Warning bad input when returning to Main Menu!!");
 			}
-			this.test[26] = true;
 			PageBreak();
 			return -1;
 
@@ -501,7 +456,6 @@ public class View {
 				case 2: System.out.println("Add new project");	break;
 				case 9: System.out.println("Exit program");	break;
 			}
-			this.test[27] = true;
 			return input;
 		} else {
 			System.out.println("Your input of is not recognized as a valid option!");
@@ -542,7 +496,6 @@ public class View {
 				case 2: System.out.println("Remove hours");	break;
 				case 9: System.out.println("Exit program");	break;
 			}
-			this.test[29] = true;
 			return input;
 		} else {
 			System.out.println("Your input of is not recognized as a valid option!");
@@ -560,7 +513,6 @@ public class View {
 
 	public void printErrorMessage(ErrorMessageHolder errorMessage) {
 		System.out.println(errorMessage.getErrorMessage());
-		test[32] = true;
 	}
 
 	public LocalDate editProjectDeadline() {
@@ -602,11 +554,9 @@ public class View {
 		System.out.println("Please input 'y' if your input is correct, else input 'n' to go back.");
 		input = this.scanner.next();
 		if(input.equalsIgnoreCase("y")) {
-			this.test[3] = true;
 			return true;
 		} else {
 			System.out.println("Going back...");
-			this.test[4] = true;
 			return false;
 		}
 	}
