@@ -75,10 +75,10 @@ public class Controller {
 			result = view.MainMenu(currentUserID);
 		}
 		switch(result) {
-		case 0: view.PageBreak(); SelectUser();	break;
-		case 1: view.PageBreak(); RegisterMenu();	break;
-		case 2: view.PageBreak(); ProjectMenu(); System.out.println("placeholder2");	break;
-		case 3: view.PageBreak(); addEmployee();	break;
+		case 0: view.PageBreak(); SelectUser();			break;
+		case 1: view.PageBreak(); RegisterMenu();		break;
+		case 2: view.PageBreak(); ProjectMenu(); 		break;
+		case 3: view.PageBreak(); addEmployee();		break;
 		case 4: view.PageBreak(); companyOverview();	break;
 		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
 		case 6: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder6");	break;
@@ -96,8 +96,8 @@ public class Controller {
 			result = view.RegisterMenu(currentUserID);
 		}
 		switch(result) {
-			case 0: view.PageBreak(); SelectUser();	break;
-			case 1: view.PageBreak(); addHours(currentUserID);	break;
+			case 0: view.PageBreak(); SelectUser();					break;
+			case 1: view.PageBreak(); addHours(currentUserID);		break;
 			case 2: view.PageBreak(); removeHours(currentUserID);	break;
 			case 9: return;
 		}
@@ -126,11 +126,11 @@ public class Controller {
 			result = view.projectAccessMenu(); //projectAccessMenu i view
 		}
 		switch(result) {
-			case 1: view.PageBreak(); addActivity(chosenProject);		break;
-			case 2: view.PageBreak(); assignEmployee(chosenProject); 	break;
-			case 3: view.PageBreak(); editProjectName(chosenProject);	break;
+			case 1: view.PageBreak(); addActivity(chosenProject);			break;
+			case 2: view.PageBreak(); assignEmployee(chosenProject); 		break;
+			case 3: view.PageBreak(); editProjectName(chosenProject);		break;
 			case 4: view.PageBreak(); setProjectDeadline(chosenProject);	break;
-			case 5: view.PageBreak(); getProjectOverview(chosenProject);break;
+			case 5: view.PageBreak(); getProjectOverview(chosenProject);	break;
 			case 9: return;
 		}
 		view.PageBreak();
@@ -296,7 +296,11 @@ public class Controller {
 		while(project == null){
 			project = view.addProjectMenu(currentUserID);
 		}
-		companyApp.addProject(project);
+		try {
+			companyApp.addProject(project);
+		}catch(Exception e){
+			System.out.println("Operation failed. Check Project name and try again.");
+		}
 	}
 
 	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception {

@@ -105,8 +105,11 @@ public class View {
 
 	public String editProjectNameMenu(){
 		System.out.println("Enter the name you would like to change for the chosen project");
+
 		//Asks user for the new name
 		String input = this.scanner.next();
+
+
 		return input;
 	}
 
