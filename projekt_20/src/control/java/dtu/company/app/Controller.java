@@ -25,6 +25,8 @@ public class Controller {
 
 		SelectUser();
 
+		checkForExpiredProjects();
+
 		view.PageBreak();
 
 		MainMenu();
@@ -50,17 +52,13 @@ public class Controller {
 				SelectUser();
 			}
 		}
-
-
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
-
 	}
-
 
 	public static void checkForExpiredProjects() {
 		int counter = 0;
 		for (Project project : companyApp.getProjects()) {
-			if (project.isExpired()) {
+			if (currentUserID == project.getProjectLeaderID() && project.isExpired()) {
 				counter++;
 			}
 		}
@@ -306,19 +304,15 @@ public class Controller {
 		for (int j = 1; j < 11; j++){
 			//Projects are named "project <int>"
 			Project project = new Project("project "+j);
-			//numberActivities = numberActivities + 5;
-//			for(int k = 1; k <= numberActivities; k++) {
-//				//Activities are named "activity <int>" and get their index as id
-//				Activity activity = new Activity("activity " + k, k);
-//				companyApp.setUser(0);
-//				companyApp.addActivity(activity, project.getProjectName());
-//				if (numberActivities == 25) {
-//					numberActivities = 0;
-//					break;
-//				}
 //			}
 			companyApp.addProject(project);
 		}
+
+		//Project 3 is expired
+		int year = LocalDate.now().getYear();
+		int month = LocalDate.now().getMonthValue();
+		int day = LocalDate.now().getDayOfMonth();
+		companyApp.getProject("project 1").setDeadline(year, month, day);
 
 		companyApp.getEmployees().removeAll(companyApp.getEmployees());
 		Employee employee;
@@ -339,6 +333,7 @@ public class Controller {
 		companyApp.getProjects().get(8).setProjectLeaderID(9);
 		//projectList.get(9).setProjectLeaderID(10);
 
+		//Adding activities
 		int numberActivities = 0;
 		for (int j = 1; j < 11; j++){
 			numberActivities = numberActivities + 5;
@@ -375,6 +370,7 @@ public class Controller {
 			}
 		}
 
+		//Assigning employees
 		int place = 1;
 		int holder = 1;
 		for (int i = 4; i >= 1; i--) {

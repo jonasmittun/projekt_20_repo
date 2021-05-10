@@ -120,8 +120,12 @@ public class Project {
     }
 
     public boolean isExpired() {
-        if (LocalDate.now().compareTo(endDate) >= 0) {
-            return true;
+        if (endDate != null) {
+            if (LocalDate.now().compareTo(endDate) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
