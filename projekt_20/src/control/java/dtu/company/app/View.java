@@ -629,7 +629,7 @@ public class View {
 
 	public int getUserInputInt(int minSize,int maxSize) {
 		int input = UserIntInput();
-		while (input < minSize || input >= maxSize) {
+		while (input < minSize || input > maxSize) {
 			System.out.println("Input must be between " + minSize + " & " + maxSize + ". Please try again:");
 			input = UserIntInput();
 		}

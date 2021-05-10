@@ -209,11 +209,10 @@ public class CompanyApp {
 
     //Constructor for sample company
 
-	public void addActivity(Activity activity, String projectName) throws Exception{
+	public void addActivity(Activity activity, String projectName) throws Exception{ //Asger
 		//assert getProject(projectName).containsActivityWithID(activity.getActivityID()) == true : "precondition";
 		//assert (user == getProject(projectName).getProjectLeaderID()) : "precondition";
 
-	public void addActivity(Activity activity, String projectName) throws Exception{ //Asger
 		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
 		int activityID = activity.getActivityID();
 		if (getProject(projectName).containsActivityWithID(activityID)) {
