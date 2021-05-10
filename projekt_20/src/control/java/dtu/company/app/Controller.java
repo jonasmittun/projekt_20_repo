@@ -80,14 +80,49 @@ public class Controller {
 		case 2: view.PageBreak(); ProjectMenu(); 		break;
 		case 3: view.PageBreak(); addEmployee();		break;
 		case 4: view.PageBreak(); companyOverview();	break;
-		case 5: view.PageBreak(); employeeOverview(currentUserID);	break;
-		case 6: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder6");	break;
+		case 5: view.PageBreak(); employeeOverview(currentUserID); 	break;
+		case 6: view.PageBreak(); askForAssist(currentUserID);	break;
 		case 7: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder7");	break;
 		case 8: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder8");	break;
 		case 9: return;
 		}
 		view.PageBreak();
 		MainMenu();
+	}
+
+	private static void askForAssist(int currentUserID) {
+		ArrayList<String> activities;
+		activities = companyApp.getUserActivities(currentUserID);
+
+		if (activities.isEmpty()){
+			System.out.println("You have no active activities");
+			return;
+		}
+		String resultOfActivity = null;
+		while (resultOfActivity == null){
+			resultOfActivity = view.inviteMenu(currentUserID, activities);
+		}
+		int resultOfEmployee = -1;
+		while (resultOfEmployee == -1){
+			resultOfEmployee = view.chooseEmployee();
+		}
+
+		//Read activity ID and projectName
+		int activityID = Integer.parseInt(resultOfActivity.substring(resultOfActivity.lastIndexOf(':')+1));
+		String projectName = resultOfActivity.substring(0,resultOfActivity.indexOf(':'));
+
+		//Get employees
+		Employee inviter = companyApp.getEmployee(currentUserID);
+		Employee invitee = companyApp.getEmployee(resultOfEmployee);
+
+		try{
+			companyApp.getProject(projectName).getActivityWithID(activityID).inviteEmployee(inviter , invitee);
+			System.out.println("The employee " + resultOfEmployee + " is successfully assigned to the " +
+					"activity " + activityID + " in project " + "´" + projectName + "`");
+			System.out.println("The program is starting again...");
+		} catch (Exception e) {
+			System.out.println("Operation failed. Try again.");
+		}
 	}
 
 	public static void RegisterMenu() throws Exception {
@@ -343,15 +378,13 @@ public class Controller {
 	}
 
 	private static void addActivity(String chosenProject) throws Exception {
-		int activities = 1;
-		try {
-			activities = companyApp.getProject(chosenProject).getActivities().size() + 1;
-		} catch (Exception e) {
-			activities = 1;
-		}
+		int activities = companyApp.getProject(chosenProject).getActivities().size()+1;
 		Activity activity = view.addActivity(activities, chosenProject, currentUserID);
-		companyApp.addActivity(activity, chosenProject);
-
+		try {
+			companyApp.addActivity(activity, chosenProject);
+		}catch (Exception e){
+			System.out.println("Operation failed. Please try again.");
+		}
 	}
 
 

@@ -300,7 +300,7 @@ public class View {
 	}
 
 	public int chooseEmployee(){
-		System.out.println("Please enter employee ID to assign ");
+		System.out.println("Please enter employee ID to assign/get help");
 		int input = UserIntInput();
 		return input;
 	}
@@ -444,8 +444,8 @@ public class View {
 		System.out.println("[2]- " + "Projects");
 		System.out.println("[3]- " + "Add employee");
 		System.out.println("[4]- " + "Company Overview");
-		System.out.println("[5]- " + "Reports");
-		System.out.println("[6]- " + "xxx");
+		System.out.println("[5]- " + "Employee Overview");
+		System.out.println("[6]- " + "Ask for Assist");
 		System.out.println("[7]- " + "yyy");
 		System.out.println("[8]- " + "zzz");
 		System.out.println("[9]- " + "Exit Program");
@@ -464,10 +464,10 @@ public class View {
 			case 0: System.out.println("User Selection"); 		break;
 			case 1: System.out.println("Time Registration"); 	break;
 			case 2: System.out.println("Projects"); 			break;
-			case 3: System.out.println("Add employee"); 	break;
-			case 4: System.out.println("Company Overview"); 			break;
-			case 5: System.out.println("Reports"); 				break;
-			case 6: System.out.println("xxx"); 					break;
+			case 3: System.out.println("Add employee"); 		break;
+			case 4: System.out.println("Company Overview"); 	break;
+			case 5: System.out.println("Employee Overview"); 	break;
+			case 6: System.out.println("Ask for Assist"); 		break;
 			case 7: System.out.println("yyy"); 					break;
 			case 8: System.out.println("zzz"); 					break;
 			case 9: System.out.println("Exit program");			break;
@@ -526,6 +526,39 @@ public class View {
 			PageBreak();
 			return -1;
 		}
+	}
+
+	public String inviteMenu(int currentUserID, ArrayList<String> list) {
+		System.out.println("Welcome to Invite Menu, employee " + currentUserID + "!");
+		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
+		System.out.println("Please choose an activity from the list, that you want help with...");
+
+		System.out.println("\t \t ProjectName: \t ActivityName: \t ActivityID:" );
+
+
+		//Prints all activities for the user
+		for (int i = 0; i < list.size(); i++){
+			String projectName = list.get(i).substring(0,list.get(i).indexOf(':'));
+			String activityName = list.get(i).substring(list.get(i).indexOf(':')+1,list.get(i).lastIndexOf(':'));
+			int activityID = Integer.parseInt(list.get(i).substring(list.get(i).lastIndexOf(':')+1,list.get(i).length()));
+			if (i < 9) {
+				System.out.println("[" + (i + 1) + "]\t \t \"" + projectName + "\" \t \"" + activityName + "\" \t \t" + activityID);
+			} else {
+				System.out.println("[" + (i + 1) + "]\t \"" + projectName + "\" \t \"" + activityName + "\" \t \t" + activityID);
+			}
+		}
+		int input = this.scanner.nextInt();
+
+		if(input < list.size() && input > 0){
+			String activityName = list.get(input-1);
+			System.out.println("You have chosen nr. " + input + " from the list.");
+			return activityName;
+		}else{
+			System.out.println("Invalid input, try again.");
+			PageBreak();
+			return null;
+		}
+
 	}
 
 	public int RegisterMenu(int currentUserID) {
@@ -684,4 +717,6 @@ public class View {
 			return -1;
 		}
 	}
+
+
 }
