@@ -527,7 +527,7 @@ public class View {
 			try {
 				this.scanner.next();
 			} catch (Exception e) {
-				System.out.println("Warning bad input when returning to Main Menu!!");
+				System.out.println("Warning: bad input when returning to Main Menu!!");
 			}
 			PageBreak();
 			return -1;
