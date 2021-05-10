@@ -444,10 +444,8 @@ public class View {
 		System.out.println("[2]- " + "Projects");
 		System.out.println("[3]- " + "Add employee");
 		System.out.println("[4]- " + "Company Overview");
-		System.out.println("[5]- " + "Employee Overview");
+		System.out.println("[5]- " + "Register Overview");
 		System.out.println("[6]- " + "Ask for Assist");
-		System.out.println("[7]- " + "yyy");
-		System.out.println("[8]- " + "zzz");
 		System.out.println("[9]- " + "Exit Program");
 		System.out.println("[0]- " + "User Selection");
 
@@ -464,12 +462,10 @@ public class View {
 			case 0: System.out.println("User Selection"); 		break;
 			case 1: System.out.println("Time Registration"); 	break;
 			case 2: System.out.println("Projects"); 			break;
-			case 3: System.out.println("Add employee"); 		break;
+			case 3: System.out.println("Register employee"); 		break;
 			case 4: System.out.println("Company Overview"); 	break;
 			case 5: System.out.println("Employee Overview"); 	break;
 			case 6: System.out.println("Ask for Assist"); 		break;
-			case 7: System.out.println("yyy"); 					break;
-			case 8: System.out.println("zzz"); 					break;
 			case 9: System.out.println("Exit program");			break;
 			}
 			return input;
