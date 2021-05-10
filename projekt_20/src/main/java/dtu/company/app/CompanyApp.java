@@ -163,8 +163,8 @@ public class CompanyApp {
 	}
 
 	public void addActivity(Activity activity, String projectName) throws Exception{ //Asger
-		assert getProject(projectName).containsActivityWithID(activity.getActivityID()) == true : "precondition";
-		assert (user == getProject(projectName).getProjectLeaderID()) : "precondition";
+		//assert getProject(projectName).containsActivityWithID(activity.getActivityID()) == true
+		//&& (user == getProject(projectName).getProjectLeaderID()) : "precondition";
 
 		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
 		int activityID = activity.getActivityID();
@@ -176,8 +176,8 @@ public class CompanyApp {
 			getProject(projectName).getActivities().add(activity);
 		}
 
-		assert getProject(projectName).getActivities().contains(activity) : "postcondition";
-		assert activity.getProjectLeaderID() == getProject(projectName).getProjectLeaderID() : "postcondition";
+		//assert getProject(projectName).getActivities().contains(activity)
+		//&& activity.getProjectLeaderID() == getProject(projectName).getProjectLeaderID() : "postcondition";
 	}
 
 }
