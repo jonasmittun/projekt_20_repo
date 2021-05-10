@@ -116,46 +116,95 @@ public class View {
 		return newProjectName;
 	}
 
-	public int projectAccessMenu(){
-		System.out.println("Choose an action for the selected project");
+	public int projectAccessMenu(boolean isProjectLeader){
 
-		System.out.println("[1]- " + "Add activity");
-		System.out.println("[2]- " + "Assign employee");
-		System.out.println("[3]- " + "Edit project name");
-		System.out.println("[4]- " + "Set project deadline");
-		System.out.println("[5]- " + "Get project overview");
-		System.out.println("[9]- " + "Return");
+		if (isProjectLeader) {
+			System.out.println("Choose an action for the selected project");
 
-		int input = -1;
-		try {
-			input = this.scanner.nextInt();
-		} catch (Exception e) {
-			input = -1;
-		}
+			System.out.println("[1]- " + "Add activity");
+			System.out.println("[2]- " + "Assign employee");
+			System.out.println("[3]- " + "Edit project name");
+			System.out.println("[4]- " + "Set project deadline");
+			System.out.println("[5]- " + "Get project overview");
+			System.out.println("[9]- " + "Return");
 
-		if (input > -1 && input < 10) {
-			System.out.print("Going to... ");
-			switch (input) {
-				case 0: System.out.println("User Selection"); 		break;
-				case 1: System.out.println("Add activity"); 		break;
-				case 2: System.out.println("Assign employee");  	break;
-				case 3: System.out.println("Edit project name"); 	break;
-				case 4: System.out.println("Set project deadline"); break;
-				case 5: System.out.println("Get project overview"); break;
-				case 9: System.out.println("Return");
-			}
-			return input;
-		} else {
-			System.out.println("Your input of is not recognized as a valid option!");
-			System.out.println("Input any key to return to the menu...");
-			this.scanner = new Scanner(System.in);
+			int input = -1;
 			try {
-				this.scanner.next();
+				input = this.scanner.nextInt();
 			} catch (Exception e) {
-				System.out.println("Warning bad input when returning to Main Menu!!");
+				input = -1;
 			}
-			return -1;
+
+			if (input > -1 && input < 10) {
+				System.out.print("Going to... ");
+				switch (input) {
+					case 0:
+						System.out.println("User Selection");
+						break;
+					case 1:
+						System.out.println("Add activity");
+						break;
+					case 2:
+						System.out.println("Assign employee");
+						break;
+					case 3:
+						System.out.println("Edit project name");
+						break;
+					case 4:
+						System.out.println("Set project deadline");
+						break;
+					case 5:
+						System.out.println("Get project overview");
+						break;
+					case 9:
+						System.out.println("Return");
+				}
+				return input;
+			} else {
+				System.out.println("Your input of is not recognized as a valid option!");
+				System.out.println("Input any key to return to the menu...");
+				this.scanner = new Scanner(System.in);
+				try {
+					this.scanner.next();
+				} catch (Exception e) {
+					System.out.println("Warning bad input when returning to Main Menu!!");
+				}
+			}
+		} else {
+			System.out.println("Choose an action for the selected project");
+
+			System.out.println("[1]- " + "Set Project Leader");
+			System.out.println("[9]- " + "Return");
+
+			int input = -1;
+			try {
+				input = this.scanner.nextInt();
+			} catch (Exception e) {
+				input = -1;
+			}
+
+			if (input == 1 || input == 9) {
+				System.out.print("Going to... ");
+				switch (input) {
+					case 1:
+						System.out.println("Set Project Leader");
+						break;
+					case 9:
+						System.out.println("Return");
+				}
+				return input;
+			} else {
+				System.out.println("Your input of is not recognized as a valid option!");
+				System.out.println("Input any key to return to the menu...");
+				this.scanner = new Scanner(System.in);
+				try {
+					this.scanner.next();
+				} catch (Exception e) {
+					System.out.println("Warning bad input when returning to Main Menu!!");
+				}
+			}
 		}
+		return -1;
 	}
 
 	public Project addProjectMenu(int currentUserID) throws Exception {
@@ -292,8 +341,16 @@ public class View {
 		String s = projectName + ":" + activityID;
 
 		System.out.println("Please input number of hours worked on activity " + activityID);
-
-		double hours = this.scanner.nextDouble()*2;
+		double hours = -1;
+		while (hours == -1) {
+			this.scanner = new Scanner(System.in);
+			try {
+				hours = this.scanner.nextDouble()*2;
+			} catch (InputMismatchException m) {
+				System.out.println("You need to insert an number. Try again...");
+			}
+		}
+		//double hours = this.scanner.nextDouble()*2;
 		input = (int) Math.round(hours);
 
 		s = s + ":" + input;
@@ -541,10 +598,10 @@ public class View {
 	}
 
 	public int getUserInputInt(int minSize,int maxSize) {
-		int input = this.scanner.nextInt();
+		int input = UserIntInput();
 		while (input < minSize || input >= maxSize) {
 			System.out.println("Input must be between " + minSize + " & " + maxSize + ". Please try again:");
-			input = this.scanner.nextInt();
+			input = UserIntInput();
 		}
 		return input;
 	}
@@ -613,5 +670,18 @@ public class View {
 		}
 		System.out.println("Input any key to return to the menu...");
 		String buffer = this.scanner.next();
+	}
+
+	public int setProjectLeader(String chosenProject) {
+		System.out.println("Assigning Project Leader to \"" + chosenProject + "\"");
+		System.out.println("Please insert an employee ID to assign employee as Project Leader: ");
+		int projectLeader = getUserInputInt(0,10);
+		if (ConfirmInput()) {
+			System.out.println("");
+			System.out.println("Employee \"employee " + projectLeader + "\" has been assigned as Project Leader for project \"" + chosenProject + "\"");
+			return projectLeader;
+		} else {
+			return -1;
+		}
 	}
 }

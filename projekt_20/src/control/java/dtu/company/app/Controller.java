@@ -122,19 +122,57 @@ public class Controller {
 
 	public static void ProjectAccessMenu(String chosenProject) throws Exception {
 		int result = -1;
+		boolean isProjectLeader = companyApp.getProject(chosenProject).getProjectLeaderID()==currentUserID;
 		while(result == -1) {
-			result = view.projectAccessMenu(); //projectAccessMenu i view
+			result = view.projectAccessMenu(isProjectLeader); //projectAccessMenu i view
 		}
-		switch(result) {
-			case 1: view.PageBreak(); addActivity(chosenProject);			break;
-			case 2: view.PageBreak(); assignEmployee(chosenProject); 		break;
-			case 3: view.PageBreak(); editProjectName(chosenProject);		break;
-			case 4: view.PageBreak(); setProjectDeadline(chosenProject);	break;
-			case 5: view.PageBreak(); getProjectOverview(chosenProject);	break;
-			case 9: return;
+		if (companyApp.getProject(chosenProject).getProjectLeaderID()==currentUserID) {
+			switch (result) {
+				case 1:
+					view.PageBreak();
+					addActivity(chosenProject);
+					break;
+				case 2:
+					view.PageBreak();
+					assignEmployee(chosenProject);
+					break;
+				case 3:
+					view.PageBreak();
+					editProjectName(chosenProject);
+					break;
+				case 4:
+					view.PageBreak();
+					setProjectDeadline(chosenProject);
+					break;
+				case 5:
+					view.PageBreak();
+					getProjectOverview(chosenProject);
+					break;
+				case 9:
+					return;
+			}
+		} else if (companyApp.getProject(chosenProject).getProjectLeaderID()==0) {
+			switch (result) {
+				case 1:
+					view.PageBreak();
+					setProjectLeader(chosenProject);
+					break;
+				case 9:
+					break;
+			}
 		}
 		view.PageBreak();
 		ProjectAccessMenu(chosenProject);
+	}
+
+	private static void setProjectLeader(String chosenProject) {
+		int projectLeader = view.setProjectLeader(chosenProject);
+		if (projectLeader == -1 ){
+			return;
+		} else {
+			companyApp.getProject(chosenProject).setProjectLeaderID(projectLeader);
+		}
+
 	}
 
 	public static void addEmployee() {
@@ -294,12 +332,13 @@ public class Controller {
 		//Find leaderless projects
 		for (int i = 0; i < companyApp.getProjects().size(); i++) {
 			if (companyApp.getProjects().get(i).getProjectLeaderID() == 0){
-				userProjects.add(companyApp.getProjects().get(i).getProjectName() + " : No project leader assigned");
+				userProjects.add(companyApp.getProjects().get(i).getProjectName() + ":No project leader assigned");
 			}
 		}
 
 		//Runs Project Menu to get overview of the current user projects
 		String chosenProject = view.projectOverview(userProjects);
+		chosenProject = chosenProject.substring(0,chosenProject.lastIndexOf(':'));
 		ProjectAccessMenu(chosenProject);
 	}
 
