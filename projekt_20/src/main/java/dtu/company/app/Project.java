@@ -1,7 +1,6 @@
 package dtu.company.app;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Project {
@@ -9,7 +8,6 @@ public class Project {
     private int projectLeaderID;
     private ArrayList<Activity> activityList;
     private ArrayList<Employee> employeeList;
-    private LocalDate startDate;
     private LocalDate endDate;
     
     public Project(String projectName){
@@ -24,7 +22,6 @@ public class Project {
         this.activityList = new ArrayList<Activity>();
         this.employeeList = new ArrayList<Employee>();
         if(startDate.isBefore(endDate)){
-            this.startDate = startDate;
             this.endDate = endDate;
         }else {
             throw new Exception("Deadline should not be before the starting date!");

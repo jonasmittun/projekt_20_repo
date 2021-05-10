@@ -69,6 +69,7 @@ public class View {
 
 
 		String chosenProject = list.get(input-1);
+		PageBreak();
 		return chosenProject;
 	}
 
@@ -679,13 +680,6 @@ public class View {
 		String hoursWorked = "";
 
 		System.out.println("ProjectName: \tActivityName: \tActivity progress:" );
-
-		if (companyApp.getProjects().get(2).containsEmployeeWithID(currentUserID)){
-			System.out.println("cool 2"+companyApp.getProjects().get(2).getProjectName());
-		}
-		if (companyApp.getProjects().get(2).getActivityWithID(6).containsEmployeeWithID(currentUserID)){
-			System.out.println("cool 2:6");
-		}
 
 		for (int i = 0; i < companyApp.getProjects().size(); i++){
 			projectName = companyApp.getProjects().get(i).getProjectName();
