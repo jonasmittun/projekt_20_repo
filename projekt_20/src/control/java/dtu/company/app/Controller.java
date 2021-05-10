@@ -13,7 +13,7 @@ public class Controller {
 	private static ErrorMessageHolder errorMessage = new ErrorMessageHolder();
 
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception { //Jonas
 		companyApp = new CompanyApp();
 		view = new View();
 
@@ -37,7 +37,7 @@ public class Controller {
 
 	}
 
-	public static void SelectUser() {
+	public static void SelectUser() { //Jonas
 		boolean idConfirmed = false;
 		while(!idConfirmed) {
 			view.UserIDText();
@@ -55,7 +55,7 @@ public class Controller {
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
 	}
 
-	public static void checkForExpiredProjects() {
+	public static void checkForExpiredProjects() { //Asger
 		int counter = 0;
 		for (Project project : companyApp.getProjects()) {
 			if (currentUserID == project.getProjectLeaderID() && project.isExpired()) {
@@ -69,7 +69,7 @@ public class Controller {
 		}
 	}
 
-	public static void MainMenu() throws Exception {
+	public static void MainMenu() throws Exception { //Jonas
 		int result = -1;
 		while(result == -1) {
 			result = view.MainMenu(currentUserID);
@@ -90,7 +90,7 @@ public class Controller {
 		MainMenu();
 	}
 
-	private static void askForAssist(int currentUserID) {
+	private static void askForAssist(int currentUserID) { //Boran
 		ArrayList<String> activities;
 		activities = companyApp.getUserActivities(currentUserID);
 
@@ -125,7 +125,7 @@ public class Controller {
 		}
 	}
 
-	public static void RegisterMenu() throws Exception {
+	public static void RegisterMenu() throws Exception { //Roi
 		int result = -1;
 		while(result == -1) {
 			result = view.RegisterMenu(currentUserID);
@@ -140,7 +140,7 @@ public class Controller {
 		RegisterMenu();
 	}
 
-	public static void ProjectMenu() throws Exception {
+	public static void ProjectMenu() throws Exception { //Boran
 		int result = -1;
 		while(result == -1) {
 			result = view.ProjectMenu(currentUserID);
@@ -155,7 +155,7 @@ public class Controller {
 		ProjectMenu();
 	}
 
-	public static void ProjectAccessMenu(String chosenProject) throws Exception {
+	public static void ProjectAccessMenu(String chosenProject) throws Exception { //Boran
 		int result = -1;
 		boolean isProjectLeader = companyApp.getProject(chosenProject).getProjectLeaderID()==currentUserID;
 		while(result == -1) {
@@ -200,7 +200,7 @@ public class Controller {
 		ProjectAccessMenu(chosenProject);
 	}
 
-	private static void setProjectLeader(String chosenProject) {
+	private static void setProjectLeader(String chosenProject) { //Boran
 		int projectLeader = view.setProjectLeader(chosenProject);
 		if (projectLeader == -1 ){
 			return;
@@ -210,7 +210,7 @@ public class Controller {
 
 	}
 
-	public static void addEmployee() {
+	public static void addEmployee() { //Roi
 		int employeeID = companyApp.getEmployees().size() + 1;
 		Employee employee = new Employee(employeeID);
 		if (view.addEmployee(employeeID)) {
@@ -220,7 +220,7 @@ public class Controller {
 		}
 	}
 
-	public static void editProjectName(String chosenProject) throws Exception{
+	public static void editProjectName(String chosenProject) throws Exception{ //Boran
 		String oldName = companyApp.getProject(chosenProject).getProjectName();
 		String newName = view.editProjectNameMenu();
 		while(newName == null){
@@ -235,7 +235,7 @@ public class Controller {
 
 	}
 
-	private static void assignEmployee(String chosenProject) throws Exception {
+	private static void assignEmployee(String chosenProject) throws Exception { //Boran
 			//Get the project from the app with the name chosenProject
 			Project project = companyApp.getProject(chosenProject);
 
@@ -255,7 +255,7 @@ public class Controller {
 
 	}
 
-	private static void setProjectDeadline(String chosenProject) {
+	private static void setProjectDeadline(String chosenProject) { //Asger
 		try {
 			LocalDate newDeadline = view.editProjectDeadline();
 			int year = newDeadline.getYear();
@@ -270,13 +270,13 @@ public class Controller {
 		}
 	}
 
-	private static void getProjectOverview(String chosenProject) {
+	private static void getProjectOverview(String chosenProject) { //Roi
 		ArrayList<Activity> activities;
 		activities = companyApp.getProject(chosenProject).getActivities();
 		view.getProjectOverview(activities, chosenProject);
 	}
 
-	private static void companyOverview() throws Exception {
+	private static void companyOverview() throws Exception { //Roi
 		ArrayList<Project> projects;
 		projects = companyApp.getProjects();
 		ArrayList<Employee> employees;
@@ -285,12 +285,12 @@ public class Controller {
 		view.companyOverview(projects, employees);
 	}
 
-	private static void employeeOverview(int CurrentUserID) {
+	private static void employeeOverview(int CurrentUserID) { //Roi
 
 		view.employeeOverview(companyApp, CurrentUserID);
 	}
 
-	public static void addHours(int CurrentUserID) throws Exception {
+	public static void addHours(int CurrentUserID) throws Exception { //Roi
 		//Gets user activities
 		userActivities = companyApp.getUserActivities(CurrentUserID);
 
@@ -327,7 +327,7 @@ public class Controller {
 		System.out.println("Hours worked on activity: " + activityWork + " | Hours worked this week: " + weeksWork);
 	}
 
-	public static void removeHours(int CurrentUserID) throws Exception {
+	public static void removeHours(int CurrentUserID) throws Exception { //Roi
 		//Gets user activities
 		userActivities = companyApp.getUserActivities(CurrentUserID);
 
@@ -360,7 +360,7 @@ public class Controller {
 	}
 
 
-	public static void accessProject(int currentUserID) throws Exception {
+	public static void accessProject(int currentUserID) throws Exception { //Roi
 		//Gets user projects
 		userProjects = companyApp.getLeaderProjects(currentUserID);
 
@@ -382,7 +382,7 @@ public class Controller {
 		ProjectAccessMenu(chosenProject);
 	}
 
-	private static void addActivity(String chosenProject) throws Exception {
+	private static void addActivity(String chosenProject) throws Exception { //Boran
 		int activities = companyApp.getProject(chosenProject).getActivities().size()+1;
 		Activity activity = view.addActivity(activities, chosenProject, currentUserID);
 		try {
@@ -393,7 +393,7 @@ public class Controller {
 	}
 
 
-	public static void addProject(int currentUserID) throws Exception{
+	public static void addProject(int currentUserID) throws Exception{ //Boran
 		Project project = view.addProjectMenu(currentUserID);
 		while(project == null){
 			project = view.addProjectMenu(currentUserID);
@@ -405,7 +405,7 @@ public class Controller {
 		}
 	}
 
-	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception {
+	public static CompanyApp setSampleCompany(CompanyApp companyApp) throws Exception { //Roi - Boran
 		//int numberActivities = 0;
 		for (int j = 1; j < 11; j++){
 			//Projects are named "project <int>"

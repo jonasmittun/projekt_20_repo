@@ -18,25 +18,26 @@ public class View {
 		scanner = new Scanner(System.in);
 		this.test = new Boolean[40];
 	}
-	
-	public void StartUpText() {
+
+
+	public void StartUpText() { //Jonas
 		System.out.println("Company management software 0.0.1");
 		System.out.println("Copyright CC something something");
 		System.out.println("Software started successfully!");
 		this.test[0] = true;
 	}
 	
-	public void ShutDownText() {
+	public void ShutDownText() { //Jonas
 		System.out.println("Exiting software!");
 		System.out.println("Input any key to continue...");
 		this.scanner.next();
 	}
 	
-	public void UserIDText() {
+	public void UserIDText() { //Jonas
 		System.out.println("Please enter user ID:");
 	}
 	
-	public boolean ConfirmUserID(int ID) {
+	public boolean ConfirmUserID(int ID) { //Jonas
 		String input = ""; 
 		System.out.println("You have input the id: " + ID);
 		System.out.println("Please input 'y' if the selected ID is correct, else input 'n' to go back.");
@@ -49,7 +50,7 @@ public class View {
 		}
 	}
 
-	public String projectOverview(ArrayList<String> list){
+	public String projectOverview(ArrayList<String> list){ //Boran
 		System.out.println("\t \t ProjectName:");
 
 		//Prints all projects for the user
@@ -73,7 +74,7 @@ public class View {
 		return chosenProject;
 	}
 
-	public void getProjectOverview(ArrayList<Activity> activities, String projectName){
+	public void getProjectOverview(ArrayList<Activity> activities, String projectName){ //Roi
 		System.out.println("Project overview for: \"" + projectName + "\"");
 		System.out.println("");
 		System.out.println("\t\tActivity: \tID: \tEmployees: \tWork:");
@@ -86,7 +87,7 @@ public class View {
 		}
 	}
 
-	public String editProjectNameMenu(){
+	public String editProjectNameMenu(){ //Boran
 		System.out.println("Enter the name you would like to change for the chosen project");
 
 		//Asks user for the new name
@@ -117,7 +118,7 @@ public class View {
 		return newProjectName;
 	}
 
-	public int projectAccessMenu(boolean isProjectLeader){
+	public int projectAccessMenu(boolean isProjectLeader){ //Boran - Roi - Asger
 
 		if (isProjectLeader) {
 			System.out.println("Choose an action for the selected project");
@@ -208,7 +209,7 @@ public class View {
 		return -1;
 	}
 
-	public Project addProjectMenu(int currentUserID) throws Exception {
+	public Project addProjectMenu(int currentUserID) throws Exception { //Boran
 		System.out.println("Welcome to AddProject Menu" + " Employee " + currentUserID);
 		System.out.println("Please enter the name for your new project:");
 
@@ -276,7 +277,7 @@ public class View {
 		return project;
 	}
 
-	public Activity activityOverviewAndAssignEmployee(Project project){
+	public Activity activityOverviewAndAssignEmployee(Project project){ //Boran
 		System.out.println("Activity list for the chosen project " + project.getProjectName() + ":");
 
 		//Gets activity list from the project
@@ -306,7 +307,7 @@ public class View {
 		return input;
 	}
 
-	public String activityOverview(ArrayList<String> list){
+	public String activityOverview(ArrayList<String> list){ //Roi
 		System.out.println("\t \t ProjectName: \t ActivityName: \t ActivityID:" );
 
 		//Prints all activities for the user
@@ -358,7 +359,7 @@ public class View {
 		return s;
 	}
 
-	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception {
+	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception { //Roi
 		System.out.println("\tProjects: \tDeadline: \t|\tEmployee: \tHoursWorked: ");
 		int size = employees.size() > projects.size() ? employees.size() : projects.size();
 		System.out.println("");
@@ -390,7 +391,7 @@ public class View {
 
 	}
 
-	public int UserIntInput(){
+	public int UserIntInput(){ //Jonas
 		int input = -1;
 		while (input == -1) {
 			this.scanner = new Scanner(System.in);
@@ -404,7 +405,7 @@ public class View {
 		return input;
 	}
 
-	public Activity addActivity(int activityID, String project, int userID) throws Exception {
+	public Activity addActivity(int activityID, String project, int userID) throws Exception { //Roi
 		Activity activity = new Activity(activityID);
 		activity.setActivityName("activity " + activityID, 0);
 		System.out.println("You are about to to add an activity to \"" + project +"\"");
@@ -432,11 +433,11 @@ public class View {
 		return activity;
 	}
 	
-	public void PageBreak() {
+	public void PageBreak() { //Jonas
 		System.out.println("\n # # # # # \n");
 	}
 
-	public int MainMenu(int currentUserID) {
+	public int MainMenu(int currentUserID) { //Jonas
 		System.out.println("Welcome to [CompanyName]'s [SoftwareName], employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
 		System.out.println("Please choose an action from the list...");
@@ -485,7 +486,7 @@ public class View {
 		}
 	}
 
-	public int ProjectMenu(int currentUserID) {
+	public int ProjectMenu(int currentUserID) { //Boran
 		System.out.println("Welcome to Project Menu, employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
 		System.out.println("Please choose an action from the list...");
@@ -525,7 +526,7 @@ public class View {
 		}
 	}
 
-	public String inviteMenu(int currentUserID, ArrayList<String> list) {
+	public String inviteMenu(int currentUserID, ArrayList<String> list) { //Boran
 		System.out.println("Welcome to Invite Menu, employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
 		System.out.println("Please choose an activity from the list, that you want help with...");
@@ -558,7 +559,7 @@ public class View {
 
 	}
 
-	public int RegisterMenu(int currentUserID) {
+	public int RegisterMenu(int currentUserID) { //Roi
 		System.out.println("Welcome to Register Menu, employee " + currentUserID + "!");
 		System.out.println("The time is currently: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("| yyyy/mm/dd | HH:mm |")));
 		System.out.println("Please choose an action from the list...");
@@ -598,11 +599,11 @@ public class View {
 		}
 	}
 
-	public void printErrorMessage(ErrorMessageHolder errorMessage) {
+	public void printErrorMessage(ErrorMessageHolder errorMessage) { //Jonas
 		System.out.println(errorMessage.getErrorMessage());
 	}
 
-	public LocalDate editProjectDeadline() {
+	public LocalDate editProjectDeadline() { //Asger
 		boolean confirm = false;
 		LocalDate date;
 		int year;
@@ -627,7 +628,7 @@ public class View {
 		return null;
 	}
 
-	public int getUserInputInt(int minSize,int maxSize) {
+	public int getUserInputInt(int minSize,int maxSize) { //Jonas
 		int input = UserIntInput();
 		while (input < minSize || input > maxSize) {
 			System.out.println("Input must be between " + minSize + " & " + maxSize + ". Please try again:");
@@ -636,7 +637,7 @@ public class View {
 		return input;
 	}
 
-	public boolean ConfirmInput() {
+	public boolean ConfirmInput() { //Asger
 		String input = "";
 		System.out.println("Please input 'y' if your input is correct, else input 'n' to go back.");
 		input = this.scanner.next();
@@ -648,7 +649,7 @@ public class View {
 		}
 	}
 
-	public Boolean addEmployee(int employeeID) {
+	public Boolean addEmployee(int employeeID) { //Roi
 		System.out.println("You are about to add a new employee:");
 		System.out.println("");
 		System.out.println("Employee: \temployee " + employeeID + "\t ID: \t" + employeeID);
@@ -663,7 +664,7 @@ public class View {
 		}
 	}
 
-	public void employeeOverview(CompanyApp companyApp, int currentUserID) {
+	public void employeeOverview(CompanyApp companyApp, int currentUserID) { //Roi
 
 		System.out.println("Employee Overview for employee " + currentUserID + "...");
 		System.out.println("");
@@ -695,7 +696,7 @@ public class View {
 		String buffer = this.scanner.next();
 	}
 
-	public int setProjectLeader(String chosenProject) {
+	public int setProjectLeader(String chosenProject) { //Asger
 		System.out.println("Assigning Project Leader to \"" + chosenProject + "\"");
 		System.out.println("Please insert an employee ID to assign employee as Project Leader: ");
 		int projectLeader = getUserInputInt(0,10);
