@@ -27,7 +27,6 @@ public class Activity {
     }
 
     public String getActivityName(){
-    	//Det her kommer til at være brokken hvis der ikke er et navn
         return activityName;
     }
 
@@ -35,7 +34,7 @@ public class Activity {
         return id;
     }
 
-    public void setActivityName(String newName, int user) throws Exception{
+    public void setActivityName(String newName, int user) throws Exception{ //Boran
         if (user == projectLeaderID) {
             this.activityName = newName;
         } else {
@@ -44,7 +43,7 @@ public class Activity {
     }
 
 
-    public Boolean containsEmployeeWithID(int id){
+    public Boolean containsEmployeeWithID(int id){ //Jonas
         if (assignedEmployees.contains(id)){
             return true;
         } else {
@@ -111,7 +110,7 @@ public class Activity {
         this.projectLeaderID = projectLeaderID;
     }
 
-    public int removeHalfHoursWorked(int halfHours) {
+    public int removeHalfHoursWorked(int halfHours) { //Roi
         if ((workedHalfHours - halfHours) > 0) {
             this.workedHalfHours = workedHalfHours - halfHours;
         } else {
@@ -120,5 +119,9 @@ public class Activity {
             this.workedHalfHours = 0;
         }
         return halfHours;
+    }
+
+    public int getProjectLeaderID() {
+        return projectLeaderID;
     }
 }

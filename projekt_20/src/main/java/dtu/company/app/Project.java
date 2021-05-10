@@ -37,7 +37,7 @@ public class Project {
         this.projectLeaderID = id;
     }
 
-    public void setProjectName(String projectName, int user) throws Exception{
+    public void setProjectName(String projectName, int user) throws Exception{ //Asger
         assertUserIsProjectLeader(user);
         this.projectName = projectName;
     }
@@ -51,7 +51,7 @@ public class Project {
 		return projectName;
 	}
 
-    public Activity getActivityWithID(int id){
+    public Activity getActivityWithID(int id){ //Boran
         for (int i = 0; i < activityList.size(); i++){
             if (activityList.get(i).getActivityID()==id){
                 return activityList.get(i);
@@ -69,7 +69,7 @@ public class Project {
     }
 
     //Contains
-	public Boolean containsActivityWithID(int id){
+	public Boolean containsActivityWithID(int id){ //Boran
         for (int i = 0; i < activityList.size(); i++) {
             if (activityList.get(i).getActivityID()==id) {
                 return true;
@@ -78,7 +78,7 @@ public class Project {
         return false;
     }
 
-	public boolean containsEmployeeWithID(Integer id) {
+	public boolean containsEmployeeWithID(Integer id) { //Boran
 		for (int i = 0; i < employeeList.size(); i++) {
             if (employeeList.get(i).getId() == id) {
                 return true;
@@ -87,7 +87,7 @@ public class Project {
         return false;
 	}
 
-    public void setDeadline(int year, Integer month, Integer day) throws Exception {
+    public void setDeadline(int year, Integer month, Integer day) throws Exception { //Asger
         LocalDate newDeadline = LocalDate.of(year, month, day);
         if (LocalDate.now().compareTo(newDeadline) <= 0) {
             this.endDate = LocalDate.of(year, month, day);
@@ -96,7 +96,7 @@ public class Project {
         }
     }
 
-    public LocalDate getDeadline() throws Exception {
+    public LocalDate getDeadline() throws Exception { //Asger
         if (endDate != null) {
             return endDate;
         } else {
@@ -106,7 +106,7 @@ public class Project {
 
     public int getIdForNewActivity(String projectName){
         return activityList.size()+1;
-    }
+    } //Boran
 
     public boolean assertUserIsProjectLeader(int user) throws Exception {
         if (user == projectLeaderID) {
@@ -116,7 +116,7 @@ public class Project {
         }
     }
 
-    public boolean isExpired() {
+    public boolean isExpired() { //Asger
         if (endDate != null) {
             if (LocalDate.now().compareTo(endDate) >= 0) {
                 return true;

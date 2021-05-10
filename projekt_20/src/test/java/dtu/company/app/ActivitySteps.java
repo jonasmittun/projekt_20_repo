@@ -11,7 +11,7 @@ public class ActivitySteps {
     private ErrorMessageHolder errorMessage;
     private Activity activity;
 
-    public ActivitySteps(ErrorMessageHolder errorMessage, CompanyHelper companyHelper){
+    public ActivitySteps(ErrorMessageHolder errorMessage, CompanyHelper companyHelper){ //Boran
         this.companyApp = companyHelper.getCompanyHelper();
         this.errorMessage = errorMessage;
     }

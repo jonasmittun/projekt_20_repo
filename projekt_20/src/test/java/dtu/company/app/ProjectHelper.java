@@ -1,6 +1,6 @@
 package dtu.company.app;
 
-public class ProjectHelper {
+public class ProjectHelper { //Asger
 
 	private CompanyApp companyApp;
 

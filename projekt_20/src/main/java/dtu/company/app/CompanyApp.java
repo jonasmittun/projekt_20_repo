@@ -20,7 +20,7 @@ public class CompanyApp {
         this.projectList = new ArrayList<>();
     }
 
-	public boolean containsProjectWithName(String string) {
+	public boolean containsProjectWithName(String string) { //Asger
 		for (int i = 0; i < projectList.size(); i++) {
 			if (projectList.get(i).getProjectName().equals(string)) {
 				return true;
@@ -30,7 +30,7 @@ public class CompanyApp {
 	}
 
 
-	public void addProject(Project project) throws Exception{
+	public void addProject(Project project) throws Exception{ //Asger
 		if (containsProjectWithName(project.getProjectName())) {
 			throw new Exception("Project already exists");
 		} else {
@@ -38,7 +38,7 @@ public class CompanyApp {
 		}
 	}
 
-	public boolean containsEmployeeWithId(int id) {
+	public boolean containsEmployeeWithId(int id) { //Roi
 		for (Employee employee : employeeList) {
 			if (employee.getId() == id) {
 				return true;
@@ -47,7 +47,7 @@ public class CompanyApp {
 		return false;
 	}
 
-	public Project getProject(String string){
+	public Project getProject(String string){ //Asger
 		for (int i = 0; i < projectList.size(); i++) {
 			if (projectList.get(i).getProjectName().equals(string)) {
 				return projectList.get(i);
@@ -56,11 +56,11 @@ public class CompanyApp {
 		return null;
 	}
 	
-	public ArrayList<Project> getProjects(){
+	public ArrayList<Project> getProjects(){ //Boran
 		return projectList;
 	}
 
-	public Employee getEmployee(int id){
+	public Employee getEmployee(int id){ //Roi
     	for (Employee employee : employeeList) {
     		if (employee.getId() == id) {
 				return employee;
@@ -69,7 +69,7 @@ public class CompanyApp {
     	return null;
 	}
 
-	public Employee newEmployee(){
+	public Employee newEmployee(){ //Roi
     	int id = employeeList.size() + 1;
     	Employee newEmployee = new Employee(id);
     	return newEmployee;
@@ -79,7 +79,7 @@ public class CompanyApp {
     	employeeList.add(newEmployee);
 	}
 
-	public void assignEmployee(Integer employeeID, Integer activityID, String projectName) throws Exception {
+	public void assignEmployee(Integer employeeID, Integer activityID, String projectName) throws Exception { //Roi
 		int projectLeaderID = getProject(projectName).getProjectLeaderID();
     	assertUserIsProjectLeader(projectLeaderID);
 		int noOfActivities = getEmployee(employeeID).getNumberOfActivities();
@@ -88,7 +88,7 @@ public class CompanyApp {
 		employeeList.get(employeeID).addActivity();
     }
 
-	public ArrayList<Activity> getActivities() {
+	public ArrayList<Activity> getActivities() { //Jonas
 		ArrayList<Activity> activityList = new ArrayList<Activity>();
 		projectList.forEach((n) -> activityList.addAll(n.getActivities()));
 		return activityList;
@@ -102,7 +102,7 @@ public class CompanyApp {
 		return this.user;
 	}
 
-	public boolean assertUserIsProjectLeader(int projectLeaderID) throws Exception {
+	public boolean assertUserIsProjectLeader(int projectLeaderID) throws Exception { //Asger
 		if (user == projectLeaderID) {
 			return true;
 		} else {
@@ -110,7 +110,7 @@ public class CompanyApp {
 		}
 	}
 
-	public void setUser(Integer int1) throws Exception{
+	public void setUser(Integer int1) throws Exception{ //Asger
     	if (containsEmployeeWithId(int1)) {
 			this.user = int1;
 		} else {
@@ -119,35 +119,23 @@ public class CompanyApp {
 	}
 
 
-	public void unassignEmployee(Integer int2, Integer int3, String string) {
+	public void unassignEmployee(Integer int2, Integer int3, String string) { //Boran
     	getProject(string).getActivityWithID(int3).unassignEmployee(int2);
     	employeeList.get(int2).removeActivity();
 	}
-	
-	/*public void setProjectName(String projectName, String newProjectName, int ID) throws Exception{
-		getProject(projectName).setProjectName(newProjectName, user);
-	}*/
 
-	/*public void setActivityName(String projectName, int activityID, int userID, String newActivityName) throws Exception{
-    	if(getProject(projectName).getProjectLeaderID()==userID){
-    		getProject(projectName).getActivityWithID(activityID).setActivityName(newActivityName, getProject(projectName).getProjectLeaderID());
-		}else {
-    		throw new Exception("You must be project leader");
-		}
-	}*/
-
-	public void registerDaysWork(Integer employee, Integer halfHours, Integer activity, String project) throws Exception {
+	public void registerDaysWork(Integer employee, Integer halfHours, Integer activity, String project) throws Exception { //ROi
 		getEmployee(employee).addDaysWorkInHalfHours(halfHours);
 		getProject(project).getActivityWithID(activity).addHalfHoursWorked(halfHours);
     }
 
-    public void removeWeeksWork(int employee, int halfHours, int activityID, String projectName) throws Exception {
+    public void removeWeeksWork(int employee, int halfHours, int activityID, String projectName) throws Exception { //Roi
 		int newHalfHours = getProject(projectName).getActivityWithID(activityID).removeHalfHoursWorked(halfHours);
     	getEmployee(employee).removeWeeksWorkInHalfHours(newHalfHours);
 
 	}
 
-    public ArrayList<String> getUserActivities(int ID){
+    public ArrayList<String> getUserActivities(int ID){ //Roi
     	ArrayList<String> list = new ArrayList<String>();
     	for(int i = 0; i < projectList.size(); i++) {
 			Project proj = projectList.get(i);
@@ -162,20 +150,7 @@ public class CompanyApp {
     	return list;
 	}
 
-	/*public ArrayList<Project> getEmployeeProjects(int ID){
-		ArrayList<Project> list = new ArrayList<Project>();
-		for(int i = 0; i < projectList.size(); i++){
-			//Project project = projectList.get(i);
-			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
-				if(projectList.get(i).getEmployees().get(i).getId() == ID){
-					list.add(projectList.get(i));
-				}
-			}
-		}
-		return list;
-	}*/
-
-	public ArrayList<String> getLeaderProjects(int ID){
+	public ArrayList<String> getLeaderProjects(int ID){ //Boran
     	ArrayList<String> list = new ArrayList<String>();
     	Project project;
     	for(int i = 0; i < projectList.size(); i++){
@@ -187,31 +162,9 @@ public class CompanyApp {
     	return list;
 	}
 
-	/*public ArrayList<Project> getProjectLeaderProjects(int ID){
-		ArrayList<Project> list = new ArrayList<Project>();
-		for(int i = 0; i < projectList.size(); i++){
-			for(int j = 1; j <= projectList.get(i).getEmployees().size(); j++){
-				if(projectList.get(i).getProjectLeaderID() == ID){
-					list.add(projectList.get(i));
-				}
-			}
-		}
-    	return list;
-	}*/
-
-	/*public Activity getActivity(String projectName, Integer int1) throws Exception {
-		if (getProject(projectName).getActivityWithID(int1).getActivityID() == int1) {
-			return getProject(projectName).getActivityWithID(int1);
-		} else {
-			throw new Exception("No such activity found");
-		}
-	}*/
-
-    //Constructor for sample company
-
 	public void addActivity(Activity activity, String projectName) throws Exception{ //Asger
-		//assert getProject(projectName).containsActivityWithID(activity.getActivityID()) == true : "precondition";
-		//assert (user == getProject(projectName).getProjectLeaderID()) : "precondition";
+		assert getProject(projectName).containsActivityWithID(activity.getActivityID()) == true : "precondition";
+		assert (user == getProject(projectName).getProjectLeaderID()) : "precondition";
 
 		assertUserIsProjectLeader(getProject(projectName).getProjectLeaderID());
 		int activityID = activity.getActivityID();
@@ -223,8 +176,8 @@ public class CompanyApp {
 			getProject(projectName).getActivities().add(activity);
 		}
 
-		//assert getProject(projectName).getActivities().contains(activity) : "postcondition";
-		//activity.getProjectLeaderID == getProject(projectName).getProjectLeaderID() : "postcondition"
+		assert getProject(projectName).getActivities().contains(activity) : "postcondition";
+		assert activity.getProjectLeaderID() == getProject(projectName).getProjectLeaderID() : "postcondition";
 	}
 
 }

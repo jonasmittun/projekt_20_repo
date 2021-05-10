@@ -33,7 +33,7 @@ public class Employee {
         numberOfActivities--;
     }
 
-    public void addDaysWorkInHalfHours(int halfHours) throws Exception {
+    public void addDaysWorkInHalfHours(int halfHours) throws Exception { //Roi
         //Precondition
         //assert halfHours > 0 && daysWorkInHalfHours + halfHours <= 48: "Precondition";
         int halfHoursAtPre = daysWorkInHalfHours;
@@ -51,7 +51,7 @@ public class Employee {
         //assert halfHoursAtPre + halfHours == daysWorkInHalfHours : "Post-condition";
     }
 
-    public void removeWeeksWorkInHalfHours(int halfHours) throws Exception {
+    public void removeWeeksWorkInHalfHours(int halfHours) throws Exception { //Roi
         if (weeksWorkInHalfHours - halfHours > 0) {
             this.weeksWorkInHalfHours = weeksWorkInHalfHours - halfHours;
         } else {

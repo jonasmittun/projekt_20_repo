@@ -3,7 +3,7 @@ Feature: Assigning Employee
    Actor: Project leader
 
    #Assigning an employee
-   Scenario: Project leader assigns an employee to an activity
+   Scenario: Project leader assigns an employee to an activity //Roi
 
        Given there exists an activity "activity 1" with id <1> in project "project 1"
        And there exists an employee with id <1> which is project leader for project "project 1"
@@ -13,7 +13,7 @@ Feature: Assigning Employee
        When the project leader <1> assigns the employee <2> to the activity <1> in project "project 1"
        Then the employee <2> is assigned to the activity <1> in project "project 1"
 
-   Scenario: An employee is assigned to an activity by a user that is not the project leader
+   Scenario: An employee is assigned to an activity by a user that is not the project leader //Asger
 
       Given there exists an activity "activity 1" with id <1> in project "project 1"
       And there exists an employee with id <1> which is project leader for project "project 1"
@@ -24,7 +24,7 @@ Feature: Assigning Employee
       Then the error message "You must be project leader" is given
 
    #Alternative scenario
-   Scenario: The employee is currently working on <20> activities
+   Scenario: The employee is currently working on <20> activities //Roi
      Given there exists an activity "activity 1" with id <1> in project "project 1"
      And there exists an employee with id <1> which is project leader for project "project 1"
      And employee <1> is the user
@@ -34,7 +34,7 @@ Feature: Assigning Employee
      Then the error message "Employee is working too much" is given
 
    #Unassigning an employee
-   Scenario: Project leader unassigns an employee
+   Scenario: Project leader unassigns an employee //Roi
        Given there exists an employee <2> who is assigned to the activity <1> in project "project 1"
        And the employee with id <2> is assigned to the activity with id <1> in "project 1"
        And there exists an employee with id <1> which is project leader for project "project 1"
@@ -43,7 +43,7 @@ Feature: Assigning Employee
        Then the employee with id <2> is no longer assigned to activity with id <1> in "project 1"
 
    #Employee is already assigned
-   Scenario: Fail scenario when assigning an employee
+   Scenario: Fail scenario when assigning an employee //Roi
      Given there exists an activity "activity 1" with id <1> in project "project 1"
      And there exists an employee with id <1> which is project leader for project "project 1"
      And employee <1> is the user

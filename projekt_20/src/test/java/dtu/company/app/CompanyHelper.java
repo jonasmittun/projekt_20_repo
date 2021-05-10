@@ -1,6 +1,6 @@
 package dtu.company.app;
 
-public class CompanyHelper {
+public class CompanyHelper { //Roi & Asger
     private CompanyApp companyHelper;
 
     public CompanyHelper() throws Exception {

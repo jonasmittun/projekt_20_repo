@@ -8,7 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class HelperSteps {
+public class HelperSteps { //Asger
 	
 	private Employee employee;
 	//private CompanyApp companyApp;
