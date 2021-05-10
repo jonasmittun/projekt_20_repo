@@ -72,26 +72,22 @@ public class InviteSteps {
 			this.activity.inviteEmployee(this.inviter, this.invitee);
 		} catch (Exception e) {
 			this.errorMessage.setErrorMessage(e.getMessage());
-			System.out.println(e.getMessage());
 		}
 	}
 
 	@Then("give the exception {string}")
 	public void give_the_exception(String string) {
-		System.out.println(this.errorMessage.getErrorMessage());
 	    assertTrue(this.errorMessage.getErrorMessage().toString().equals("Employee being invited is already assigned to activity!"));
 	}
 
 	@When("employee <{int}> is invited to activity <{int}> in {string}")
 	public void employee_is_invited_to_activity_in(Integer int1, Integer int2, String string) throws Exception {
 		this.invitee = companyApp.getEmployee(int1);
-		System.out.println(companyApp.getEmployee(int1).getId());
 		this.companyApp.getProject("testProject").getActivityWithID(int2).inviteEmployee(inviter, invitee);
 	}
 
 	@Then("employee <{int}> is assigned to activity <{int}> in {string}")
 	public void employee_is_assigned_to_activity_in(Integer int1, Integer int2, String string) {
-		System.out.println(this.companyApp.getProject(string).getActivityWithID(int2).getEmployees());
 		assertTrue(this.companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 

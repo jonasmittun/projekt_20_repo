@@ -78,7 +78,7 @@ public class EmployeeSteps {
 		try {
 			companyApp.setUser(int1);
 		} catch (Exception e){
-			System.out.print(e);
+			errorMessage.setErrorMessage(e.getMessage());
 		}
 	    assertTrue(companyApp.getUser() == int1);
 	}
@@ -172,7 +172,7 @@ public class EmployeeSteps {
 	public void system_gets_list_of_projects_that_employee_is_leading(Integer int1) {
 		ArrayList<String> list;
 		list = this.companyApp.getLeaderProjects(int1);
-		list.forEach(n -> System.out.println(n));
+		//list.forEach(n -> System.out.println(n));
 	}
 
 	@Then("return list of projects that includes project named {string}")

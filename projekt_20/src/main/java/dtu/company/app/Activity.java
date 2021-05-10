@@ -111,9 +111,6 @@ public class Activity {
         } else {
             halfHours = workedHalfHours;
             double hours = workedHalfHours/2;
-            System.out.println("You have emptied the activity");
-            System.out.println("Removed " + hours + " hours from activity");
-            System.out.println("");
             this.workedHalfHours = 0;
         }
         return halfHours;
