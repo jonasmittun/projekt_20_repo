@@ -1,5 +1,6 @@
 package dtu.company.app;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -77,10 +78,11 @@ public class View {
 		System.out.println("Please select one of " + (list.size()) + " projects");
 
 		int input = UserIntInput();
-
-		if (input > list.size()){
-			System.out.println("Please choose a value from 1 to" + list.size());
+		while (!(input <= list.size() && input > 0)) {
+			System.out.println("Please choose a value from 1 to " + list.size());
+			input = UserIntInput();
 		}
+
 
 		String chosenProject = list.get(input-1);
 		this.test[6] = true;
@@ -119,7 +121,11 @@ public class View {
 		System.out.println("[9]- " + "Return");
 
 		int input = -1;
-		input = this.scanner.nextInt();
+		try {
+			input = this.scanner.nextInt();
+		} catch (Exception e) {
+			input = -1;
+		}
 
 		if (input > -1 && input < 10) {
 			System.out.print("Going to... ");
@@ -135,9 +141,14 @@ public class View {
 			this.test[8] = true;
 			return input;
 		} else {
-			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
-			System.out.println("Input any key to return to Main Menu...");
-			this.scanner.next();
+			System.out.println("Your input of is not recognized as a valid option!");
+			System.out.println("Input any key to return to the menu...");
+			this.scanner = new Scanner(System.in);
+			try {
+				this.scanner.next();
+			} catch (Exception e) {
+				System.out.println("Warning bad input when returning to Main Menu!!");
+			}
 			this.test[9] = true;
 			return -1;
 		}
@@ -265,7 +276,11 @@ public class View {
 		System.out.println("");
 		System.out.println("Please select one of " + (list.size()) + " activities");
 
-		int input = this.scanner.nextInt() - 1;
+		int input = UserIntInput()-1;
+		while (!(input <= list.size() && input > 0)) {
+			System.out.println("Please choose a value from 1 to " + list.size());
+			input = UserIntInput()-1;
+		}
 
 		if (input > list.size()){
 			this.test[15] = true;
@@ -314,6 +329,10 @@ public class View {
 					deadline + "\t\t\t");
 			System.out.print(employeeID + "\t\t" + hoursWorked + "\n");
 		}
+		System.out.println("");
+		System.out.println("Press any key to continue:");
+		String input = this.scanner.next();
+
 		this.test[17] = true;
 	}
 
@@ -383,8 +402,8 @@ public class View {
 		
 		System.out.println("[1]- " + "Time Registration");
 		System.out.println("[2]- " + "Projects");
-		System.out.println("[3]- " + "Company Overview");
-		System.out.println("[4]- " + "Management");
+		System.out.println("[3]- " + "Add employee");
+		System.out.println("[4]- " + "Company Overview");
 		System.out.println("[5]- " + "Reports");
 		System.out.println("[6]- " + "xxx");
 		System.out.println("[7]- " + "yyy");
@@ -407,8 +426,8 @@ public class View {
 			case 0: System.out.println("User Selection"); 		break;
 			case 1: System.out.println("Time Registration"); 	break;
 			case 2: System.out.println("Projects"); 			break;
-			case 3: System.out.println("Company Overview"); 	break;
-			case 4: System.out.println("Management"); 			break;
+			case 3: System.out.println("Add employee"); 	break;
+			case 4: System.out.println("Company Overview"); 			break;
 			case 5: System.out.println("Reports"); 				break;
 			case 6: System.out.println("xxx"); 					break;
 			case 7: System.out.println("yyy"); 					break;
@@ -418,15 +437,18 @@ public class View {
 			this.test[25] = true;
 			return input;
 		} else {
-			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
-			System.out.println("Input any key to return to Main Menu...");
+			System.out.println("Your input of is not recognized as a valid option!");
+			System.out.println("Input any key to return to the menu...");
+			this.scanner = new Scanner(System.in);
 			try {
 				this.scanner.next();
 			} catch (Exception e) {
 				System.out.println("Warning bad input when returning to Main Menu!!");
 			}
 			this.test[26] = true;
+			PageBreak();
 			return -1;
+
 		}
 	}
 
@@ -441,7 +463,11 @@ public class View {
 		System.out.println("[0]- " + "User Selection");
 
 		int input = -1;
-		input = this.scanner.nextInt();
+		try {
+			input = this.scanner.nextInt();
+		} catch (Exception e) {
+			input = -1;
+		}
 
 		if (input > -1 && input < 3 || input == 9 || input == 0) {
 			System.out.print("Going to... ");
@@ -454,10 +480,15 @@ public class View {
 			this.test[27] = true;
 			return input;
 		} else {
-			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
-			System.out.println("Input any key to return to Main Menu...");
-			this.scanner.next();
-			this.test[28] = true;
+			System.out.println("Your input of is not recognized as a valid option!");
+			System.out.println("Input any key to return to the menu...");
+			this.scanner = new Scanner(System.in);
+			try {
+				this.scanner.next();
+			} catch (Exception e) {
+				System.out.println("Warning bad input when returning to Main Menu!!");
+			}
+			PageBreak();
 			return -1;
 		}
 	}
@@ -473,7 +504,11 @@ public class View {
 		System.out.println("[0]- " + "User Selection");
 
 		int input = -1;
-		input = this.scanner.nextInt();
+		try {
+			input = this.scanner.nextInt();
+		} catch (Exception e) {
+			input = -1;
+		}
 
 		if (input > -1 && input < 3 || input == 9 || input == 0) {
 			System.out.print("Going to... ");
@@ -486,10 +521,15 @@ public class View {
 			this.test[29] = true;
 			return input;
 		} else {
-			System.out.println("Your input of '" + input + "' is not recognized as a valid option!");
-			System.out.println("Input any key to return to Main Menu...");
-			this.scanner.next();
-			this.test[30] = true;
+			System.out.println("Your input of is not recognized as a valid option!");
+			System.out.println("Input any key to return to the menu...");
+			this.scanner = new Scanner(System.in);
+			try {
+				this.scanner.next();
+			} catch (Exception e) {
+				System.out.println("Warning bad input when returning to Main Menu!!");
+			}
+			PageBreak();
 			return -1;
 		}
 	}
@@ -543,6 +583,21 @@ public class View {
 		} else {
 			System.out.println("Going back...");
 			this.test[4] = true;
+			return false;
+		}
+	}
+
+	public Boolean addEmployee(int employeeID) {
+		System.out.println("You are about to add a new employee:");
+		System.out.println("");
+		System.out.println("Employee: \temployee " + employeeID + "\t ID: \t" + employeeID);
+		System.out.println("");
+		System.out.println("Press 'y' to continue, press 'n' to return to Project Menu");
+		String input = this.scanner.next();
+		if (input.equalsIgnoreCase("y")) {
+			Employee employee = new Employee(employeeID);
+			return true;
+		} else {
 			return false;
 		}
 	}

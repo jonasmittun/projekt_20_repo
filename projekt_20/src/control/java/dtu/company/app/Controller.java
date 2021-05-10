@@ -12,7 +12,7 @@ public class Controller {
 	private static ArrayList<String> userProjects;
 	private static ErrorMessageHolder errorMessage = new ErrorMessageHolder();
 
-	
+
 	public static void main(String[] args) throws Exception {
 		companyApp = new CompanyApp();
 		view = new View();
@@ -20,11 +20,11 @@ public class Controller {
 		companyApp = setSampleCompany(companyApp);
 
 		view.StartUpText();
-		
+
 		view.PageBreak();
-		
+
 		SelectUser();
-		
+
 		view.PageBreak();
 
 		MainMenu();
@@ -32,9 +32,9 @@ public class Controller {
 		//Gather users activities from CompanyApp
 
 		view.ShutDownText();
-		
+
 	}
-	
+
 	public static void SelectUser() {
 		boolean idConfirmed = false;
 		while(!idConfirmed) {
@@ -43,15 +43,19 @@ public class Controller {
 			try {
 				companyApp.setUser(currentUserID);
 				idConfirmed = view.ConfirmUserID(currentUserID);
-			} catch (Exception e){
+				return;
+			} catch (Exception e) {
 				errorMessage.setErrorMessage(e.getMessage());
 				view.printErrorMessage(errorMessage);
 				SelectUser();
 			}
 		}
 
+
 		System.out.println("User set in companyApp is now: " + companyApp.getUser());
+
 	}
+
 
 	public static void checkForExpiredProjects() {
 		int counter = 0;
@@ -76,8 +80,8 @@ public class Controller {
 		case 0: view.PageBreak(); SelectUser();	break;
 		case 1: view.PageBreak(); RegisterMenu();	break;
 		case 2: view.PageBreak(); ProjectMenu(); System.out.println("placeholder2");	break;
-		case 3: view.PageBreak(); companyOverview();	break;
-		case 4: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder4");	break;
+		case 3: view.PageBreak(); addEmployee();	break;
+		case 4: view.PageBreak(); companyOverview();	break;
 		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
 		case 6: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder6");	break;
 		case 7: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder7");	break;
@@ -134,6 +138,17 @@ public class Controller {
 		view.PageBreak();
 		ProjectAccessMenu(chosenProject);
 	}
+
+	public static void addEmployee() {
+		int employeeID = companyApp.getEmployees().size();
+		Employee employee = new Employee(employeeID);
+		if (view.addEmployee(employeeID)) {
+			companyApp.addNewEmployee(employee);
+		} else {
+			return;
+		}
+	}
+
 	public static void editProjectName(String chosenProject) throws Exception{
 		String oldName = companyApp.getProject(chosenProject).getProjectName();
 		String newName = view.editProjectNameMenu();
