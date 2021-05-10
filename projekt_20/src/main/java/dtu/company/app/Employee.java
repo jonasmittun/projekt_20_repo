@@ -33,7 +33,7 @@ public class Employee {
         numberOfActivities--;
     }
 
-    public void addDaysWorkInHalfHours(int halfHours) throws Exception { //Rói
+    public void addDaysWorkInHalfHours(int halfHours) throws Exception {
         //Precondition
         //assert halfHours > 0 && daysWorkInHalfHours + halfHours <= 48: "Precondition";
         int halfHoursAtPre = daysWorkInHalfHours;

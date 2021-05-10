@@ -191,7 +191,7 @@ public class Controller {
 				case 1:
 					view.PageBreak();
 					setProjectLeader(chosenProject);
-					break;
+					return;
 				case 9:
 					return;
 			}

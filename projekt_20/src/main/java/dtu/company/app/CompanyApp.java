@@ -226,4 +226,5 @@ public class CompanyApp {
 		//assert getProject(projectName).getActivities().contains(activity) : "postcondition";
 		//activity.getProjectLeaderID == getProject(projectName).getProjectLeaderID() : "postcondition"
 	}
+
 }
