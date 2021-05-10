@@ -52,7 +52,7 @@ public class Activity {
         }
     }
 
-    public void assignEmployee(int id, int activities, int user) throws Exception{
+    public void assignEmployee(int id, int activities, int user) throws Exception{ //Boran
         //Precondition
         //assert user == projectLeaderID && !assignedEmployees.contains(id) && activities < 20: "Precondition";
 
@@ -81,7 +81,7 @@ public class Activity {
         assignedEmployees.remove(assignedEmployees.indexOf(int2));
     }
     
-    public void inviteEmployee(Employee inviter, Employee invitee) throws Exception {
+    public void inviteEmployee(Employee inviter, Employee invitee) throws Exception { //Jonas
     	if(containsEmployeeWithID(inviter.getId())) {
     		if(!(containsEmployeeWithID(invitee.getId()))) {
     			assignEmployee(invitee.getId(),invitee.getNumberOfActivities(), projectLeaderID);

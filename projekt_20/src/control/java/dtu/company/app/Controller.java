@@ -373,7 +373,12 @@ public class Controller {
 
 		//Runs Project Menu to get overview of the current user projects
 		String chosenProject = view.projectOverview(userProjects);
-		chosenProject = chosenProject.substring(0,chosenProject.lastIndexOf(':'));
+		if (chosenProject.contains(":")) {
+			chosenProject = chosenProject.substring(0, chosenProject.lastIndexOf(':'));
+		} else {
+			chosenProject = chosenProject;
+		}
+
 		ProjectAccessMenu(chosenProject);
 	}
 
