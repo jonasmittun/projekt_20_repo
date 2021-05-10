@@ -82,6 +82,9 @@ public class Activity {
     }
     
     public void inviteEmployee(Employee inviter, Employee invitee) throws Exception { //Jonas
+    	//Precondition
+        //assert inviter.getId() == currentUserID  && assignedEmployees.contains(inviter.getId()) && !assignedEmployees.contains(invitee.getId());
+    	
     	if(containsEmployeeWithID(inviter.getId())) {
     		if(!(containsEmployeeWithID(invitee.getId()))) {
     			assignEmployee(invitee.getId(),invitee.getNumberOfActivities(), projectLeaderID);
@@ -91,6 +94,9 @@ public class Activity {
     	} else {
     		throw new Exception("Employee trying to invite is not assigned to activity!");
     	}
+    	
+    	//Post-condition
+        //assert containsEmployeeWithID(invitee.getId()) : "Post-condition";
     }
 
     public void addHalfHoursWorked(Integer halfHours) {
