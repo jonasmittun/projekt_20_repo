@@ -301,7 +301,7 @@ public class View {
 	}
 
 	public void companyOverview(ArrayList<Project> projects, ArrayList<Employee> employees) throws Exception {
-		System.out.println("\tProjects: \tDeadline: \tEmployees: \tHoursWorked: ");
+		System.out.println("\tProjects: \tDeadline: \t|\tEmployee: \tHoursWorked: ");
 		int size = employees.size() > projects.size() ? employees.size() : projects.size();
 		System.out.println("");
 		for (int i = 0; i < size; i++){
@@ -312,7 +312,7 @@ public class View {
 				try {
 					deadline = String.valueOf(projects.get(i).getDeadline());
 				} catch (Exception e) {
-					deadline = "N/A";
+					deadline = "N/A\t\t";
 				}
 			}
 			String employeeID = "\t";
@@ -323,12 +323,12 @@ public class View {
 			}
 
 			System.out.print("\t" + projectName + "\t" +
-					deadline + "\t\t\t");
+					deadline + "\t|\t");
 			System.out.print(employeeID + "\t\t" + hoursWorked + "\n");
 		}
 		System.out.println("");
 		System.out.println("Press any key to continue:");
-		this.scanner.next();
+		String input = this.scanner.next();
 
 	}
 
@@ -574,5 +574,44 @@ public class View {
 		} else {
 			return false;
 		}
+	}
+
+	public void employeeOverview(CompanyApp companyApp, int currentUserID) {
+
+		System.out.println("Employee Overview for employee " + currentUserID + "...");
+		System.out.println("");
+
+		String weeksWork = String.valueOf(companyApp.getEmployee(currentUserID).getWeeksWorkInHalfHours()/2);
+		String currentActivities = String.valueOf(companyApp.getEmployee(currentUserID).getNumberOfActivities());
+
+		System.out.println("Hours worked this week: " + weeksWork + " | Number of active activities: " + currentActivities);
+		System.out.println("");
+
+		String projectName = "";
+		String activityName = "";
+		String activityID = "";
+		String hoursWorked = "";
+
+		System.out.println("ProjectName: \tActivityName: \tActivity progress:" );
+
+		if (companyApp.getProjects().get(2).containsEmployeeWithID(currentUserID)){
+			System.out.println("cool 2"+companyApp.getProjects().get(2).getProjectName());
+		}
+		if (companyApp.getProjects().get(2).getActivityWithID(6).containsEmployeeWithID(currentUserID)){
+			System.out.println("cool 2:6");
+		}
+
+		for (int i = 0; i < companyApp.getProjects().size(); i++){
+			projectName = companyApp.getProjects().get(i).getProjectName();
+			for (int j = 0; j < companyApp.getProjects().get(i).getActivities().size(); j++) {
+				if (companyApp.getProjects().get(i).getActivities().get(j).containsEmployeeWithID(currentUserID)) {
+					activityName = companyApp.getProjects().get(i).getActivities().get(j).getActivityName();
+					hoursWorked = String.valueOf(companyApp.getProjects().get(i).getActivities().get(j).getWorkedHalfHours() / 2);
+					System.out.println(projectName + "\t\t" + activityName + "\t\t" + hoursWorked + " hours");
+				}
+			}
+		}
+		System.out.println("Input any key to return to the menu...");
+		String buffer = this.scanner.next();
 	}
 }

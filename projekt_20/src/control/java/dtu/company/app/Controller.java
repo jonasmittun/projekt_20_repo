@@ -80,7 +80,7 @@ public class Controller {
 		case 2: view.PageBreak(); ProjectMenu(); 		break;
 		case 3: view.PageBreak(); addEmployee();		break;
 		case 4: view.PageBreak(); companyOverview();	break;
-		case 5: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder5");	break;
+		case 5: view.PageBreak(); employeeOverview(currentUserID);	break;
 		case 6: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder6");	break;
 		case 7: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder7");	break;
 		case 8: view.PageBreak(); /*User selection metode her*/ System.out.println("placeholder8");	break;
@@ -138,7 +138,7 @@ public class Controller {
 	}
 
 	public static void addEmployee() {
-		int employeeID = companyApp.getEmployees().size();
+		int employeeID = companyApp.getEmployees().size() + 1;
 		Employee employee = new Employee(employeeID);
 		if (view.addEmployee(employeeID)) {
 			companyApp.addNewEmployee(employee);
@@ -210,6 +210,11 @@ public class Controller {
 		employees = companyApp.getEmployees();
 
 		view.companyOverview(projects, employees);
+	}
+
+	private static void employeeOverview(int CurrentUserID) {
+
+		view.employeeOverview(companyApp, CurrentUserID);
 	}
 
 	public static void addHours(int CurrentUserID) throws Exception {
@@ -286,13 +291,25 @@ public class Controller {
 		//Gets user projects
 		userProjects = companyApp.getLeaderProjects(currentUserID);
 
+		//Find leaderless projects
+		for (int i = 0; i < companyApp.getProjects().size(); i++) {
+			if (companyApp.getProjects().get(i).getProjectLeaderID() == 0){
+				userProjects.add(companyApp.getProjects().get(i).getProjectName() + " : No project leader assigned");
+			}
+		}
+
 		//Runs Project Menu to get overview of the current user projects
 		String chosenProject = view.projectOverview(userProjects);
 		ProjectAccessMenu(chosenProject);
 	}
 
 	private static void addActivity(String chosenProject) throws Exception {
-		int activities = companyApp.getProject(chosenProject).getActivities().size()+1;
+		int activities = 1;
+		try {
+			activities = companyApp.getProject(chosenProject).getActivities().size() + 1;
+		} catch (Exception e) {
+			activities = 1;
+		}
 		Activity activity = view.addActivity(activities, chosenProject, currentUserID);
 		companyApp.addActivity(activity, chosenProject);
 
