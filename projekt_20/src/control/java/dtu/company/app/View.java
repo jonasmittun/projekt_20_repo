@@ -107,10 +107,31 @@ public class View {
 		System.out.println("Enter the name you would like to change for the chosen project");
 
 		//Asks user for the new name
-		String input = this.scanner.next();
+		String newProjectName = this.scanner.next();
 
+		System.out.println("You have chosen " + newProjectName + " for the new name.");
+		System.out.println("To confirm press 'y', for a new name press 'n");
 
-		return input;
+		String input2 = this.scanner.next();
+
+		if (input2.equalsIgnoreCase("y")){
+			System.out.println("The name " + newProjectName + " is confirmed!");
+			return newProjectName;
+		}else if (input2.equalsIgnoreCase("n")){
+			System.out.println("Enter the name you would like to edit your project's name with");
+			newProjectName = this.scanner.next();
+			System.out.println("You have chosen " + newProjectName + " for your project. Press 'y to confirm.");
+			String input3 = this.scanner.next();
+			if (input3.equalsIgnoreCase("y")) {
+				System.out.println("Name confirmed!");
+				return newProjectName;
+			}else if(input3.equalsIgnoreCase("n")){
+				System.out.println("Restarting the operation...");
+				return null;
+			}
+		}
+
+		return newProjectName;
 	}
 
 	public int projectAccessMenu(){

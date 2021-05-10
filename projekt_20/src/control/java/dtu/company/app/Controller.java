@@ -150,8 +150,16 @@ public class Controller {
 	public static void editProjectName(String chosenProject) throws Exception{
 		String oldName = companyApp.getProject(chosenProject).getProjectName();
 		String newName = view.editProjectNameMenu();
-		companyApp.getProject(chosenProject).setProjectName(newName,currentUserID);
+		while(newName == null){
+			newName = view.editProjectNameMenu();
+		}
+		try {
+			companyApp.getProject(chosenProject).setProjectName(newName, currentUserID);
+		}catch (Exception e){
+			System.out.println("Operation failed. Please check the project name and try again.");
+		}
 		System.out.println(oldName + " has successfully edited to " + newName);
+
 	}
 
 	private static void assignEmployee(String chosenProject) throws Exception {
