@@ -1,5 +1,6 @@
 package dtu.company.app;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Activity {
@@ -58,6 +59,7 @@ public class Activity {
         if (user != projectLeaderID) {
             throw new Exception("You must be project leader");
         }
+
         if (!assignedEmployees.contains(id)) {
             if (activities < 20) {
                 this.assignedEmployees.add(id);

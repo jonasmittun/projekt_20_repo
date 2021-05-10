@@ -61,7 +61,12 @@ public class CompanyApp {
 	}
 
 	public Employee getEmployee(int id){
-    	return employeeList.get(id);
+    	for (Employee employee : employeeList) {
+    		if (employee.getId() == id) {
+				return employee;
+			}
+		}
+    	return null;
 	}
 
 	public Employee newEmployee(){
@@ -77,7 +82,7 @@ public class CompanyApp {
 	public void assignEmployee(Integer employeeID, Integer activityID, String projectName) throws Exception {
 		int projectLeaderID = getProject(projectName).getProjectLeaderID();
     	assertUserIsProjectLeader(projectLeaderID);
-		int noOfActivities = employeeList.get(employeeID).getNumberOfActivities();
+		int noOfActivities = getEmployee(employeeID).getNumberOfActivities();
     	getProject(projectName).getActivityWithID(activityID).assignEmployee(employeeID,noOfActivities,projectLeaderID);
     	getProject(projectName).addEmployee(getEmployee(employeeID));
 		employeeList.get(employeeID).addActivity();

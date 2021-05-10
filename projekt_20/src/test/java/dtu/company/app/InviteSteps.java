@@ -30,7 +30,7 @@ public class InviteSteps {
 	    //set project leader to any employee
 	    this.companyApp.getProject("testProject").setProjectLeaderID(10);
 	    this.activity = new Activity(int2);
-		companyApp.setUser(companyApp.getProject("testProject").getProjectLeaderID());
+		this.companyApp.setUser(companyApp.getProject("testProject").getProjectLeaderID());
 	    this.companyApp.addActivity(this.activity, "testProject");
 	    this.inviter = new Employee(int1);
 	    this.companyApp.addNewEmployee(this.inviter);
@@ -84,12 +84,15 @@ public class InviteSteps {
 
 	@When("employee <{int}> is invited to activity <{int}> in {string}")
 	public void employee_is_invited_to_activity_in(Integer int1, Integer int2, String string) throws Exception {
-		companyApp.getProject("testProject").getActivityWithID(int2).assignEmployee(int1, 0, companyApp.getUser());
+		this.invitee = companyApp.getEmployee(int1);
+		System.out.println(companyApp.getEmployee(int1).getId());
+		this.companyApp.getProject("testProject").getActivityWithID(int2).inviteEmployee(inviter, invitee);
 	}
 
 	@Then("employee <{int}> is assigned to activity <{int}> in {string}")
 	public void employee_is_assigned_to_activity_in(Integer int1, Integer int2, String string) {
-		assertTrue(companyApp.getProject("testProject").getActivityWithID(int2).containsEmployeeWithID(int1));
+		System.out.println(this.companyApp.getProject(string).getActivityWithID(int2).getEmployees());
+		assertTrue(this.companyApp.getProject(string).getActivityWithID(int2).containsEmployeeWithID(int1));
 	}
 
 }
